@@ -1,16 +1,16 @@
-import { Response, Status } from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import { supabase } from "../lib/supabase.ts";
-import { Climate } from "../models/climate.ts";
-import errors from "../constants/errors.ts";
+import { Response, Status } from 'https://deno.land/x/oak@v10.6.0/mod.ts';
+import { supabase } from '../lib/supabase.ts';
+import { Climate } from '../models/climate.ts';
+import errors from '../constants/errors.ts';
 
 // the database table
-const table = "climates";
+const table = 'climates';
 
 export const getClimates = async ({ response }: { response: Response }) => {
   const { data, error } = await supabase
     .from<Climate>(table)
-    .select("*")
-    .order("order");
+    .select('*')
+    .order('order');
   if (error) {
     response.status = Status.InternalServerError;
     response.body = errors.InternalServerError;
@@ -35,8 +35,8 @@ export const getClimate = async ({
   // find the climate
   const { data, error } = await supabase
     .from<Climate>(table)
-    .select("*")
-    .eq("id", params.id)
+    .select('*')
+    .eq('id', params.id)
     .single();
 
   if (error) {

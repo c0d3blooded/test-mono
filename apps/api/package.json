@@ -1,0 +1,9 @@
+{
+  "name": "treelof-api",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "deno run -A server.ts"
+  },
+  "private": true
+}
