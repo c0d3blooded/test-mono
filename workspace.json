@@ -2,7 +2,11 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "app": "apps/app",
+    "components": "libs/components",
+    "models": "libs/models",
+    "services": "libs/services",
     "treelof": "apps/treelof",
-    "treelof-e2e": "apps/treelof-e2e"
+    "wiki": "apps/wiki"
   }
 }

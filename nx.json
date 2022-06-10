@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "test-mono",
+  "npmScope": "treelof",
   "affected": {
     "defaultBase": "main"
   },
@@ -13,9 +13,10 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "NmJkNjIyMTktN2VlOS00YzgwLWI1MjgtMDQzNTFmOGQzMGNkfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -30,7 +31,16 @@
   "generators": {
     "@nrwl/react": {
       "application": {
+        "style": "scss",
+        "linter": "eslint",
         "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
       }
     },
     "@nrwl/next": {
