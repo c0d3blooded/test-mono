@@ -2,11 +2,11 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "website": "apps/website",
     "app": "apps/app",
+    "api": "apps/api",
     "components": "libs/components",
     "models": "libs/models",
-    "services": "libs/services",
-    "treelof": "apps/treelof",
-    "wiki": "apps/wiki"
+    "services": "libs/services"
   }
 }

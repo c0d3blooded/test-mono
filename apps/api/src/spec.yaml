@@ -1,0 +1,1106 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Treelof API",
+    "description": "A publicly available API providing access to the Treelof Wiki database",
+    "license": {
+      "name": "GPL-3.0 license",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+    }
+  },
+  "x-logo": {
+    "url": "https://api.treelof.com/assets/logo.png",
+    "altText": "Treelof logo"
+  },
+  "tags": [
+    {
+      "name": "plant",
+      "description": "All things about specific plants",
+      "x-displayName": "Plants"
+    },
+    {
+      "name": "edibility",
+      "description": "Parts of this plant which are edible",
+      "x-displayName": "Edibility"
+    },
+    {
+      "name": "functionality",
+      "description": "The functionality of this plant within its ecosystem. Based on permaculture methodology",
+      "x-displayName": "Functionality"
+    },
+    {
+      "name": "layer",
+      "description": "The permaculture layer this plant occupies",
+      "x-displayName": "Layers"
+    },
+    {
+      "name": "soil",
+      "description": "Available soil types and structures",
+      "x-displayName": "Soils"
+    },
+    {
+      "name": "sun_preference",
+      "description": "The preference of a plant of available sun throughout the day",
+      "x-displayName": "Sun Preferences"
+    },
+    {
+      "name": "zone",
+      "description": "The USDA hardiness zone",
+      "x-displayName": "Zones"
+    },
+    {
+      "name": "climate",
+      "description": "The Köppen climate classification group",
+      "x-displayName": "Climates"
+    },
+    {
+      "name": "revision",
+      "description": "A revision made to the article",
+      "x-displayName": "Revisions"
+    }
+  ],
+  "components": {
+    "parameters": {
+      "id": {
+        "in": "path",
+        "name": "id",
+        "schema": {
+          "type": "string"
+        },
+        "description": "id of the object",
+        "required": true
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": 400,
+                "message": "Invalid input"
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": 401,
+                "message": "Not authorized to access endpoint"
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": 403,
+                "message": "Endpoint could not be accessed"
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": 404,
+                "message": "Resource not found"
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": 500,
+                "message": "There was a problem processing your request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuthorization": {
+        "type": "apiKey",
+        "name": "X-API-Key",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "climate": {
+        "title": "Climate",
+        "description": "The Köppen climate classification groups",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the climate"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the climate"
+          },
+          "order": {
+            "type": "number",
+            "description": "The order in which these should be listed"
+          }
+        },
+        "example": {
+          "id": "temperate",
+          "label": "Temparate",
+          "description": "",
+          "order": 3
+        }
+      },
+      "edibility": {
+        "title": "Edibility",
+        "description": "Parts of this plant which are edible",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the edibility"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the edibility"
+          }
+        },
+        "example": {
+          "id": "roots",
+          "label": "Roots",
+          "description": "The roots of this plant are edible"
+        }
+      },
+      "functionality": {
+        "title": "Functionality",
+        "description": "The potential ecological function of a plant. Based on permaculture methodologies",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the functionality"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the functionality"
+          }
+        },
+        "example": {
+          "id": "nectary",
+          "label": "Nectary",
+          "description": "Provides nectar as food for insects"
+        }
+      },
+      "layer": {
+        "title": "Layer",
+        "description": "The permaculture layer(s) of a plant",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the permaculture layer"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the permaculture layer"
+          }
+        },
+        "example": {
+          "id": "shrub",
+          "label": "Shrub",
+          "description": "Acts as shrub layer"
+        }
+      },
+      "plant": {
+        "title": "Plant",
+        "description": "An individual plant species",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "???",
+          "description": "???"
+        }
+      },
+      "revision": {
+        "title": "Revisions",
+        "description": "A revision made to the article",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The id of the revision"
+          },
+          "field": {
+            "type": "string",
+            "description": "The field that was changed"
+          },
+          "old_value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of old values (single item array for text fields)"
+          },
+          "new_value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of new values (single item array for text fields)"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the revision",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "What this is revising"
+          },
+          "reference_id": {
+            "type": "string",
+            "description": "The id of the referenced revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this revision was created"
+          }
+        },
+        "example": {
+          "id": 12,
+          "field": "functionalities",
+          "old_value": [
+            "ground_cover"
+          ],
+          "new_value": [
+            "ground_cover",
+            "nectary"
+          ],
+          "status": "pending",
+          "reference": "plants",
+          "reference_id": "1",
+          "created_at": "2017-07-21T17:32:28Z"
+        }
+      },
+      "soil": {
+        "title": "Soil",
+        "description": "Different structures of soils",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the soil"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the soil"
+          }
+        },
+        "example": {
+          "id": "loam",
+          "label": "Loam",
+          "description": ""
+        }
+      },
+      "sun_preference": {
+        "title": "Sun Preference",
+        "description": "The light preferences of a plant",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the sun preference"
+          },
+          "label": {
+            "type": "string",
+            "description": "The formatted label"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the sun preference"
+          },
+          "order": {
+            "type": "number",
+            "description": "The order in which these should be listed"
+          }
+        },
+        "example": {
+          "id": "full_sun",
+          "label": "Full Sun",
+          "description": "Receives sunlight all day",
+          "order": 1
+        }
+      },
+      "zone": {
+        "title": "USDA Hardiness Zone",
+        "description": "The USDA hardiness zones",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The USDA zone"
+          },
+          "min_f": {
+            "type": "number",
+            "format": "float",
+            "description": "The minimum-lowest temperature in this zone (Farenheit)"
+          },
+          "max_f": {
+            "type": "number",
+            "format": "float",
+            "description": "The maximum-lowest temperature in this zone (Farenheit)"
+          },
+          "min_c": {
+            "type": "number",
+            "format": "float",
+            "description": "The minimum-lowest temperature in this zone (Celsius)"
+          },
+          "max_c": {
+            "type": "number",
+            "format": "float",
+            "description": "The maximum-lowest temperature in this zone (Celsius)"
+          }
+        },
+        "example": {
+          "id": "10a",
+          "min_f": 30,
+          "max_f": 35,
+          "min_c": -1.1,
+          "max_c": 1.7
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.treelof.com"
+    }
+  ],
+  "paths": {
+    "/climates": {
+      "get": {
+        "summary": "Get climates",
+        "description": "Returns a list of all available climates",
+        "tags": [
+          "climate"
+        ],
+        "operationId": "getClimates",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/climate"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/climates/{id}": {
+      "get": {
+        "summary": "Get climate by id",
+        "description": "Returns one climate by its id",
+        "tags": [
+          "climate"
+        ],
+        "operationId": "getClimate",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/climate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/edibilities": {
+      "get": {
+        "summary": "Get edibilities",
+        "description": "Returns a list of all available edibilities",
+        "tags": [
+          "edibility"
+        ],
+        "operationId": "getEdibilities",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/edibility"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/edibilities/{id}": {
+      "get": {
+        "summary": "Get edibility by id",
+        "description": "Returns one edibility by its id",
+        "tags": [
+          "edibility"
+        ],
+        "operationId": "getEdibility",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/soil"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/functionalities": {
+      "get": {
+        "summary": "Get functionalities",
+        "description": "Returns a list of all available functionalities",
+        "tags": [
+          "functionality"
+        ],
+        "operationId": "getFunctionalities",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/functionality"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/functionalities/{id}": {
+      "get": {
+        "summary": "Get functionality by id",
+        "description": "Returns one functionality by its id",
+        "tags": [
+          "functionality"
+        ],
+        "operationId": "getFunctionality",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/functionality"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/layers": {
+      "get": {
+        "summary": "Get layers",
+        "description": "Returns a list of all available layers",
+        "tags": [
+          "layer"
+        ],
+        "operationId": "getLayers",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/layer"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/layers/{id}": {
+      "get": {
+        "summary": "Get layer by id",
+        "description": "Returns one layer by its id",
+        "tags": [
+          "layer"
+        ],
+        "operationId": "getLayer",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layer"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/plants": {
+      "get": {
+        "summary": "Get plants",
+        "description": "Returns a list of all available plants",
+        "tags": [
+          "plant"
+        ],
+        "operationId": "getPlants",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/plant"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/plants/{id}": {
+      "get": {
+        "summary": "Get plant by id",
+        "description": "Returns one plant by its id",
+        "tags": [
+          "plant"
+        ],
+        "operationId": "getPlant",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/revisions": {
+      "get": {
+        "summary": "Get revisions",
+        "description": "Returns a list of revisions for the given artifact",
+        "tags": [
+          "revision"
+        ],
+        "operationId": "getRevisions",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "reference",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "plants"
+              ]
+            },
+            "required": true,
+            "description": "The class of the artifact"
+          },
+          {
+            "in": "query",
+            "name": "reference_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The id of the artifact"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/revision"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/soils": {
+      "get": {
+        "summary": "Get soils",
+        "description": "Returns a list of all available soils",
+        "tags": [
+          "soil"
+        ],
+        "operationId": "getSoils",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/soil"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/soils/{id}": {
+      "get": {
+        "summary": "Get soil by id",
+        "description": "Returns one soil by its id",
+        "tags": [
+          "soil"
+        ],
+        "operationId": "getSoil",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/soil"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/sun-preferences": {
+      "get": {
+        "summary": "Get sun preferences",
+        "description": "Returns a list of all available sun preferences",
+        "tags": [
+          "sun_preference"
+        ],
+        "operationId": "getSunPreferencea",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/sun_preference"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/sun-preferences/{id}": {
+      "get": {
+        "summary": "Get sun preference by id",
+        "description": "Returns one sun preference by its id",
+        "tags": [
+          "sun_preference"
+        ],
+        "operationId": "getSunPreference",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sun_preference"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/zones": {
+      "get": {
+        "summary": "Get zones",
+        "description": "Returns a list of all available zones",
+        "tags": [
+          "zone"
+        ],
+        "operationId": "getZones",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/zone"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/zones/{id}": {
+      "get": {
+        "summary": "Get zone by id",
+        "description": "Returns one zone by its id",
+        "tags": [
+          "zone"
+        ],
+        "operationId": "getZone",
+        "security": [
+          {
+            "ApiKeyAuthorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/zone"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    }
+  }
+}

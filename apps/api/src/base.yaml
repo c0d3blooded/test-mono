@@ -1,0 +1,131 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Treelof API"
+  description: "A publicly available API providing access to the Treelof Wiki database"
+  license:
+    name: "GPL-3.0 license"
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+# redoc extension
+x-logo:
+    url: 'https://api.treelof.com/assets/logo.png'
+    altText: 'Treelof logo'
+tags:
+  - name: plant
+    description: All things about specific plants
+    x-displayName: Plants
+  - name: edibility
+    description: Parts of this plant which are edible
+    x-displayName: Edibility
+  - name: functionality
+    description: The functionality of this plant within its ecosystem. Based on permaculture methodology
+    x-displayName: Functionality
+  - name: layer
+    description: The permaculture layer this plant occupies
+    x-displayName: Layers
+  - name: soil
+    description: Available soil types and structures
+    x-displayName: Soils
+  - name: sun_preference
+    description: The preference of a plant of available sun throughout the day
+    x-displayName: Sun Preferences
+  - name: zone
+    description: The USDA hardiness zone
+    x-displayName: Zones
+  - name: climate
+    description: The Köppen climate classification group
+    x-displayName: Climates
+  - name: revision
+    description: A revision made to the article
+    x-displayName: Revisions
+components:
+  # reusable parameters
+  parameters:
+    # for endpoints that require an id parameter in the path
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      description: id of the object
+      required: true
+  # standard error responses  
+  responses:
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 401
+              message: Not authorized to access endpoint
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 403
+              message: Endpoint could not be accessed
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 404
+              message: Resource not found
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 400
+              message: Invalid input
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 500
+              message: There was a problem processing your request
+  securitySchemes:
+    ApiKeyAuthorization:
+      type: apiKey
+      name: X-API-Key
+      in: header
+servers:
+  - url: "https://api.treelof.com"
+paths: {}
