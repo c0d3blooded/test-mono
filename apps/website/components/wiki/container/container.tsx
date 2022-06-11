@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Fade, SlideHorizontalRight } from '@treelof/animations';
+import { useIsMobile } from '@treelof/hooks';
 import {
   HiOutlineDocumentAdd,
   HiOutlineHeart,
@@ -8,7 +9,6 @@ import {
   HiOutlineLibrary,
   HiOutlineX
 } from 'react-icons/hi';
-import useIsMobile from '../../../hooks/useIsMobile';
 
 import WikiHeader from '../header';
 import { useRouter } from 'next/router';

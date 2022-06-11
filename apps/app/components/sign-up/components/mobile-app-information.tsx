@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import isempty from 'lodash.isempty';
-import { AppInformation } from '../../../models/app-information';
+import { AppInformation, Profile } from '@treelof/models';
 import { upsertAppInformation } from '../../../services/app-information';
 import Button from '../../common/button';
 import Card from '../../common/card';
@@ -10,7 +10,6 @@ import { downloadAppIcon, uploadAppIcon } from '../../../services/storage';
 import { dataToBase64 } from '../../../utils/common';
 import { IconData } from '../../common/icon-uploader/icon-uploader';
 import { supabase } from '../../../lib/supabase-client';
-import { Profile } from '../../../models/profile';
 import { table as profile_table } from '../../../services/profile';
 import { useUser } from '../../../hooks/useUser';
 import SettingsAppInformation from '../../settings/app-information';

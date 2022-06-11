@@ -4,7 +4,9 @@ const isServer = typeof window === 'undefined';
 /**
  * @returns custom hook to retrieve height of component
  */
-export function useHeight({ on = true /* no value means on */ } = {} as any) {
+export default function useHeight(
+  { on = true /* no value means on */ } = {} as any
+) {
   const ref = useRef<any>();
   const [height, set] = useState(0);
   const heightRef = useRef(height);

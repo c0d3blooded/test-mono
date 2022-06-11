@@ -1,4 +1,4 @@
-import { Invitation } from '../models/invitation';
+import { Invitation } from '@treelof/models';
 
 /**
  * Creates a url for an invited member to access

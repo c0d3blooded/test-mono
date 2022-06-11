@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { HiSave } from 'react-icons/hi';
 import Button from '../../../components/common/button';
 import Card from '../../../components/common/card';
-import { Profile } from '../../../models/profile';
+import { Profile } from '@treelof/models';
 import {
   createProfile,
   getProfile,

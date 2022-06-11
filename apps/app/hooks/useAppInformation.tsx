@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import { supabase } from '../lib/supabase-client';
-import { AppInformation } from '../models/app-information';
+import { AppInformation } from '@treelof/models';
 import { useUser } from './useUser';
 import { table as app_information_table } from '../services/app-information';
 

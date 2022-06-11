@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase-client';
-import { AppInformation } from '../models/app-information';
+import { AppInformation } from '@treelof/models';
 
 // the table for this file
 export const table = 'app_information';

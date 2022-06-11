@@ -3,7 +3,8 @@ import Button from '../../components/common/button';
 import { getName } from '../../utils/profile';
 import { useRouter } from 'next/router';
 import { Fade } from '@treelof/animations';
-import { Profile, ProfileRoles } from '../../models/profile';
+import { useIsMobile } from '@treelof/hooks';
+import { Profile, ProfileRoles } from '@treelof/models';
 import { useUser } from '../../hooks/useUser';
 import { useAppInformation } from '../../hooks/useAppInformation';
 import cn from 'classnames';
@@ -18,7 +19,6 @@ import { supabase } from '../../lib/supabase-client';
 import { copyObject, passThroughSessionStorage } from '../../utils/common';
 import { sendInvitation } from '../../services/invitation';
 import DashboardSection from '../../components/common/dashboard-section';
-import useIsMobile from '../../hooks/useIsMobile';
 
 /**
  * @returns A table of leaders within the app

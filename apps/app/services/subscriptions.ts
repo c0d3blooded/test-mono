@@ -1,6 +1,5 @@
 import { supabaseService } from '../lib/supabase-client';
-import { Profile } from '../models/profile';
-import { Subscription } from '../models/subscription';
+import { Profile, Subscription } from '@treelof/models';
 
 // the table for this file
 const table = 'subscriptions';

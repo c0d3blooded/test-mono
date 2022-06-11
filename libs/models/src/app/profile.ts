@@ -22,5 +22,5 @@ export enum ProfileRoles {
   Administrator = 'admin',
   Farmer = 'farmer',
   Educator = 'educator',
-  MarketOverseer = 'market-overseer'
+  MarketOverseer = 'market-overseer',
 }

@@ -1,5 +1,4 @@
-import { AppInformation } from '../models/app-information';
-import { Profile } from '../models/profile';
+import { AppInformation, Profile } from '@treelof/models';
 
 /**
  * Checks if a given email is valid

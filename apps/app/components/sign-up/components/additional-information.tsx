@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { SurveyAnswers } from '../../../models/survey-answers';
+import { SurveyAnswers } from '@treelof/models';
 import Button from '../../common/button';
 import Card from '../../common/card';
 import CheckboxGroup from '../../common/checkbox-group';

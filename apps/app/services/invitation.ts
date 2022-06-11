@@ -2,8 +2,8 @@ import { supabase, supabaseService } from '../lib/supabase-client';
 import {
   AcceptInvitationParameters,
   CreateInvitationParameters
-} from '../models/api';
-import { Invitation } from '../models/invitation';
+} from '@treelof/models';
+import { Invitation } from '@treelof/models';
 
 // the table for this file
 export const table = 'invitations';
@@ -65,10 +65,7 @@ export const getInvitationByCode = (invitation_code: string) =>
  * @param invitation
  */
 export const deleteInvitationsByApp = (invitation: Invitation) =>
-  supabaseService
-    .from<Invitation>(table)
-    .delete()
-    .match({
-      app_information_id: invitation.app_information_id,
-      profile_id: invitation.profile_id
-    });
+  supabaseService.from<Invitation>(table).delete().match({
+    app_information_id: invitation.app_information_id,
+    profile_id: invitation.profile_id
+  });

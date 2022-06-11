@@ -3,12 +3,12 @@ import fs from 'fs';
 import path from 'path';
 import * as colors from 'material-ui-colors';
 import { withSentry } from '@sentry/nextjs';
-import { AppIconParameters } from '../../../../models/api';
-import { isValidJWT } from '../../../../services/api'; // Initialize the cors middleware
 import {
+  AppIconParameters,
   MaterialUIAccentColor,
   MaterialUIColor
-} from '../../../../components/common/color-picker/color-picker';
+} from '@treelof/models';
+import { isValidJWT } from '../../../../services/api'; // Initialize the cors middleware
 
 const accentColors = {
   amberAccent: '#ffab40',

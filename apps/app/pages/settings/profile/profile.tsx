@@ -3,7 +3,7 @@ import Card from '../../../components/common/card';
 import DashboardSection from '../../../components/common/dashboard-section';
 import SettingsProfile from '../../../components/settings/profile';
 import { useUser } from '../../../hooks/useUser';
-import { Profile } from '../../../models/profile';
+import { Profile } from '@treelof/models';
 import { updateProfile } from '../../../services/profile';
 
 interface FormState {

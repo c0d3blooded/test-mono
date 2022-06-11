@@ -2,14 +2,10 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styles from './icon-uploader.module.scss';
 import { getAppIcon } from '../../../services/api';
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../color-picker/color-picker';
 import DropdownSelect from '../dropdown-select';
 import { DropddownOption } from '../dropdown-select/dropdown-select';
 import cn from 'classnames';
-import { IconOption } from '../../../models/api';
+import { IconOption, MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
 import { FormProvider, useForm } from 'react-hook-form';
 import { responseToBase64 } from '../../../utils/common';
 

@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase-client';
-import { APIKey } from '../models/api-key';
+import { APIKey } from '@treelof/models';
 
 // the table for this file
 export const table = 'api_keys';

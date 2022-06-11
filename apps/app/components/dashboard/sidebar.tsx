@@ -12,7 +12,7 @@ import {
 } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 import { useUser } from '../../hooks/useUser';
-import useIsMobile from '../../hooks/useIsMobile';
+import { useIsMobile } from '@treelof/hooks';
 
 interface Props {
   showMobile: boolean; // is the menu visible

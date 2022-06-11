@@ -1,7 +1,7 @@
 /** File for internal API routes */
 import isempty from 'lodash.isempty';
 import { supabase } from '../lib/supabase-client';
-import { AppIconParameters } from '../models/api';
+import { AppIconParameters } from '@treelof/models';
 import { parseJwt } from '../utils/auth';
 
 /** Get the user's id from the given OAuth token

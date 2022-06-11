@@ -2,16 +2,14 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 import { withSentry } from '@sentry/nextjs';
 import fs from 'fs';
-import { CreateInvitationParameters } from '../../../../../models/api';
+import { CreateInvitationParameters } from '@treelof/models';
 import { supabaseService } from '../../../../../lib/supabase-client';
 import MailgunClient from '../../../../../lib/mailgun';
 import { isValidJWT } from '../../../../../services/api'; // Initialize the cors middleware
 import { table as app_information_table } from '../../../../../services/app-information';
 import { table as profile_table } from '../../../../../services/profile';
-import { Invitation } from '../../../../../models/invitation';
-import { Profile } from '../../../../../models/profile';
+import { Invitation, Profile, AppInformation } from '@treelof/models';
 import { generateInvitationUrl } from '../../../../../utils/invitation';
-import { AppInformation } from '../../../../../models/app-information';
 import { replaceEmailTemplateValue } from '../../../../../utils/common';
 import { getName } from '../../../../../utils/profile';
 import { createInvitation } from '../../../../../services/invitation';

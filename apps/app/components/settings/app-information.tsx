@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import isempty from 'lodash.isempty';
-import { AppInformation } from '../../models/app-information';
+import { AppInformation } from '@treelof/models';
 import {
   DeviceTheme,
   DeviceThemeLabel,
   DeviceType,
   DeviceTypeLabel
-} from '../../models/utility';
+} from '@treelof/models';
 import AppLoader from '../common/app-loader';
 import ButtonGroup from '../common/button-group';
 import ColorPicker from '../common/color-picker';

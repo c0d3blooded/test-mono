@@ -5,47 +5,7 @@ import 'rc-tooltip/assets/bootstrap_white.css';
 import styles from './color-picker.module.scss';
 import cn from 'classnames';
 import Tooltip from '../tooltip';
-
-export type MaterialUIColor =
-  | 'amber'
-  | 'black'
-  | 'blue'
-  | 'blueGrey'
-  | 'brown'
-  | 'cyan'
-  | 'deepOrange'
-  | 'deepPurple'
-  | 'green'
-  | 'grey'
-  | 'indigo'
-  | 'lightBlue'
-  | 'lightGreen'
-  | 'lime'
-  | 'orange'
-  | 'pink'
-  | 'purple'
-  | 'red'
-  | 'teal'
-  | 'white'
-  | 'yellow';
-
-export type MaterialUIAccentColor =
-  | 'amberAccent'
-  | 'blueAccent'
-  | 'cyanAccent'
-  | 'deepOrangeAccent'
-  | 'deepPurpleAccent'
-  | 'greenAccent'
-  | 'indigoAccent'
-  | 'lightBlueAccent'
-  | 'lightGreenAccent'
-  | 'limeAccent'
-  | 'orangeAccent'
-  | 'pinkAccent'
-  | 'purpleAccent'
-  | 'redAccent'
-  | 'tealAccent'
-  | 'yellowAccent';
+import { MaterialUIColor, MaterialUIAccentColor } from '@treelof/models';
 
 interface Props {
   label: string; // label for the section

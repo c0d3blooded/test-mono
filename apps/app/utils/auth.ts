@@ -1,5 +1,5 @@
 import { NextApiRequest } from 'next';
-import { SupabaseJWT } from '../models/supabase-jwt';
+import { SupabaseJWT } from '@treelof/models';
 
 /**
  * Indicates if the caller of this endpoint is authenticated

@@ -7,8 +7,7 @@ import SettingsAppInformation from '../../../components/settings/app-information
 import { useAppInformation } from '../../../hooks/useAppInformation';
 import { useUser } from '../../../hooks/useUser';
 import { supabase } from '../../../lib/supabase-client';
-import { AppInformation } from '../../../models/app-information';
-import { Profile } from '../../../models/profile';
+import { AppInformation, Profile } from '@treelof/models';
 import { upsertAppInformation } from '../../../services/app-information';
 import { table as profile_table } from '../../../services/profile';
 import { uploadAppIcon } from '../../../services/storage';

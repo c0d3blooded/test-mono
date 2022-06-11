@@ -1,2 +1,2 @@
-export * from './lib/useHeight';
-export * from './lib/useIsMobile';
+export { default as useHeight } from './useHeight';
+export { default as useIsMobile } from './useIsMobile';

@@ -4,7 +4,7 @@ import Button from '../../common/button';
 import Card from '../../common/card';
 import SettingsProfile from '../../settings/profile';
 import { useUser } from '../../../hooks/useUser';
-import { Profile } from '../../../models/profile';
+import { Profile } from '@treelof/models';
 import { updateProfile } from '../../../services/profile';
 import { SignUpContext } from '../context';
 

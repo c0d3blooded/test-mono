@@ -1,6 +1,6 @@
+import { Profile } from '@treelof/models';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Profile } from '../../models/profile';
 import Input from '../common/input';
 
 /**

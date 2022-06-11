@@ -1,4 +1,4 @@
-import { Profile } from '../models/profile';
+import { Profile } from '@treelof/models';
 import { supabase, supabaseService } from '../lib/supabase-client';
 import omit from 'lodash.omit';
 

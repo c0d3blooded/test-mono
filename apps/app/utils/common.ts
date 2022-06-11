@@ -3,7 +3,7 @@ import {
   MaterialUIColor
 } from '../components/common/color-picker/color-picker';
 import isempty from 'lodash.isempty';
-import { DeviceTheme } from '../models/utility';
+import { DeviceTheme } from '@treelof/models';
 
 /**
  * Copies a JSON object into a new value. Can be used to trigger state changes

@@ -1,4 +1,4 @@
-import { Profile } from '../models/profile';
+import { Profile } from '@treelof/models';
 
 /**
  * @param profile the profile object from the DB

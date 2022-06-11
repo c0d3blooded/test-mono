@@ -10,7 +10,7 @@ import {
   DeviceTheme,
   DeviceType,
   DeviceTypeLabel
-} from '../../../models/utility';
+} from '@treelof/models';
 import { getColorLuminance } from '../../../utils/common';
 
 interface Props {

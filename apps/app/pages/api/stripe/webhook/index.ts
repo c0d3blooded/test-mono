@@ -8,7 +8,7 @@ import initializeMiddleware from '../../../../lib/middleware';
 import {
   Subscription,
   SubscriptionType
-} from '../../../../models/subscription';
+} from '@treelof/models';
 import { upsertSubscription } from '../../../../services/subscriptions';
 // diable body parsing for webhook verification
 export const config = {

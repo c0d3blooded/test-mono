@@ -1,6 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
-import { AcceptInvitationParameters } from '../../../../../models/api';
+import { AcceptInvitationParameters } from '@treelof/models';
 import { isValidJWT, uidFromJWT } from '../../../../../services/api'; // Initialize the cors middleware
 import {
   deleteInvitationsByApp,

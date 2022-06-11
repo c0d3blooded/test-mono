@@ -1,8 +1,8 @@
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../components/common/color-picker/color-picker';
+import { MaterialUIAccentColor, MaterialUIColor } from '../app/colors';
 
+// ---------- TREELOF API PARAMETERS ----------
+
+// ---------- INTERNAL APP PARAMETERS ----------
 export type IconColor =
   | MaterialUIColor
   | MaterialUIAccentColor

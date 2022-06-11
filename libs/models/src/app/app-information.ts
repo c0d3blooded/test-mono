@@ -1,7 +1,4 @@
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../components/common/color-picker/color-picker';
+import { MaterialUIAccentColor, MaterialUIColor } from './colors';
 
 /* Meta information required for creating, submitting and updating an app on the App/Play Store */
 export interface AppInformation {
@@ -22,5 +19,5 @@ export enum AppInformationStatus {
   Pending = 'Pending',
   InReview = 'In Review',
   Active = 'Active',
-  Denied = 'Denied'
+  Denied = 'Denied',
 }

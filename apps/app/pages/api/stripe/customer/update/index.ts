@@ -3,7 +3,7 @@ import { withSentry } from '@sentry/nextjs';
 import Stripe from 'stripe';
 import Cors from 'cors';
 import initializeMiddleware from '../../../../../lib/middleware';
-import { Profile } from '../../../../../models/profile';
+import { Profile } from '@treelof/models';
 import { getSubscription } from '../../../../../services/subscriptions';
 import { isAuthenticated } from '../../../../../utils/auth';
 /**

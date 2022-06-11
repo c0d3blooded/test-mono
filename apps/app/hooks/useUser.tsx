@@ -9,7 +9,7 @@ import { Session, User, Provider, ApiError } from '@supabase/supabase-js';
 import first from 'lodash.first';
 import { supabase } from '../lib/supabase-client';
 import { getProfilesByUuid, table as profile_table } from '../services/profile';
-import { Profile } from '../models/profile';
+import { Profile } from '@treelof/models';
 import { copyObject, isObjectEmpty } from '../utils/common';
 
 type UserContextType = {

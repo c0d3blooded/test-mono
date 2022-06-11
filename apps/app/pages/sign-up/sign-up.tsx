@@ -12,7 +12,7 @@ import {
 } from '../../utils/form';
 import { useUser } from '../../hooks/useUser';
 import { getAppInformation } from '../../services/app-information';
-import { AppInformation } from '../../models/app-information';
+import { AppInformation } from '@treelof/models';
 import SignUpGeneralInformation from '../../components/sign-up/components/general-information';
 import SignUpMobileAppInformation from '../../components/sign-up/components/mobile-app-information';
 
