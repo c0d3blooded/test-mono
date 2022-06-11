@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
+    "lib": ["es2017", "dom"],
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "Node",
@@ -10,9 +11,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@treelof/components": ["libs/components/src/index.ts"],
