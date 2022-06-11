@@ -1,17 +1,24 @@
+import {
+  Climate,
+  Edibility,
+  Functionality,
+  Layer,
+  Soil,
+  SunPreference,
+  Zone
+} from '@treelof/models';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Characteristic } from '../models/characteristic';
 
 type CharacteristicContextType = {
   loading: boolean;
-  edibilities?: Array<Characteristic>;
-  functionalities?: Array<Characteristic>;
-  layers?: Array<Characteristic>;
-  sunPreferences?: Array<Characteristic>;
-  soilPreferences?: Array<Characteristic>;
-  climates?: Array<Characteristic>;
-  // TODO: set zone model
-  zones?: Array<{}>;
+  edibilities?: Array<Edibility>;
+  functionalities?: Array<Functionality>;
+  layers?: Array<Layer>;
+  sunPreferences?: Array<SunPreference>;
+  soilPreferences?: Array<Soil>;
+  climates?: Array<Climate>;
+  zones?: Array<Zone>;
 };
 export const CharacteristicContext =
   React.createContext<CharacteristicContextType>({ loading: false });

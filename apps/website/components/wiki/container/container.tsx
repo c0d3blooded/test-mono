@@ -15,10 +15,10 @@ import { useRouter } from 'next/router';
 import RequestPageModal from '../../common/modals/create-page-modal';
 import FeedbackModal from '../../common/modals/feedback-modal';
 
-interface Props {
+interface ContainerProps {
   children?: React.ReactNode;
 }
-const WikiContainer: React.FC<Props> = (props) => {
+const WikiContainer: React.FC<ContainerProps> = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="min-h-screen flex">

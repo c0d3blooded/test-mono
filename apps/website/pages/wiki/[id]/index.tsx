@@ -16,23 +16,21 @@ import {
 } from 'react-icons/hi';
 import { FormProvider, useForm } from 'react-hook-form';
 import { createRevision, getRevisions } from '../../../services/revisions';
+import { Plant, Revision } from '@treelof/models';
 
 const WikiPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const { loading } = useContext(CharacteristicContext);
-  // TODO: Assign plant model
-  const methods = useForm<{}>();
+  const methods = useForm<Plant>();
   const {
     handleSubmit,
     formState: { errors },
     setValue
   } = methods;
 
-  // TODO: Assign plant model
-  const [plant, setPlant] = useState();
-  // TODO: Assign revision model
-  const [revisions, setRevisions] = useState();
+  const [plant, setPlant] = useState<Plant>();
+  const [revisions, setRevisions] = useState<Array<Revision>>();
   const [showLoader, setShowLoader] = useState(false);
   const [isSaving, setIsSaving] = useState(false); // the form is saving
 
@@ -44,8 +42,7 @@ const WikiPage = () => {
   // get the plant from the database with the necessary metadata
   const getPlant = useCallback(async () => {
     if (id)
-      // TODO: add plant model
-      await axios.get(`/plants/${id}`).then(({ data }) => {
+      await axios.get<Plant>(`/plants/${id}`).then(({ data }) => {
         setPlant(data);
         for (let key of Object.keys(data)) {
           // @ts-ignore
