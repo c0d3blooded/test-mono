@@ -9,6 +9,7 @@
   "license": "MIT",
   "homepage": "https://github.com/c0d3blooded/treelof-website#readme",
   "scripts": {
+    "test": "",
     "env-pull": "vercel env pull"
   },
   "dependencies": {
