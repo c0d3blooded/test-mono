@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-/* Detects if the current code is being runon the server */
 const isServer = typeof window === 'undefined';
-
 /**
  * @returns custom hook to retrieve height of component
  */

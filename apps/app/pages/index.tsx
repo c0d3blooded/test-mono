@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FaAndroid, FaAppStore, FaApple, FaGooglePlay } from 'react-icons/fa';
 import { HiCog, HiOutlineUsers } from 'react-icons/hi';
-import Fade from '../components/animation/fade';
+import { Fade } from '@treelof/animations';
 import Button from '../components/common/button';
 import DashboardSection from '../components/common/dashboard-section';
 import CheckoutSuccess from '../components/dashboard/components/checkout-success';

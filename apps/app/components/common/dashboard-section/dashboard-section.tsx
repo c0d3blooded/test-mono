@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import SlideVertical from '../../animation/slide-vertical';
+import { SlideVertical } from '@treelof/animations';
 import Authenticator from '../../auth/authenticator';
 import Notification from '../notification';
 

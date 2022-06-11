@@ -2,6 +2,7 @@ import { HiPlus } from 'react-icons/hi';
 import Button from '../../components/common/button';
 import { getName } from '../../utils/profile';
 import { useRouter } from 'next/router';
+import { Fade } from '@treelof/animations';
 import { Profile, ProfileRoles } from '../../models/profile';
 import { useUser } from '../../hooks/useUser';
 import { useAppInformation } from '../../hooks/useAppInformation';
@@ -14,7 +15,6 @@ import {
   table as profile_table
 } from '../../services/profile';
 import { supabase } from '../../lib/supabase-client';
-import Fade from '../../components/animation/fade';
 import { copyObject, passThroughSessionStorage } from '../../utils/common';
 import { sendInvitation } from '../../services/invitation';
 import DashboardSection from '../../components/common/dashboard-section';

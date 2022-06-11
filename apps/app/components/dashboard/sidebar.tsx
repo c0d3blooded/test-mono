@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Fade, SlideHorizontalRight } from '@treelof/animations';
 import cn from 'classnames';
 import {
   HiOutlineViewGrid,
@@ -10,8 +11,6 @@ import {
   HiOutlineX
 } from 'react-icons/hi';
 import { useRouter } from 'next/router';
-import SlideHorizontalRight from '../animation/slide-horizontal-right';
-import Fade from '../animation/fade';
 import { useUser } from '../../hooks/useUser';
 import useIsMobile from '../../hooks/useIsMobile';
 

@@ -1,6 +1,6 @@
 import React from 'react';
+import { Fade } from '@treelof/animations';
 import { useUser } from '../../../hooks/useUser';
-import Fade from '../../animation/fade';
 import LoginPage from '../login';
 
 interface Props {

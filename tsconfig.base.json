@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@treelof/animations": ["libs/animations/src/index.ts"],
       "@treelof/components": ["libs/components/src/index.ts"],
+      "@treelof/hooks": ["libs/hooks/src/index.ts"],
       "@treelof/models": ["libs/models/src/index.ts"],
       "@treelof/services": ["libs/services/src/index.ts"]
     }

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Fade } from '@treelof/animations';
 import WikiPageMdx from '../../../mdx/wiki/page.mdx';
 import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
 import WikiRevisionsMdx from '../../../mdx/wiki/revisions.mdx';
 import WikiContainer from '../../../components/wiki/container';
 import { CharacteristicContext } from '../../../context/characteristic';
-import Fade from '../../../components/animation/fade';
 import Loader from '../../../components/common/loader';
 import Tabs from '../../../components/common/tabs';
 import {

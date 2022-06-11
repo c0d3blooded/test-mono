@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import remove from 'lodash.remove';
+import { Fade } from '@treelof/animations';
 import Authenticator from '../../components/auth/authenticator';
 import SignUpAdditionalInformation from '../../components/sign-up/components/additional-information';
 import SignUpPricingInformation from '../../components/sign-up/components/pricing-information';
 import StepsIndicator from '../../components/common/steps-indicator';
 import { SignUpContext } from '../../components/sign-up/context';
-import Fade from '../../components/animation/fade';
 import {
   isGeneralInformationComplete,
   isMobileAppInformationComplete

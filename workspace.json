@@ -2,11 +2,13 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "website": "apps/website",
-    "app": "apps/app",
+    "animations": "libs/animations",
     "api": "apps/api",
+    "app": "apps/app",
     "components": "libs/components",
+    "hooks": "libs/hooks",
     "models": "libs/models",
-    "services": "libs/services"
+    "services": "libs/services",
+    "website": "apps/website"
   }
 }

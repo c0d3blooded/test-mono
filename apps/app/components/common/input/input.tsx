@@ -2,7 +2,7 @@ import styles from './input.module.scss';
 import React from 'react';
 import { FaExclamationCircle } from 'react-icons/fa';
 import cn from 'classnames';
-import SlideVertical from '../../animation/slide-vertical';
+import { SlideVertical } from '@treelof/animations';
 
 interface Props {
   label?: string; // optional label for the input

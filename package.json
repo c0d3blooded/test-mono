@@ -24,6 +24,7 @@
     "material-ui-colors": "^1.0.0",
     "next": "12.1.5",
     "next-pwa": "^5.5.4",
+    "rc-tooltip": "^5.1.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "^7.32.0",

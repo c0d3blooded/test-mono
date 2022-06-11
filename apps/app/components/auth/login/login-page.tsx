@@ -1,9 +1,9 @@
 import {  useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { Fade } from '@treelof/animations';
 import SignInForm from './sign-in-form';
 import SignUpForm from './sign-up-form';
-import Fade from '../../animation/fade';
 import { useRouter } from 'next/router';
 
 /**

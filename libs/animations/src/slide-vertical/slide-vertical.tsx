@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSpring, animated, UseSpringProps, config } from 'react-spring';
-import { useHeight } from '../../../hooks/useHeight';
+import { useHeight } from '@treelof/hooks';
 
 interface Props {
   show: boolean; // component is visible
   withDelay?: boolean; // there shold be a delay before rendering and showing the component
+  children?: React.ReactNode;
 }
 /**
  * @return A wrapper component for slide in/out based on component visibility
@@ -21,9 +22,9 @@ const SlideVertical: React.FC<Props> = (props) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: show ? 1 : 0,
-      height: show ? height : 0
+      height: show ? height : 0,
     },
-    ...additionalAnimProps
+    ...additionalAnimProps,
     // onStart: () => {
     //   if (show) setIsComponentRendered(show);
     // },

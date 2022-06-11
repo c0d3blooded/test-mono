@@ -1,8 +1,8 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { Fade } from '@treelof/animations';
 import { UserContextProvider } from '../hooks/useUser';
 import Sidebar from '../components/dashboard/sidebar';
-import Fade from '../components/animation/fade';
 import Header from '../components/dashboard/header';
 import { useState } from 'react';
 import cn from 'classnames';

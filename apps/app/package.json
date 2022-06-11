@@ -28,7 +28,6 @@
     "luxon": "^2.3.1",
     "mailgun.js": "^5.2.1",
     "micro": "^9.3.4",
-    "rc-tooltip": "^5.1.1",
     "stripe": "^8.203.0"
   },
   "devDependencies": {
