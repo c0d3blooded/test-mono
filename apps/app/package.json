@@ -1,0 +1,55 @@
+{
+  "name": "app",
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c0d3blooded/treelof-app-website.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/c0d3blooded/treelof-app-website#readme",
+  "scripts": {
+    "link": "vercel link",
+    "env-pull": "vercel env pull",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "@react-hook/media-query": "^1.1.1",
+    "@sentry/nextjs": "^6.19.2",
+    "@stripe/stripe-js": "^1.23.0",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "cors": "^2.8.5",
+    "form-data": "^4.0.0",
+    "lodash.first": "^3.0.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.max": "^4.0.1",
+    "lodash.omit": "^4.5.0",
+    "lodash.remove": "^4.7.0",
+    "luxon": "^2.3.1",
+    "mailgun.js": "^5.2.1",
+    "micro": "^9.3.4",
+    "rc-tooltip": "^5.1.1",
+    "stripe": "^8.203.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^2.3.1",
+    "@types/stripe-v3": "^3.1.26",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.3",
+    "pre-commit": "^1.2.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix && prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "next lint",
+        "lint-staged"
+      ]
+    }
+  }
+}

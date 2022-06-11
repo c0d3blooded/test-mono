@@ -1,0 +1,148 @@
+.root {
+  @apply h-8 w-8 lg:h-10 lg:w-10;
+  @apply m-1 mr-1 mb-1 rounded transition-all;
+  @apply ring-0 ring-offset-0 hover:ring-1 hover:ring-offset-1 focus:ring-2 focus:ring-offset-2;
+}
+.selected {
+  @apply ring-2 ring-offset-2;
+}
+.red {
+  @apply text-red-500 bg-red-500;
+  @apply ring-red-500;
+}
+.redAccent {
+  @apply text-redAccent-200 bg-redAccent-200;
+  @apply ring-redAccent-200;
+}
+.pink {
+  @apply text-pink-500 bg-pink-500;
+  @apply ring-pink-500;
+}
+.pinkAccent {
+  @apply text-pinkAccent-200 bg-pinkAccent-200;
+  @apply ring-pinkAccent-200;
+}
+.purple {
+  @apply text-purple-500 bg-purple-500;
+  @apply ring-purple-500;
+}
+.purpleAccent {
+  @apply text-purpleAccent-200 bg-purpleAccent-200;
+  @apply ring-purpleAccent-200;
+}
+.deepPurple {
+  @apply text-deepPurple-500 bg-deepPurple-500;
+  @apply ring-deepPurple-500;
+}
+.deepPurpleAccent {
+  @apply text-deepPurpleAccent-200 bg-deepPurpleAccent-200;
+  @apply ring-deepPurpleAccent-200;
+}
+.indigo {
+  @apply text-indigo-500 bg-indigo-500;
+  @apply ring-indigo-500;
+}
+.indigoAccent {
+  @apply text-indigoAccent-200 bg-indigoAccent-200;
+  @apply ring-indigoAccent-200;
+}
+.blue {
+  @apply text-blue-500 bg-blue-500;
+  @apply ring-blue-500;
+}
+.blueAccent {
+  @apply text-blueAccent-200 bg-blueAccent-200;
+  @apply ring-blueAccent-200;
+}
+.lightBlue {
+  @apply text-lightBlue-500 bg-lightBlue-500;
+  @apply ring-lightBlue-500;
+}
+.lightBlueAccent {
+  @apply text-lightBlueAccent-200 bg-lightBlueAccent-200;
+  @apply ring-lightBlueAccent-200;
+}
+.cyan {
+  @apply text-cyan-500 bg-cyan-500;
+  @apply ring-cyan-500;
+}
+.cyanAccent {
+  @apply text-cyanAccent-200 bg-cyanAccent-200;
+  @apply ring-cyanAccent-200;
+}
+.teal {
+  @apply text-teal-500 bg-teal-500;
+  @apply ring-teal-500;
+}
+.tealAccent {
+  @apply text-tealAccent-200 bg-tealAccent-200;
+  @apply ring-tealAccent-200;
+}
+.green {
+  @apply text-green-500 bg-green-500;
+  @apply ring-green-500;
+}
+.greenAccent {
+  @apply text-greenAccent-200 bg-greenAccent-200;
+  @apply ring-greenAccent-200;
+}
+.lightGreen {
+  @apply text-lightGreen-500 bg-lightGreen-500;
+  @apply ring-lightGreen-500;
+}
+.lightGreenAccent {
+  @apply text-lightGreenAccent-200 bg-lightGreenAccent-200;
+  @apply ring-lightGreenAccent-200;
+}
+.lime {
+  @apply text-lime-500 bg-lime-500;
+  @apply ring-lime-500;
+}
+.limeAccent {
+  @apply text-limeAccent-200 bg-limeAccent-200;
+  @apply ring-limeAccent-200;
+}
+.yellow {
+  @apply text-yellow-500 bg-yellow-500;
+  @apply ring-yellow-500;
+}
+.yellowAccent {
+  @apply text-yellowAccent-200 bg-yellowAccent-200;
+  @apply ring-yellowAccent-200;
+}
+.amber {
+  @apply text-amber-500 bg-amber-500;
+  @apply ring-amber-500;
+}
+.amberAccent {
+  @apply text-amberAccent-200 bg-amberAccent-200;
+  @apply ring-amberAccent-200;
+}
+.orange {
+  @apply text-orange-500 bg-orange-500;
+  @apply ring-orange-500;
+}
+.orangeAccent {
+  @apply text-orangeAccent-200 bg-orangeAccent-200;
+  @apply ring-orangeAccent-200;
+}
+.deepOrange {
+  @apply text-deepOrange-500 bg-deepOrange-500;
+  @apply ring-deepOrange-500;
+}
+.deepOrangeAccent {
+  @apply text-deepOrangeAccent-200 bg-deepOrangeAccent-200;
+  @apply ring-deepOrangeAccent-200;
+}
+.brown {
+  @apply text-brown-500 bg-brown-500;
+  @apply ring-brown-500;
+}
+.grey {
+  @apply text-grey-500 bg-grey-500;
+  @apply ring-grey-500;
+}
+.blueGrey {
+  @apply text-blueGrey-500 bg-blueGrey-500;
+  @apply ring-blueGrey-500;
+}

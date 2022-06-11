@@ -1,18 +1,20 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import '../styles/globals.css';
+import dynamic from 'next/dynamic';
+import axios from 'axios';
+import type { AppProps } from 'next/app';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+import { CharcteristicContextProvider } from '../context/characteristic';
+
+// set axios defaults
+axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_PAGE}/v1`;
+
+function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Welcome to website!</title>
-      </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-    </>
+    // track the characteristics
+    <CharcteristicContextProvider>
+      <Component {...pageProps} />
+    </CharcteristicContextProvider>
   );
 }
 
-export default CustomApp;
+export default App;

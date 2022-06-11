@@ -1,0 +1,6 @@
+.root {
+  @apply m-1 mr-1 mb-1 rounded shadow-md overflow-hidden;
+}
+.selected {
+  @apply ring-2 ring-offset-2 ring-green-500;
+}

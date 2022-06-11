@@ -1,0 +1,32 @@
+.root {
+  /*==================================
+  =            Transition            =
+  ==================================*/
+  &.appear {
+    opacity: 0.01;
+
+    &.appear-active {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+
+  &.enter {
+    opacity: 0.01;
+
+    &.enter-active {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+
+  &.leave {
+    opacity: 1;
+
+    &.leave-active {
+      opacity: 0.01;
+    }
+  }
+
+  /*=====  End of Transition  ======*/
+}

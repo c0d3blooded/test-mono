@@ -1,0 +1,61 @@
+import Image from 'next/image';
+import Button from '../../components/common/button';
+import Chip from '../../components/common/chip';
+import ChipGroup from '../../components/common/chip-group';
+import Input from '../../components/common/input';
+import WikiHomeChipGroup from '../../components/wiki/wiki-home-chip-group';
+import WikiCharacteristicsTable from '../../components/wiki/characteristics-table';
+
+<div className="flex flex-1 flex-col md:space-y-4 space-y-2">
+  {/* props
+      plant: Plant item
+      methods: react-hook-form methods 
+  */}
+  <div className="pb-6">
+    <Button color="secondary" buttonProps={{ type: 'submit' }}>
+      Submit Revision
+    </Button>
+  </div>
+  <Input
+    label="Common name"
+    inputProps={{
+      placeholder: "The plant's common name",
+      ...props.methods.register('common_name', {
+        required: 'Please enter a common name'
+      })
+    }}
+  />
+  <Input
+    label="Botanical name"
+    inputProps={{
+      placeholder: "The plant's scientific name",
+      ...props.methods.register('botanical_name', {
+        required: "Please enter this plant's botnanical name"
+      })
+    }}
+  />
+</div>
+
+---
+
+#### Characteristics
+
+<WikiCharacteristicsTable plant={props.plant} edit />
+
+---
+
+<Input
+  label="Description"
+  textAreaProps={{
+    rows: 10,
+    placeholder: "The plant's description",
+    ...props.methods.register('description')
+  }}
+  multiline
+/>
+
+---
+
+#### References
+
+Under development

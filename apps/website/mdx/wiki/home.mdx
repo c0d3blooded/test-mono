@@ -1,0 +1,56 @@
+import Image from 'next/image';
+import WikiHomeChipGroup from '../../components/wiki/wiki-home-chip-group';
+import Button from '../../components/common/button';
+import {
+  HiOutlineBookOpen,
+  HiOutlineCurrencyDollar,
+  HiOutlineDocumentAdd,
+  HiOutlineHeart,
+  HiOutlineHome,
+  HiOutlineLibrary,
+  HiOutlineX
+} from 'react-icons/hi';
+
+<br />
+
+## Welcome to the Treelof Wiki
+
+<br />
+
+<Image
+  src="/images/treelof-icon.png"
+  width={150}
+  height={150}
+  objectFit="contain"
+  alt="logo"
+/>
+
+<br />
+
+To get started, search for a term in the search box above
+
+<br />
+
+##### If you would like to contribute to the wiki, check out the actions below:
+
+<br />
+<Button startIcon={<HiOutlineDocumentAdd className="text-lg" />}>
+  Create a page
+</Button>
+<br />
+<Button startIcon={<HiOutlineHeart className="text-lg" />} color="tertiary">
+  Send feedback
+</Button>
+<br />
+<br />
+
+##### For accessing the Treelof API, check out the documentation:
+
+<br />
+<Button
+  startIcon={<HiOutlineLibrary className="text-lg" />}
+  color="secondary"
+  alt
+>
+  API Documentation
+</Button>

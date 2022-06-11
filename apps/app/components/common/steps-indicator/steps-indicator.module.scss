@@ -1,0 +1,55 @@
+/* root step indicator */
+.stepIndicator {
+  @apply relative z-10 w-8 h-8 flex items-center justify-center transition-all;
+}
+
+/* when the step is active */
+.activeStepIndicator {
+  @apply bg-white border-2 border-green-600 rounded-full;
+  span {
+    @apply h-2.5 w-2.5 bg-green-600 rounded-full;
+  }
+}
+
+/* when the step is not compelted */
+.upcomingStepIndicator {
+  @apply bg-white border-2 border-gray-300 rounded-full group-hover:border-gray-400;
+  span {
+    @apply h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300;
+  }
+}
+
+/* when the step is completed */
+.completedStepIndicator {
+  @apply bg-green-600 rounded-full group-hover:bg-green-800;
+}
+
+.activeCompletedStepIndicator {
+  @apply bg-green-800 rounded-full group-hover:bg-green-800;
+}
+
+/* label root */
+.label {
+  @apply text-xs font-semibold tracking-wide uppercase transition-all;
+}
+/* label for active step */
+.labelActive {
+  @apply text-green-600;
+}
+/* label for upcoming steps */
+.labelUpcoming {
+  @apply text-gray-500;
+}
+
+/* the root for mobile label */
+.labelMobile {
+  @apply ml-3 text-sm font-medium transition-all;
+}
+/* the default styling for the mobile label */
+.labelMobileDefault {
+  @apply text-gray-500 group-hover:text-gray-900;
+}
+/* active label styling */
+.labelMobileActive {
+  @apply text-green-600;
+}

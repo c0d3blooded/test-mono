@@ -1,0 +1,19 @@
+{
+  "name": "website",
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c0d3blooded/treelof-website.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/c0d3blooded/treelof-website#readme",
+  "scripts": {
+    "env-pull": "vercel env pull"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^2.1.1",
+    "@next/mdx": "^12.1.6",
+    "lodash.intersectionby": "^4.7.0"
+  }
+}

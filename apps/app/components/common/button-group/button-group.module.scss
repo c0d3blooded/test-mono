@@ -1,0 +1,28 @@
+.button {
+  @apply transition-all relative inline-flex items-center px-4 py-2 border text-sm font-medium focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500;
+}
+
+/* the first button in the group */
+.first {
+  @apply rounded-l-md;
+}
+
+/* style for additional buttons */
+.additional {
+  @apply -ml-px;
+}
+
+/* the last button in the group */
+.last {
+  @apply rounded-r-md border;
+}
+
+/* the default, unselected button styling */
+.default {
+  @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+}
+
+/* the selected button styling */
+.selected {
+  @apply border-gray-300 bg-green-500 text-white;
+}

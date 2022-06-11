@@ -1,0 +1,133 @@
+.lds-ring {
+  display: inline-block;
+  position: relative;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.red {
+  @apply border-t-red-500;
+}
+.redAccent {
+  @apply border-t-redAccent-200;
+}
+.pink {
+  @apply border-t-pink-500;
+}
+.pinkAccent {
+  @apply border-t-pinkAccent-200;
+}
+.purple {
+  @apply border-t-purple-500;
+}
+.purpleAccent {
+  @apply border-t-purpleAccent-200;
+}
+.deepPurple {
+  @apply border-t-deepPurple-500;
+}
+.deepPurpleAccent {
+  @apply border-t-deepPurpleAccent-200;
+}
+.indigo {
+  @apply border-t-indigo-500;
+}
+.indigoAccent {
+  @apply border-t-indigoAccent-200;
+}
+.blue {
+  @apply border-t-blue-500;
+}
+.blueAccent {
+  @apply border-t-blueAccent-200;
+}
+.lightBlue {
+  @apply border-t-lightBlue-500;
+}
+.lightBlueAccent {
+  @apply border-t-lightBlueAccent-200;
+}
+.cyan {
+  @apply border-t-cyan-500;
+}
+.cyanAccent {
+  @apply border-t-cyanAccent-200;
+}
+.teal {
+  @apply border-t-teal-500;
+}
+.tealAccent {
+  @apply border-t-tealAccent-200;
+}
+.green {
+  @apply border-t-green-500;
+}
+.greenAccent {
+  @apply border-t-greenAccent-200;
+}
+.lightGreen {
+  @apply border-t-lightGreen-500;
+}
+.lightGreenAccent {
+  @apply border-t-lightGreenAccent-200;
+}
+.lime {
+  @apply border-t-lime-500;
+}
+.limeAccent {
+  @apply border-t-limeAccent-200;
+}
+.yellow {
+  @apply border-t-yellow-500;
+}
+.yellowAccent {
+  @apply border-t-yellowAccent-200;
+}
+.amber {
+  @apply border-t-amber-500;
+}
+.amberAccent {
+  @apply border-t-amberAccent-200;
+}
+.orange {
+  @apply border-t-orange-500;
+}
+.orangeAccent {
+  @apply border-t-orangeAccent-200;
+}
+.deepOrange {
+  @apply border-t-deepOrange-500;
+}
+.deepOrangeAccent {
+  @apply border-t-deepOrangeAccent-200;
+}
+.brown {
+  @apply border-t-brown-500;
+}
+.grey {
+  @apply border-t-grey-500;
+}
+.blueGrey {
+  @apply border-t-blueGrey-500;
+}

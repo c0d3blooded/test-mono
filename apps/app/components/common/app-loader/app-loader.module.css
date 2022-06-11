@@ -1,0 +1,29 @@
+.root {
+  @apply relative mx-auto;
+}
+
+.phone {
+  @apply absolute top-0 left-0 z-20;
+}
+
+.appWindow {
+  @apply absolute top-0 left-0 right-0 bottom-0 z-10;
+}
+
+.ios {
+  @apply m-5 mt-4 pb-2;
+}
+
+.android {
+  @apply m-3 mt-3 pb-3;
+  right: 2px;
+}
+
+.androidStatusBar {
+  @apply absolute z-20 left-0 right-0 top-0 mt-3 pt-1 pb-1 ml-3 px-1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.androidNavigationBar {
+  @apply absolute z-20 left-0 right-0 bottom-0 pb-7;
+}

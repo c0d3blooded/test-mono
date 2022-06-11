@@ -1,0 +1,56 @@
+import Image from 'next/image';
+import Chip from '../../components/common/chip';
+import ChipGroup from '../../components/common/chip-group';
+import WikiHomeChipGroup from '../../components/wiki/wiki-home-chip-group';
+import WikiCharacteristicsTable from '../../components/wiki/characteristics-table';
+
+<div className="flex flex-row">
+  {/* header */}
+  <div className="flex-1">
+    <h2>{props.plant.common_name}</h2>
+    <p>{props.plant.botanical_name}</p>
+  </div>
+  {/* images */}
+  {/* desktop */}
+  <div className="md:flex hidden">
+    <Image
+      className="rounded-md overflow-hidden drop-shadow-md"
+      src="https://upload.wikimedia.org/wikipedia/commons/1/15/Asimina_triloba3.jpg"
+      width={170}
+      height={170}
+      objectFit="cover"
+      alt="image"
+    />
+  </div>
+  {/* mobile */}
+  <div className="flex md:hidden">
+    <Image
+      className="rounded-md overflow-hidden drop-shadow-md"
+      src="https://upload.wikimedia.org/wikipedia/commons/1/15/Asimina_triloba3.jpg"
+      width={90}
+      height={90}
+      objectFit="cover"
+      alt="image"
+    />
+  </div>
+</div>
+
+---
+
+#### Characteristics
+
+<WikiCharacteristicsTable plant={props.plant} />
+
+---
+
+#### Description
+
+<p>{props.plant.description ?? 'None'}</p>
+
+---
+
+#### References
+
+Under development
+
+{/* TODO: Add references */}

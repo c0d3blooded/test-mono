@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Docs - Treelof</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap&subset=latin-ext" rel="stylesheet" >
+    <!--
+    Redoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        opacity: 0.7; /* Firefox */
+      }
+    </style>
+  </head>
+  <body>
+    <redoc spec-url='https://api.treelof.com/spec.yaml' theme='{
+      "colors": {
+        "primary": {
+          "main": "#43a047"
+        }
+      }, 
+      "typography": {
+        "fontFamily": "Open Sans, Helvetica, Arial, sans-serif",
+        "headings": {
+            "fontFamily": "Open Sans, sans-serif"
+        },
+        "code": {
+            "fontFamily": "Open Sans, Courier, monospace"
+        }
+      },
+      "sidebar": {
+        "backgroundColor": "#43a047",
+        "textColor": "white"
+      }
+    }'></redoc>
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"> </script>
+  </body>
+</html>

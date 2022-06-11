@@ -1,0 +1,24 @@
+.default {
+}
+
+.root {
+  @apply bg-blue-50 -z-10;
+  &.error {
+    @apply bg-red-50;
+  }
+}
+.icon {
+  @apply flex-shrink-0 text-blue-400;
+  &.error {
+    @apply text-red-400;
+  }
+}
+.text {
+  @apply text-sm font-medium text-blue-700;
+  &.error {
+    @apply text-red-800;
+  }
+}
+
+.success {
+}
