@@ -4,8 +4,9 @@ import { animated, config, useTransition } from 'react-spring';
 interface Props {
   show: boolean; // component is visible
   className?: string; // the optional styles classname
-  duration?: number;  // optional duration prop
+  duration?: number; // optional duration prop
   withDelay?: boolean; // there shold be a delay before rendering and showing the component
+  children?: React.ReactNode;
 }
 /**
  * @return A wrapper component for fade in/out based on component visibility

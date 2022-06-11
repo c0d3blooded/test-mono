@@ -16,8 +16,11 @@ type CharacteristicContextType = {
 export const CharacteristicContext =
   React.createContext<CharacteristicContextType>({ loading: false });
 
+interface Props {
+  children?: React.ReactNode;
+}
 // provides all the values for categories
-export const CharcteristicContextProvider: React.FC = (props) => {
+export const CharcteristicContextProvider: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(true); // indicates that the data is loading
   const [edibilities, setEdibilities] = useState();
   const [functionalities, setFunctionalities] = useState();
@@ -78,7 +81,6 @@ export const CharcteristicContextProvider: React.FC = (props) => {
   return (
     <CharacteristicContext.Provider value={value} {...props}>
       {/* pass value to immediate children */}
-      {/* @ts-ignore */}
       {props.children}
     </CharacteristicContext.Provider>
   );

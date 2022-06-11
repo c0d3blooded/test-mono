@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import {
-  HiOutlineBookOpen,
   HiOutlineDocumentAdd,
   HiOutlineHeart,
   HiOutlineHome,
@@ -16,7 +15,10 @@ import { useRouter } from 'next/router';
 import RequestPageModal from '../../common/modals/create-page-modal';
 import FeedbackModal from '../../common/modals/feedback-modal';
 
-const WikiContainer: React.FC = (props) => {
+interface Props {
+  children?: React.ReactNode;
+}
+const WikiContainer: React.FC<Props> = (props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="min-h-screen flex">

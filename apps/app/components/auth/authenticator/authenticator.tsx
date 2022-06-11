@@ -3,11 +3,14 @@ import { useUser } from '../../../hooks/useUser';
 import Fade from '../../animation/fade';
 import LoginPage from '../login';
 
+interface Props {
+  children?: React.ReactNode;
+}
 /**
  * @returns a higher order component which sends the user to the
  * login screen if they are not authenticated
  */
-const Authenticator: React.FC = (props) => {
+const Authenticator: React.FC<Props> = (props) => {
   const { session, profile, loading } = useUser();
   // the user is logged in
   const isLoggedIn = Boolean(session) && Boolean(profile);

@@ -14,8 +14,11 @@ export const AppInformationContext = createContext<
   AppInformationContextType | undefined
 >(undefined);
 
+interface Props {
+  children?: React.ReactNode;
+}
 // the provider component extending the user context
-export const AppInformationProvider: React.FC = (props) => {
+export const AppInformationProvider: React.FC<Props> = (props) => {
   const { profile } = useUser();
   const [appInformation, setAppInformation] = useState<AppInformation | null>(
     null

@@ -51,8 +51,11 @@ export const UserContext = createContext<UserContextType | undefined>(
   undefined
 );
 
+interface Props {
+  children?: (value: UserContextType) => React.ReactNode;
+}
 // the provider component extending the user context
-export const UserContextProvider: React.FC = (props) => {
+export const UserContextProvider: React.FC<Props> = (props) => {
   const [session, setSession] = useState<Session | null>(null); // the supabase session
   const [user, setUser] = useState<User | null>(null); // the supabase {User} model
   const [profiles, setProfiles] = useState<Array<Profile> | null>(null); // the app user
@@ -78,36 +81,37 @@ export const UserContextProvider: React.FC = (props) => {
     return () => authListener?.unsubscribe();
   }, []);
 
-  const refreshProfiles = useCallback((uid: string) => {
-    // when there is a currently logged in user
-    getProfilesByUuid(uid).then(({ data, error }) => {
-      // if there was an error finding the user data
-      if (error) {
-        setError('Could not find user profile');
-        console.error('Could not find user profile');
-        signOut();
-      }
-      // validate the user has already created a profile
-      else setProfiles(data);
-      // session and profile data has loaded
-      setLoading(false);
-    });
-    // subscribe to profile updates
-    const subscription = supabase
-      .from<Profile>(`${profile_table}:linked_to=eq.${uid}`)
-      .on('UPDATE', (payload) => {
-        const newProfile = payload.new as Profile;
-        // replaces the value in the old profiles list
-        var newProfiles = profiles?.map((p) =>
-          p.uuid === newProfile.uuid ? copyObject(newProfile) : p
-        );
-        setProfiles(newProfiles ?? null);
-      })
-      .subscribe();
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+  const refreshProfiles = useCallback(
+    (uid: string) => {
+      // when there is a currently logged in user
+      getProfilesByUuid(uid).then(({ data, error }) => {
+        // if there was an error finding the user data
+        if (error) {
+          setError('Could not find user profile');
+          console.error('Could not find user profile');
+          signOut();
+        }
+        // validate the user has already created a profile
+        else setProfiles(data);
+        // session and profile data has loaded
+        setLoading(false);
+      });
+      // subscribe to profile updates
+      const subscription = supabase
+        .from<Profile>(`${profile_table}:linked_to=eq.${uid}`)
+        .on('UPDATE', (payload) => {
+          const newProfile = payload.new as Profile;
+          // replaces the value in the old profiles list
+          const newProfiles = profiles?.map((p) =>
+            p.uuid === newProfile.uuid ? copyObject(newProfile) : p
+          );
+          setProfiles(newProfiles ?? null);
+        })
+        .subscribe();
+      return () => subscription.unsubscribe();
+    },
+    [profiles]
+  );
 
   useEffect(() => {
     // when there is not a currently logged in user
@@ -150,7 +154,6 @@ export const UserContextProvider: React.FC = (props) => {
   return (
     <UserContext.Provider value={value} {...props}>
       {/* pass value to immediate children */}
-      {/* @ts-ignore */}
       {props.children(value)}
     </UserContext.Provider>
   );

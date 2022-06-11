@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   duration?: number; // optional duration prop
   withDelay?: boolean; // there shold be a delay before rendering and showing the component
+  children?: React.ReactNode;
 }
 /**
  * @return A wrapper component for slide in/out based on component visibility
