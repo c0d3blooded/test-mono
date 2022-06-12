@@ -12,6 +12,7 @@ interface Props {
   fullWidth?: boolean; // indicates a full width button
   outlined?: boolean; // an outlined style button
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>; // optinal native button props
+  children?: React.ReactNode;
 }
 
 /**
