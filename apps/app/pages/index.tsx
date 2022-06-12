@@ -34,7 +34,6 @@ const Home: NextPage = () => {
       // sign out if there is an invitation code
       signOut();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invitationCode]);
 
   useEffect(() => {

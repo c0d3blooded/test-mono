@@ -3,21 +3,22 @@ import {
   Response,
   Status,
   Context,
-} from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import { getQuery } from "https://deno.land/x/oak@v10.6.0/helpers.ts";
-import pick from "https://esm.sh/lodash.pick@4.4.0";
-import { supabase, supabaseApp } from "../lib/supabase.ts";
-import { validateDomain } from "../utils/common.ts";
-import { Plant } from "../models/plant.ts";
+} from 'https://deno.land/x/oak@v10.6.0/mod.ts';
+import { getQuery } from 'https://deno.land/x/oak@v10.6.0/helpers.ts';
+import pick from 'https://esm.sh/lodash.pick@4.4.0';
+import { PostgrestSingleResponse } from 'https://esm.sh/@supabase/supabase-js@1.35.3';
+import { supabase, supabaseApp } from '../lib/supabase.ts';
+import { validateDomain } from '../utils/common.ts';
+import { Plant } from '../models/plant.ts';
 import {
   Revision,
   CreateRevision,
   RevisionStatus,
-} from "../models/revision.ts";
-import errors from "../constants/errors.ts";
+} from '../models/revision.ts';
+import errors from '../constants/errors.ts';
 
-const table = "revisions";
-const plant_table = "plants";
+const table = 'revisions';
+const plant_table = 'plants';
 
 /**
  * Create a new revision
@@ -27,7 +28,7 @@ export const createRevision = async (context: {
   request: Request;
   response: Response;
 }) => {
-  let { request, response } = context;
+  const { request, response } = context;
   // if coming from the main website
   if (!validateDomain(request)) {
     response.status = Status.Forbidden;
@@ -35,7 +36,7 @@ export const createRevision = async (context: {
     return;
   }
 
-  const data: CreateRevision = await request.body({ type: "json" }).value;
+  const data: CreateRevision = await request.body({ type: 'json' }).value;
 
   // retrieve previous value
   if (!data.reference || !data.reference_id) {
@@ -46,13 +47,14 @@ export const createRevision = async (context: {
   // retrieve the reference
   let reference: Plant;
   try {
+    let result: PostgrestSingleResponse;
     switch (data.reference) {
       case plant_table:
         // find the plant
-        const result = await supabase
+        result = await supabase
           .from<Plant>(plant_table)
-          .select("*")
-          .eq("id", parseInt(data.reference_id))
+          .select('*')
+          .eq('id', parseInt(data.reference_id))
           .single();
         // internal error finding reference
         if (result.error) {
@@ -119,7 +121,7 @@ export const getRevisions = async (context: Context) => {
   // find the revisions
   const { data, error } = await supabase
     .from<Revision>(table)
-    .select("*")
+    .select('*')
     .match({ reference, reference_id });
 
   if (error) {
@@ -127,26 +129,26 @@ export const getRevisions = async (context: Context) => {
     response.body = errors.NotFound;
     return;
   }
-  let responseData = data;
+  const responseData = data;
   // only map public fields
   if (!validateDomain(request)) {
     response.body = data.map((item) =>
       pick(item, [
-        "id",
-        "field",
-        "old_value",
-        "new_value",
-        "status",
-        "reference",
-        "reference_id",
-        "created_at",
+        'id',
+        'field',
+        'old_value',
+        'new_value',
+        'status',
+        'reference',
+        'reference_id',
+        'created_at',
       ])
     );
   } else {
     // find the profiles for the revisions
     const { data, error } = await supabaseApp
       .from<Revision>(table)
-      .select("*")
+      .select('*')
       .match({ reference, reference_id });
     // return full response to website
     response.body = responseData;

@@ -10,7 +10,8 @@
     "start": "nx run-many --target=serve --all",
     "build": "nx build",
     "test": "nx test",
-    "env-pull": "vercel env pull"
+    "env-pull": "vercel env pull",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -58,13 +59,12 @@
     "babel-jest": "27.5.1",
     "cypress": "^9.1.0",
     "eslint": "~8.15.0",
-    "eslint-config-next": "12.1.5",
-    "eslint-config-prettier": "8.1.0",
+    "eslint-config-next": "^12.1.5",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-react": "7.30.0",
-    "eslint-plugin-react-hooks": "4.5.0",
+    "husky": "^8.0.1",
     "jest": "27.5.1",
     "nx": "14.2.4",
     "postcss": "^8.4.14",

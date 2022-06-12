@@ -7,7 +7,7 @@ const PricingPage = () => {
         Pricing plans for teams of all sizes
       </h2>
       <p className="mt-6 max-w-2xl text-xl text-gray-500">
-        Choose an affordable plan that's packed with the best features for
+        Choose an affordable plan that&apos;s packed with the best features for
         engaging your audience, creating customer loyalty, and driving sales.
       </p>
 

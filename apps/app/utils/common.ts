@@ -1,7 +1,4 @@
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../components/common/color-picker/color-picker';
+import { MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
 import isempty from 'lodash.isempty';
 import { DeviceTheme } from '@treelof/models';
 
@@ -22,7 +19,7 @@ export const isObjectEmpty = (value: Record<string, any>) => {
   if (isempty(value)) return true;
   let isObjectEmpty = true;
   // loop through all fields to check for emptiness
-  for (let val of Object.values(value)) {
+  for (const val of Object.values(value)) {
     if (val) {
       isObjectEmpty = false;
       break;

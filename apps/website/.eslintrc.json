@@ -1,3 +1,6 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": [
+    "plugin:@nrwl/nx/react-typescript",
+    "../../.eslintrc.json"
+  ]
 }

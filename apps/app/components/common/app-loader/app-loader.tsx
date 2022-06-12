@@ -1,16 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './app-loader.module.css';
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../color-picker/color-picker';
+import { MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
 import cn from 'classnames';
-import {
-  DeviceTheme,
-  DeviceType,
-  DeviceTypeLabel
-} from '@treelof/models';
+import { DeviceTheme, DeviceType, DeviceTypeLabel } from '@treelof/models';
 import { getColorLuminance } from '../../../utils/common';
 
 interface Props {

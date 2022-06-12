@@ -5,7 +5,11 @@ import { getAppIcon } from '../../../services/api';
 import DropdownSelect from '../dropdown-select';
 import { DropddownOption } from '../dropdown-select/dropdown-select';
 import cn from 'classnames';
-import { IconOption, MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
+import {
+  IconOption,
+  MaterialUIAccentColor,
+  MaterialUIColor
+} from '@treelof/models';
 import { FormProvider, useForm } from 'react-hook-form';
 import { responseToBase64 } from '../../../utils/common';
 

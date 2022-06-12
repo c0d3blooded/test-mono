@@ -5,6 +5,7 @@ interface Props {
   color?: string; // the tailwind ui color to render
   leading?: JSX.Element; // component for leading indicator
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 // a chip component

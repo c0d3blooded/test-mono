@@ -2,17 +2,6 @@ import { supabase } from '../lib/supabase-client';
 import { base64ToBlob } from '../utils/common';
 import { updateAppInformation } from './app-information';
 
-type SupabaseFile =
-  | string
-  | ArrayBuffer
-  | ArrayBufferView
-  | Blob
-  | Buffer
-  | File
-  | FormData
-  | NodeJS.ReadableStream
-  | URLSearchParams;
-
 const storageAppIcons = 'app-icons';
 /**
  * Uploads an app icon for the user

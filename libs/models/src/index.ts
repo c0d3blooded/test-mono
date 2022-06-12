@@ -21,3 +21,5 @@ export * from './app/subscription';
 export * from './app/supabase-jwt';
 export * from './app/survey-answers';
 export * from './app/utility';
+// other
+export * from './common/characteristic';

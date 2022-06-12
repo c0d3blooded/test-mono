@@ -44,7 +44,7 @@ const WikiPage = () => {
     if (id)
       await axios.get<Plant>(`/plants/${id}`).then(({ data }) => {
         setPlant(data);
-        for (let key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
           // @ts-ignore
           setValue(key, data[key]);
         }
@@ -86,11 +86,15 @@ const WikiPage = () => {
       case 0:
       default:
         hash = '#read';
+        break;
       case 1:
         hash = '#edit';
+        break;
       case 2:
         hash = '#revisions';
+        break;
     }
+    return hash;
   };
 
   /* When the edit form is submitted */
