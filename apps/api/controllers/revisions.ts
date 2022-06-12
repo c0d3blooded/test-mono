@@ -2,7 +2,7 @@ import {
   Request,
   Response,
   Status,
-  Context,
+  Context
 } from 'https://deno.land/x/oak@v10.6.0/mod.ts';
 import { getQuery } from 'https://deno.land/x/oak@v10.6.0/helpers.ts';
 import pick from 'https://esm.sh/lodash.pick@4.4.0';
@@ -13,7 +13,7 @@ import { Plant } from '../models/plant.ts';
 import {
   Revision,
   CreateRevision,
-  RevisionStatus,
+  RevisionStatus
 } from '../models/revision.ts';
 import errors from '../constants/errors.ts';
 
@@ -47,7 +47,7 @@ export const createRevision = async (context: {
   // retrieve the reference
   let reference: Plant;
   try {
-    let result: PostgrestSingleResponse;
+    let result: PostgrestSingleResponse<Plant>;
     switch (data.reference) {
       case plant_table:
         // find the plant
@@ -85,7 +85,7 @@ export const createRevision = async (context: {
       owner_id: data.owner_id,
       status: RevisionStatus.Pending,
       reference: data.reference,
-      reference_id: data.reference_id,
+      reference_id: data.reference_id
     });
   }
 
@@ -141,7 +141,7 @@ export const getRevisions = async (context: Context) => {
         'status',
         'reference',
         'reference_id',
-        'created_at',
+        'created_at'
       ])
     );
   } else {

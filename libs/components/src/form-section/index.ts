@@ -1,2 +1,1 @@
-import FormSection from './form-section';
-export default FormSection;
+export { FormSection } from './form-section';

@@ -1,2 +1,1 @@
-import IconUploader from './icon-uploader';
-export default IconUploader;
+export { IconUploader } from './icon-uploader';

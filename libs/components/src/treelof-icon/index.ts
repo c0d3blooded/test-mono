@@ -1,2 +1,1 @@
-import TreelofIcon from './treelof-icon';
-export default TreelofIcon;
+export { TreelofIcon } from './treelof-icon';

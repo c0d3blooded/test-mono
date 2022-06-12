@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import styles from './button.module.scss';
-import Loader from '../loader';
+import { Loader } from '../loader';
 
 interface Props {
   startIcon?: JSX.Element; // an icon starting on the left
@@ -18,7 +18,7 @@ interface Props {
 /**
  * @returns Common app button
  */
-const Button: React.FC<Props> = (props) => {
+export const Button: React.FC<Props> = (props) => {
   const { color, alt, loading, disabled, outlined } = props;
   // set conditional classnames
   const className = cn(
@@ -66,5 +66,3 @@ const Button: React.FC<Props> = (props) => {
     </button>
   );
 };
-
-export default Button;

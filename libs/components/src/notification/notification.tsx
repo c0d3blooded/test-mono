@@ -4,12 +4,13 @@ import { FaCheckCircle, FaInfo, FaTimesCircle } from 'react-icons/fa';
 
 interface Props {
   type?: 'success' | 'error';
+  children?: React.ReactNode;
 }
 
 /**
  * @returns A generic use alert dialog for form errors
  */
-const Notification: React.FC<Props> = (props) => {
+export const Notification: React.FC<Props> = (props) => {
   const { type } = props;
   const className = type ? styles[type] : '';
   /**
@@ -37,5 +38,3 @@ const Notification: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Notification;

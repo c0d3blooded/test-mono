@@ -12,6 +12,6 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts", "postcss.config.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mdx", "next-env.d.ts", "postcss.config.js"],
   "exclude": ["node_modules", "jest.config.ts"]
 }

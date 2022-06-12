@@ -1,9 +1,8 @@
 import React from 'react';
 import { HiCheckCircle } from 'react-icons/hi';
 import { loadStripe } from '@stripe/stripe-js';
-import { redirectToCheckout } from '../../../services/api';
-import Button from '../../common/button';
-import Card from '../../common/card';
+import { redirectToCheckout } from '@treelof/services';
+import { Button, Card } from '@treelof/components';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.

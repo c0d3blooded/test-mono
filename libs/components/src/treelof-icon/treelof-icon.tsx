@@ -9,7 +9,7 @@ interface Props {
 /**
  * @returns hardcoded svg value for the app icon
  */
-const TreelofIcon: React.FC<Props> = (props) => {
+export const TreelofIcon: React.FC<Props> = (props) => {
   return (
     <Image
       alt="icon"
@@ -19,5 +19,3 @@ const TreelofIcon: React.FC<Props> = (props) => {
     />
   );
 };
-
-export default TreelofIcon;

@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import isempty from 'lodash.isempty';
-import { AppInformation, Profile } from '@treelof/models';
-import { upsertAppInformation } from '../../../services/app-information';
-import Button from '../../common/button';
-import Card from '../../common/card';
+import { Button, Card } from '@treelof/components';
+import { AppInformation, IconData } from '@treelof/models';
 import { SignUpContext } from '../context';
-import { downloadAppIcon, uploadAppIcon } from '../../../services/storage';
-import { dataToBase64 } from '../../../utils/common';
-import { IconData } from '../../common/icon-uploader/icon-uploader';
-import { supabase } from '../../../lib/supabase-client';
-import { table as profile_table } from '../../../services/profile';
-import { useUser } from '../../../hooks/useUser';
+import { useUser } from '@treelof/hooks';
 import SettingsAppInformation from '../../settings/app-information';
+import {
+  downloadAppIcon,
+  updateProfile,
+  uploadAppIcon,
+  upsertAppInformation
+} from '@treelof/services';
+import { dataToBase64 } from '@treelof/utils';
 
 interface Props {
   initialData?: AppInformation; // the initial load of app information
@@ -83,11 +83,7 @@ const SignUpMobileAppInformation: React.FC<Props> = ({ initialData }) => {
     if (data?.id) {
       // save app information to profile
       const { id } = data;
-      supabase
-        .from<Profile>(profile_table)
-        .update({ app_information_id: id })
-        .eq('uuid', user?.id)
-        .single();
+      updateProfile({ app_information_id: id }, user?.id);
       // save icon
       if (icon_data) {
         await uploadAppIcon(id, icon_data.data, icon_data.name);

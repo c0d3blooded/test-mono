@@ -4,7 +4,7 @@ import 'rc-tooltip/assets/bootstrap_white.css';
 
 import styles from './color-picker.module.scss';
 import cn from 'classnames';
-import Tooltip from '../tooltip';
+import { Tooltip } from '../tooltip';
 import { MaterialUIColor, MaterialUIAccentColor } from '@treelof/models';
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
  * @returns a component which allows the user to picker from a pre-selected
  * list of colors (based on Material design)
  */
-const ColorPicker: React.FC<Props> = (props) => {
+export const ColorPicker: React.FC<Props> = (props) => {
   const { includeAccents } = props;
   const [selectedColor, setSelectedColor] = useState(props.color);
   /**
@@ -111,5 +111,3 @@ const ColorPicker: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default ColorPicker;

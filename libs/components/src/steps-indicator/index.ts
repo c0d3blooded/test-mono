@@ -1,2 +1,1 @@
-import StepsIndicator from './steps-indicator';
-export default StepsIndicator;
+export { StepsIndicator } from './steps-indicator';

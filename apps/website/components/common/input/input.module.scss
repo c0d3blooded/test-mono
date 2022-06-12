@@ -1,8 +1,0 @@
-.root {
-  @apply appearance-none outline-none block w-full px-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 sm:text-sm;
-}
-
-/* error state */
-.error {
-  @apply pr-10 border-red-300 text-red-900 placeholder-red-300;
-}

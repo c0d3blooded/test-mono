@@ -1,10 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './app-loader.module.css';
-import { MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
+import {
+  MaterialUIAccentColor,
+  MaterialUIColor,
+  DeviceTheme,
+  DeviceType,
+  DeviceTypeLabel
+} from '@treelof/models';
 import cn from 'classnames';
-import { DeviceTheme, DeviceType, DeviceTypeLabel } from '@treelof/models';
-import { getColorLuminance } from '../../../../../apps/app/utils/common';
+import { getColorLuminance } from '@treelof/utils';
 
 interface Props {
   primaryColor: MaterialUIColor | MaterialUIAccentColor;
@@ -26,7 +31,7 @@ const phoneHeight = 576;
 /**
  * @returns An image of an embedded app
  */
-const AppLoader: React.FC<Props> = (props) => {
+export const AppLoader: React.FC<Props> = (props) => {
   const { device } = props;
   const className = cn(styles.appWindow, {
     [styles.ios]: device === DeviceType.iPhone,
@@ -85,5 +90,3 @@ const AppLoader: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default AppLoader;

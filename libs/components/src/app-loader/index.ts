@@ -1,2 +1,1 @@
-import AppLoader from './app-loader';
-export default AppLoader;
+export { AppLoader } from './app-loader';

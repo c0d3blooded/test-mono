@@ -19,7 +19,7 @@ interface Props {
 /**
  * @returns a multiple-choice, single select component
  */
-const ButtonGroup: React.FC<Props> = (props) => {
+export const ButtonGroup: React.FC<Props> = (props) => {
   const [value, setValue] = useState(props.defaultValue); // the currently seelcted value
   return (
     <span className="relative z-0 inline-flex shadow-sm rounded-md">
@@ -49,5 +49,3 @@ const ButtonGroup: React.FC<Props> = (props) => {
     </span>
   );
 };
-
-export default ButtonGroup;

@@ -10,16 +10,17 @@ export interface DropddownOption {
 }
 
 interface Props {
-  label: string; // the label of the dropdown
+  label?: string; // the label of the dropdown
   options: Array<DropddownOption>; // avaliable options
   // react-hook-from props
   name: string;
-  defaultValue: string | number;
+  defaultValue?: string | number;
   className?: string;
+  required?: boolean;
 }
 
 const dropdownItemClass = 'dropdown-item '; // class for tracking when a dropdown item has been clicked
-const DropdownSelect: React.FC<Props> = (props) => {
+export const DropdownSelect: React.FC<Props> = (props) => {
   const { control } = useFormContext(); // retrieve all hook from parent
   const { options } = props;
   const [showOptions, setShowOptions] = useState(false); // show/hide options
@@ -28,7 +29,7 @@ const DropdownSelect: React.FC<Props> = (props) => {
   } = useController({
     name: props.name,
     control,
-    rules: { required: true },
+    rules: { required: props.required },
     defaultValue: props.defaultValue
   });
   useEffect(() => {
@@ -136,5 +137,3 @@ const DropdownSelect: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default DropdownSelect;

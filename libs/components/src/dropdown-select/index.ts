@@ -1,2 +1,1 @@
-import DropdownSelect from './dropdown-select';
-export default DropdownSelect;
+export { DropdownSelect } from './dropdown-select';

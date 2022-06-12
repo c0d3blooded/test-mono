@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Card from '../../../components/common/card';
-import DashboardSection from '../../../components/common/dashboard-section';
-import { IconData } from '../../../components/common/icon-uploader/icon-uploader';
 import SettingsAppInformation from '../../../components/settings/app-information';
-import { useAppInformation } from '../../../hooks/useAppInformation';
-import { useUser } from '../../../hooks/useUser';
-import { supabase } from '../../../lib/supabase-client';
-import { AppInformation, Profile } from '@treelof/models';
-import { upsertAppInformation } from '../../../services/app-information';
-import { table as profile_table } from '../../../services/profile';
-import { uploadAppIcon } from '../../../services/storage';
+import { useAppInformation, useUser } from '@treelof/hooks';
+import { AppInformation, IconData } from '@treelof/models';
+import {
+  updateProfile,
+  uploadAppIcon,
+  upsertAppInformation
+} from '@treelof/services';
+import DashboardSection from '../../../components/dashboard-section';
+import { Card } from '@treelof/components';
 
 const SettingsAppInformationPage = () => {
   const { user } = useUser();
@@ -32,11 +31,7 @@ const SettingsAppInformationPage = () => {
     if (data?.id) {
       // save app information to profile
       const { id } = data;
-      supabase
-        .from<Profile>(profile_table)
-        .update({ app_information_id: id })
-        .eq('uuid', user?.id)
-        .single();
+      updateProfile({ app_information_id: id }, user?.id);
       // save icon
       if (icon_data) {
         await uploadAppIcon(id, icon_data.data, icon_data.name);

@@ -4,12 +4,13 @@ interface Props {
   title?: string;
   description?: string;
   extraContent?: JSX.Element;
+  children?: React.ReactNode;
 }
 
 /**
  * @returns A pre-styled form section
  */
-const FormSection: React.FC<Props> = (props) => {
+export const FormSection: React.FC<Props> = (props) => {
   return (
     <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -31,5 +32,3 @@ const FormSection: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FormSection;

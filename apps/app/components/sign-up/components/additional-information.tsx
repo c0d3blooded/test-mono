@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { SurveyAnswers } from '@treelof/models';
-import Button from '../../common/button';
-import Card from '../../common/card';
-import CheckboxGroup from '../../common/checkbox-group';
 import { SignUpContext } from '../context';
+import { SurveyAnswers } from '@treelof/models';
+import { Button, Card, CheckboxGroup } from '@treelof/components';
 
 /**
  * @returns the additional information section of the sign up form

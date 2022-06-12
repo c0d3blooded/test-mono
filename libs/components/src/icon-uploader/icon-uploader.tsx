@@ -1,22 +1,19 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styles from './icon-uploader.module.scss';
-import { getAppIcon } from '../../../services/api';
-import DropdownSelect from '../dropdown-select';
+import { DropdownSelect } from '../dropdown-select';
 import { DropddownOption } from '../dropdown-select/dropdown-select';
 import cn from 'classnames';
 import {
+  IconColor,
+  IconData,
   IconOption,
   MaterialUIAccentColor,
   MaterialUIColor
 } from '@treelof/models';
 import { FormProvider, useForm } from 'react-hook-form';
 import { responseToBase64 } from '@treelof/utils';
-
-export interface IconData {
-  name: string; // the name of the icon
-  data: string; // the icon's data
-}
+import { getAppIcon } from '@treelof/services';
 
 interface Props {
   // colors for styling the icon
@@ -37,7 +34,7 @@ const options: Array<DropddownOption> = [
 /**
  * @returns a component for uploading/selecting app icons
  */
-const IconUploader: React.FC<Props> = (props) => {
+export const IconUploader: React.FC<Props> = (props) => {
   const { icon, primaryColor, secondaryColor, onChange } = props;
   const methods = useForm<{ iconColor: string; backgroundColor: string }>({
     defaultValues: {
@@ -64,14 +61,14 @@ const IconUploader: React.FC<Props> = (props) => {
   useEffect(() => {
     const generateIcon = async () => {
       // get the right color
-      const getColor = (value) => {
+      const getColor = (value: string) => {
         switch (value) {
           case 'primary':
             return primaryColor;
           case 'secondary':
             return secondaryColor;
           default:
-            return value;
+            return value as IconColor;
         }
       };
       // generate new app icon on server
@@ -181,5 +178,3 @@ const IconUploader: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default IconUploader;

@@ -21,3 +21,21 @@ export const parseJwt = (token: string): SupabaseJWT => {
   const payload = Buffer.from(base64Payload, 'base64');
   return JSON.parse(payload.toString());
 };
+
+/** Get the user's id from the given OAuth token
+ * @param {string} token the access token of the user
+ * @returns {string} the uid
+ */
+ export const uidFromJWT = (token: string) => {
+  const body = parseJwt(token);
+  return body.sub;
+};
+
+/** Indicates if the given token is from the right instance
+ * @param {string} token the access token of the user
+ * @returns {boolean} if the token is from supabase
+ */
+export const isValidJWT = (token: string) => {
+  const body = parseJwt(token);
+  return Boolean(body.email);
+};

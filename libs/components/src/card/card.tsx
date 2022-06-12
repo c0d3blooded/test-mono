@@ -4,11 +4,12 @@ import cn from 'classnames';
 interface Props {
   noPadding?: boolean; //indicates that no padding is included
   hideOverflow?: boolean;
+  children?: React.ReactNode;
 }
 /**
  * @returns basic card component
  */
-const Card: React.FC<Props> = (props) => {
+export const Card: React.FC<Props> = (props) => {
   const className = cn({
     'p-4 sm:p-6': !props.noPadding,
     'overflow-hidden': props.hideOverflow
@@ -19,5 +20,3 @@ const Card: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Card;

@@ -19,9 +19,10 @@ interface Props {
     | 'rightBottom'
     | 'leftTop'
     | 'leftBottom';
+  children?: React.ReactNode;
 }
 
-const Tooltip: React.FC<Props> = (props) => {
+export const Tooltip: React.FC<Props> = (props) => {
   return (
     <RCTooltip
       overlayClassName={styles.root}
@@ -33,5 +34,3 @@ const Tooltip: React.FC<Props> = (props) => {
     </RCTooltip>
   );
 };
-
-export default Tooltip;

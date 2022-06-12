@@ -3,13 +3,11 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaApple, FaEnvelope, FaLock } from 'react-icons/fa';
-import { useUser } from '../../../hooks/useUser';
-import { supabase } from '../../../lib/supabase-client';
-import { validateEmail } from '../../../utils/form';
-import Button from '../../common/button';
-import Input from '../../common/input';
-import Notification from '../../common/notification';
+import { useUser } from '@treelof/hooks';
 import { renderSocialLoginButton } from './helpers';
+import { supabase } from '@treelof/services';
+import { Button, Input, Notification } from '@treelof/components';
+import { validateEmail } from '@treelof/utils';
 
 interface Props {
   onGoToSignIn: () => void; // navigate to the sign in page

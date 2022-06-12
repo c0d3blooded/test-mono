@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import Button from '../../button';
+import { Button } from '../../button';
 
 interface Props {
   visible: boolean; // indicates if the modal is visible or not
@@ -12,7 +12,7 @@ interface Props {
   onClose: () => void; // function called when the modal is closed
 }
 
-const ConfirmationModal: React.FC<Props> = (props) => {
+export const ConfirmationModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false); // when the confirmation is running
   useEffect(() => {
     if (props.visible) setLoading(false);
@@ -100,5 +100,3 @@ const ConfirmationModal: React.FC<Props> = (props) => {
     </Transition>
   );
 };
-
-export default ConfirmationModal;

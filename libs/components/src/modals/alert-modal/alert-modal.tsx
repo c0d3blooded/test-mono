@@ -8,7 +8,7 @@ interface Props {
   onClose: () => void; // function called when the modal is closed
 }
 
-const AlertModal: React.FC<Props> = (props) => {
+export const AlertModal: React.FC<Props> = (props) => {
   return (
     <Transition appear show={props.visible} as={React.Fragment}>
       <Dialog
@@ -75,5 +75,3 @@ const AlertModal: React.FC<Props> = (props) => {
     </Transition>
   );
 };
-
-export default AlertModal;

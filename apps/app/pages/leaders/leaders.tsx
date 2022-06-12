@@ -1,25 +1,21 @@
 import { HiPlus } from 'react-icons/hi';
-import Button from '../../components/common/button';
-import { getName } from '../../utils/profile';
 import { useRouter } from 'next/router';
 import { Fade } from '@treelof/animations';
-import { useIsMobile } from '@treelof/hooks';
+import { useUser, useIsMobile, useAppInformation } from '@treelof/hooks';
 import { Profile, ProfileRoles } from '@treelof/models';
-import { useUser } from '../../hooks/useUser';
-import { useAppInformation } from '../../hooks/useAppInformation';
 import cn from 'classnames';
-import ConfirmationModal from '../../components/common/modals/confirmation-modal';
 import { useEffect, useState } from 'react';
 import {
   getProfilesByApp,
   linkUserToProfile,
-  table as profile_table
-} from '../../services/profile';
-import { supabase } from '../../lib/supabase-client';
-import { copyObject, passThroughSessionStorage } from '../../utils/common';
-import { sendInvitation } from '../../services/invitation';
-import DashboardSection from '../../components/common/dashboard-section';
+  sendInvitation,
+  supabase
+} from '@treelof/services';
+import { copyObject, getName, passThroughSessionStorage } from '@treelof/utils';
+import { Button, ConfirmationModal } from '@treelof/components';
+import DashboardSection from '../../components/dashboard-section';
 
+const profile_table = 'profiles';
 /**
  * @returns A table of leaders within the app
  */

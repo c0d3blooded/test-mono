@@ -10,6 +10,7 @@ interface Props {
   error?: string;
   prefix?: string;
   multiline?: boolean; // this input is multiline
+  containerClassName?: string;
   // native input props
   inputProps?: React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
@@ -24,7 +25,7 @@ interface Props {
 /**
  * Tailwind UI Input
  */
-const Input: React.FC<Props> = (props) => {
+export const Input: React.FC<Props> = (props) => {
   const { hint, prefix } = props;
   // set conditional classnames
   const className = cn(
@@ -35,7 +36,8 @@ const Input: React.FC<Props> = (props) => {
       // colorings
       [styles.error]: props.error
     },
-    props.inputProps?.className
+    props.inputProps?.className,
+    props.textAreaProps?.className
   );
 
   /**
@@ -57,7 +59,7 @@ const Input: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="transition-all">
+    <div className={`transition-all ${props.containerClassName}`}>
       {/* only render label if available */}
       {props.label && (
         <label
@@ -89,5 +91,3 @@ const Input: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Input;

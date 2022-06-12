@@ -11,7 +11,7 @@ interface Props {
 /**
  * @returns a loading indicator
  */
-const Loader: React.FC<Props> = ({ color, size }) => {
+export const Loader: React.FC<Props> = ({ color, size }) => {
   const className = cn(styles['lds-ring']);
   const divClassName = cn(
     'border-l-transparent border-r-transparent border-b-transparent',
@@ -39,5 +39,3 @@ const Loader: React.FC<Props> = ({ color, size }) => {
     </div>
   );
 };
-
-export default Loader;

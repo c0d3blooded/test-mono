@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Button from '../../common/button';
-import Card from '../../common/card';
 import SettingsProfile from '../../settings/profile';
-import { useUser } from '../../../hooks/useUser';
+import { useUser } from '@treelof/hooks';
 import { Profile } from '@treelof/models';
-import { updateProfile } from '../../../services/profile';
 import { SignUpContext } from '../context';
+import { updateProfile } from '@treelof/services';
+import { Button, Card } from '@treelof/components';
 
 /**
  * @returns the general information section of the sign up form

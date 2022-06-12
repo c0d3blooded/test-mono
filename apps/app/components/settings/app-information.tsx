@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import isempty from 'lodash.isempty';
-import { AppInformation } from '@treelof/models';
+import { AppInformation, IconData, MaterialUIAccentColor, MaterialUIColor } from '@treelof/models';
 import {
   DeviceTheme,
   DeviceThemeLabel,
   DeviceType,
   DeviceTypeLabel
 } from '@treelof/models';
-import AppLoader from '../common/app-loader';
-import ButtonGroup from '../common/button-group';
-import ColorPicker from '../common/color-picker';
-import {
-  MaterialUIAccentColor,
-  MaterialUIColor
-} from '../common/color-picker/color-picker';
-import IconUploader from '../common/icon-uploader';
-import Input from '../common/input';
-import { downloadAppIcon } from '../../services/storage';
-import { dataToBase64 } from '../../utils/common';
-import { IconData } from '../common/icon-uploader/icon-uploader';
+import { downloadAppIcon } from '@treelof/services';
+import { dataToBase64 } from '@treelof/utils';
+import { AppLoader, ButtonGroup, ColorPicker, IconUploader, Input } from '@treelof/components';
 
 interface Props {
   initialData?: AppInformation; // the initial load of app information

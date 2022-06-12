@@ -20,7 +20,7 @@ interface Props {
 /**
  * @returns a component which indicates the steps of a form
  */
-const StepsIndicator: React.FC<Props> = (props) => {
+export const StepsIndicator: React.FC<Props> = (props) => {
   /**
    * @param step the step this represents
    * @param index the index of the step in the list
@@ -170,5 +170,3 @@ const StepsIndicator: React.FC<Props> = (props) => {
     </>
   );
 };
-
-export default StepsIndicator;

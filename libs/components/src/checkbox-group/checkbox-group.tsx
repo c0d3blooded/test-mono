@@ -23,7 +23,7 @@ interface Props {
 /**
  * @returns a single or multi select checkbox field
  */
-const CheckboxGroup: React.FC<Props> = (props) => {
+export const CheckboxGroup: React.FC<Props> = (props) => {
   // internally track options
   const [options, setOptions] = useState(props.options);
   // render checkbox or radio box
@@ -85,5 +85,3 @@ const CheckboxGroup: React.FC<Props> = (props) => {
     </fieldset>
   );
 };
-
-export default CheckboxGroup;

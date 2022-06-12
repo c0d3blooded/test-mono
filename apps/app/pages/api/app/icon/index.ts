@@ -8,7 +8,7 @@ import {
   MaterialUIAccentColor,
   MaterialUIColor
 } from '@treelof/models';
-import { isValidJWT } from '../../../../services/api'; // Initialize the cors middleware
+import { isValidJWT } from '@treelof/utils';
 
 const accentColors = {
   amberAccent: '#ffab40',
