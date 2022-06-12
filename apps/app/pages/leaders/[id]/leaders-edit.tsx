@@ -2,18 +2,13 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HiSave } from 'react-icons/hi';
-import Button from '../../../components/common/button';
-import Card from '../../../components/common/card';
 import { Profile } from '@treelof/models';
-import {
-  createProfile,
-  getProfile,
-  updateProfile
-} from '../../../services/profile';
-import { useAppInformation } from '../../../hooks/useAppInformation';
-import { getFromSessionStorage, isObjectEmpty } from '../../../utils/common';
 import SettingsProfile from '../../../components/settings/profile';
-import DashboardSection from '../../../components/common/dashboard-section';
+import DashboardSection from '../../../components/dashboard-section';
+import { useAppInformation } from '@treelof/hooks';
+import { getFromSessionStorage, isObjectEmpty } from '@treelof/utils';
+import { createProfile, getProfile, updateProfile } from '@treelof/services';
+import { Button, Card } from '@treelof/components';
 
 const LeadersEdit = () => {
   const router = useRouter();

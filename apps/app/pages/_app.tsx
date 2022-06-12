@@ -1,12 +1,11 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Fade } from '@treelof/animations';
-import { UserContextProvider } from '../hooks/useUser';
+import { UserContextProvider, AppInformationProvider } from '@treelof/hooks';
 import Sidebar from '../components/dashboard/sidebar';
 import Header from '../components/dashboard/header';
 import { useState } from 'react';
 import cn from 'classnames';
-import { AppInformationProvider } from '../hooks/useAppInformation';
 
 function App({ Component, pageProps }: AppProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);

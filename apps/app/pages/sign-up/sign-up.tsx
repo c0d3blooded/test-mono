@@ -1,20 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import remove from 'lodash.remove';
-import { Fade } from '@treelof/animations';
 import Authenticator from '../../components/auth/authenticator';
 import SignUpAdditionalInformation from '../../components/sign-up/components/additional-information';
 import SignUpPricingInformation from '../../components/sign-up/components/pricing-information';
-import StepsIndicator from '../../components/common/steps-indicator';
 import { SignUpContext } from '../../components/sign-up/context';
+import SignUpGeneralInformation from '../../components/sign-up/components/general-information';
+import SignUpMobileAppInformation from '../../components/sign-up/components/mobile-app-information';
+import { Fade } from '@treelof/animations';
+import { StepsIndicator } from '@treelof/components';
+import { AppInformation } from '@treelof/models';
+import { useUser } from '@treelof/hooks';
 import {
   isGeneralInformationComplete,
   isMobileAppInformationComplete
-} from '../../utils/form';
-import { useUser } from '../../hooks/useUser';
-import { getAppInformation } from '../../services/app-information';
-import { AppInformation } from '@treelof/models';
-import SignUpGeneralInformation from '../../components/sign-up/components/general-information';
-import SignUpMobileAppInformation from '../../components/sign-up/components/mobile-app-information';
+} from '@treelof/utils';
+import { getAppInformationByOwner } from '@treelof/services';
 
 const SignUp = () => {
   const { profile } = useUser();
@@ -43,7 +43,7 @@ const SignUp = () => {
     const _ = async () => {
       try {
         if (profile?.uuid) {
-          const { data: appInformation } = await getAppInformation(
+          const { data: appInformation } = await getAppInformationByOwner(
             profile.uuid
           );
           if (appInformation) setAppInformation(appInformation);

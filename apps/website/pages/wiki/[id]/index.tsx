@@ -7,16 +7,15 @@ import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
 import WikiRevisionsMdx from '../../../mdx/wiki/revisions.mdx';
 import WikiContainer from '../../../components/wiki/container';
 import { CharacteristicContext } from '../../../context/characteristic';
-import Loader from '../../../components/common/loader';
-import Tabs from '../../../components/common/tabs';
 import {
   HiOutlineBookOpen,
   HiOutlineCollection,
   HiOutlinePencil
 } from 'react-icons/hi';
 import { FormProvider, useForm } from 'react-hook-form';
-import { createRevision, getRevisions } from '../../../services/revisions';
 import { Plant, Revision } from '@treelof/models';
+import { createRevision, getRevisions } from '@treelof/services';
+import { Loader, Tabs } from '@treelof/components';
 
 const WikiPage = () => {
   const router = useRouter();
@@ -44,7 +43,7 @@ const WikiPage = () => {
     if (id)
       await axios.get<Plant>(`/plants/${id}`).then(({ data }) => {
         setPlant(data);
-        for (let key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
           // @ts-ignore
           setValue(key, data[key]);
         }
@@ -86,11 +85,15 @@ const WikiPage = () => {
       case 0:
       default:
         hash = '#read';
+        break;
       case 1:
         hash = '#edit';
+        break;
       case 2:
         hash = '#revisions';
+        break;
     }
+    return hash;
   };
 
   /* When the edit form is submitted */

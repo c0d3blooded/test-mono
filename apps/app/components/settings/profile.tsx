@@ -1,7 +1,7 @@
-import { Profile } from '@treelof/models';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import Input from '../common/input';
+import { Input } from '@treelof/components';
+import { Profile } from '@treelof/models';
 
 /**
  * @returns the general information section of the sign up form

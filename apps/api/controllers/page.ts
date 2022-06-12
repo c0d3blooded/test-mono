@@ -2,13 +2,13 @@ import {
   Request,
   Response,
   Status,
-} from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import { supabase } from "../lib/supabase.ts";
-import { validateDomain } from "../utils/common.ts";
-import { Plant } from "../models/plant.ts";
-import errors from "../constants/errors.ts";
+} from 'https://deno.land/x/oak@v10.6.0/mod.ts';
+import { supabase } from '../lib/supabase.ts';
+import { validateDomain } from '../utils/common.ts';
+import { Plant } from '../models/plant.ts';
+import errors from '../constants/errors.ts';
 
-const plants_table = "plants";
+const plants_table = 'plants';
 
 /**
  * Create a page on the wiki site from Wikipedia meta data
@@ -18,7 +18,7 @@ export const createPage = async (context: {
   request: Request;
   response: Response;
 }) => {
-  let { request, response } = context;
+  const { request, response } = context;
   // if coming from the main website
   if (!validateDomain(request)) {
     response.status = Status.Forbidden;
@@ -26,7 +26,7 @@ export const createPage = async (context: {
     return;
   }
   // no name in the request body
-  const { name } = await request.body({ type: "json" }).value;
+  const { name } = await request.body({ type: 'json' }).value;
   if (!name) {
     response.status = Status.BadRequest;
     response.body = errors.BadRequest;
@@ -35,18 +35,20 @@ export const createPage = async (context: {
 
   // check for existing data with the given name
   try {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from<Plant>(plants_table)
-      .select("botanical_name")
-      .eq("botanical_name", name)
+      .select('botanical_name')
+      .eq('botanical_name', name)
       .single();
     // return an error if it exists
     if (data) {
       response.status = Status.Conflict;
-      response.body = "This plant already exists in the wiki";
+      response.body = 'This plant already exists in the wiki';
       return;
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 /**
@@ -69,7 +71,7 @@ export const updatePage = async ({
     return;
   }
   // no name in the request body
-  const { name } = await request.body({ type: "json" }).value;
+  const { name } = await request.body({ type: 'json' }).value;
   if (!name) {
     response.status = Status.BadRequest;
     response.body = errors.BadRequest;
@@ -78,16 +80,18 @@ export const updatePage = async ({
 
   // check for existing data with the given name
   try {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from<Plant>(plants_table)
-      .select("botanical_name")
-      .eq("botanical_name", name)
+      .select('botanical_name')
+      .eq('botanical_name', name)
       .single();
     // return an error if it exists
     if (data) {
       response.status = Status.Conflict;
-      response.body = "This plant already exists in the wiki";
+      response.body = 'This plant already exists in the wiki';
       return;
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+  }
 };

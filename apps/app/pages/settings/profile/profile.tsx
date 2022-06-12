@@ -1,10 +1,10 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import Card from '../../../components/common/card';
-import DashboardSection from '../../../components/common/dashboard-section';
+import DashboardSection from '../../../components/dashboard-section';
 import SettingsProfile from '../../../components/settings/profile';
-import { useUser } from '../../../hooks/useUser';
+import { Card } from '@treelof/components';
+import { useUser } from '@treelof/hooks';
 import { Profile } from '@treelof/models';
-import { updateProfile } from '../../../services/profile';
+import { updateProfile } from '@treelof/services';
 
 interface FormState {
   profile: Profile;

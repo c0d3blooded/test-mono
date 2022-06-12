@@ -1,16 +1,13 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
 import { AcceptInvitationParameters } from '@treelof/models';
-import { isValidJWT, uidFromJWT } from '../../../../../services/api'; // Initialize the cors middleware
 import {
   deleteInvitationsByApp,
-  getInvitationByCode
-} from '../../../../../services/invitation';
-import { parseJwt } from '../../../../../utils/auth';
-import {
   deleteRedundantProfiles,
+  getInvitationByCode,
   linkUserToProfile
-} from '../../../../../services/profile';
+} from '@treelof/services';
+import { isValidJWT, parseJwt, uidFromJWT } from '@treelof/utils';
 
 /* Accept an invitation sent by another user */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

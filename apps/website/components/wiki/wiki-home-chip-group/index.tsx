@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ChipGroup, { Option } from '../../common/chip-group';
+import { ChipGroup, Option } from '@treelof/components';
 
 // retrieves the available tags for the given endpoint
 interface WikiHomeChipGroupProps {

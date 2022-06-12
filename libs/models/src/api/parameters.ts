@@ -1,4 +1,4 @@
-import { MaterialUIAccentColor, MaterialUIColor } from '../app/colors';
+import { MaterialUIAccentColor, MaterialUIColor } from '../common/colors';
 
 // ---------- TREELOF API PARAMETERS ----------
 
@@ -37,4 +37,16 @@ export interface CreateInvitationParameters {
 // accept invitation link
 export interface AcceptInvitationParameters {
   invitation_code: string; // the code of the invitation
+}
+
+// send a request to create a new wiki page
+export interface CreateWikiPageParameters {
+  name: string; // the botanical name of the plant
+}
+
+export interface CreateRevisionParameters {
+  owner_id: string; // the user that made the change
+  changes: Record<string, Array<string>>; // the previous value
+  reference: string; // what table this references
+  reference_id: string; // the id of the reference
 }

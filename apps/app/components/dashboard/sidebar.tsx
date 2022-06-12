@@ -11,7 +11,7 @@ import {
   HiOutlineX
 } from 'react-icons/hi';
 import { useRouter } from 'next/router';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '@treelof/hooks';
 import { useIsMobile } from '@treelof/hooks';
 
 interface Props {

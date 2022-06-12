@@ -2,18 +2,23 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 import { withSentry } from '@sentry/nextjs';
 import fs from 'fs';
-import { CreateInvitationParameters } from '@treelof/models';
-import { supabaseService } from '../../../../../lib/supabase-client';
-import MailgunClient from '../../../../../lib/mailgun';
-import { isValidJWT } from '../../../../../services/api'; // Initialize the cors middleware
-import { table as app_information_table } from '../../../../../services/app-information';
-import { table as profile_table } from '../../../../../services/profile';
-import { Invitation, Profile, AppInformation } from '@treelof/models';
-import { generateInvitationUrl } from '../../../../../utils/invitation';
-import { replaceEmailTemplateValue } from '../../../../../utils/common';
-import { getName } from '../../../../../utils/profile';
-import { createInvitation } from '../../../../../services/invitation';
 import { DateTime } from 'luxon';
+import { CreateInvitationParameters } from '@treelof/models';
+import { Invitation, Profile, AppInformation } from '@treelof/models';
+import {
+  supabaseAdmin,
+  createInvitation,
+  MailgunClient
+} from '@treelof/services';
+import {
+  generateInvitationUrl,
+  getName,
+  isValidJWT,
+  replaceEmailTemplateValue
+} from '@treelof/utils';
+
+const profile_table = 'profiles';
+const app_information_table = 'app_information';
 
 /* Send an invitation link to a user */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -25,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const params = req.body as CreateInvitationParameters;
       // get existing profiles by email
-      const { count, error: error_existing } = await supabaseService
+      const { count, error: error_existing } = await supabaseAdmin
         .from<Profile>(profile_table)
         // get count only, no rows
         .select('*', { count: 'exact', head: true })
@@ -42,7 +47,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       // get inviting user's profile
       const { data: profile_inviter, error: error_inviter } =
-        await supabaseService
+        await supabaseAdmin
           .from<Profile>(profile_table)
           .select('first_name,last_name,email')
           .eq('uuid', params.from_profile_id)
@@ -54,7 +59,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       // get app information
       const { data: app_information, error: error_app_info } =
-        await supabaseService
+        await supabaseAdmin
           .from<Pick<AppInformation, 'id' | 'long_title'>>(
             app_information_table
           )

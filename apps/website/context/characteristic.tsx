@@ -7,7 +7,15 @@ import {
   SunPreference,
   Zone
 } from '@treelof/models';
-import axios from 'axios';
+import {
+  getClimates,
+  getEdibilities,
+  getFunctionalities,
+  getLayers,
+  getSoils,
+  getSunPreferences,
+  getZones
+} from '@treelof/services';
 import React, { useEffect, useState } from 'react';
 
 type CharacteristicContextType = {
@@ -42,33 +50,23 @@ export const CharcteristicContextProvider: React.FC<Props> = (props) => {
     (async () => {
       const promises: Array<Promise<unknown>> = [];
       // edibilities
-      promises.push(
-        axios.get(`/edibilities`).then(({ data }) => setEdibilities(data))
-      );
+      promises.push(getEdibilities().then(({ data }) => setEdibilities(data)));
       // functionalities
       promises.push(
-        axios
-          .get(`/functionalities`)
-          .then(({ data }) => setFunctionalities(data))
+        getFunctionalities().then(({ data }) => setFunctionalities(data))
       );
       // layers
-      promises.push(axios.get(`/layers`).then(({ data }) => setLayers(data)));
+      promises.push(getLayers().then(({ data }) => setLayers(data)));
       // sun preferences
       promises.push(
-        axios
-          .get(`/sun-preferences`)
-          .then(({ data }) => setSunPreferences(data))
+        getSunPreferences().then(({ data }) => setSunPreferences(data))
       );
       // soil preferences
-      promises.push(
-        axios.get(`/soils`).then(({ data }) => setSoilPreferences(data))
-      );
+      promises.push(getSoils().then(({ data }) => setSoilPreferences(data)));
       // climates
-      promises.push(
-        axios.get(`/climates`).then(({ data }) => setClimates(data))
-      );
-      // climates
-      promises.push(axios.get(`/zones`).then(({ data }) => setZones(data)));
+      promises.push(getClimates().then(({ data }) => setClimates(data)));
+      // zones
+      promises.push(getZones().then(({ data }) => setZones(data)));
       await Promise.all(promises);
       setLoading(false);
     })();

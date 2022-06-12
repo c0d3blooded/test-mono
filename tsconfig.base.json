@@ -2,23 +2,31 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "lib": ["es2017", "dom"],
+    "target": "es2021",
+    "module": "esnext",
+    "lib": ["es2021", "dom"],
+    "jsx": "react-jsx",
+    "allowJs": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
     "skipLibCheck": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
     "paths": {
       "@treelof/animations": ["libs/animations/src/index.ts"],
       "@treelof/components": ["libs/components/src/index.ts"],
       "@treelof/hooks": ["libs/hooks/src/index.ts"],
       "@treelof/models": ["libs/models/src/index.ts"],
-      "@treelof/services": ["libs/services/src/index.ts"]
+      "@treelof/services": ["libs/services/src/index.ts"],
+      "@treelof/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

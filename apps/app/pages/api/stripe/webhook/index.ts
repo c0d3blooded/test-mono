@@ -4,12 +4,9 @@ import Cors from 'cors';
 import Stripe from 'stripe';
 import { buffer } from 'micro';
 import { DateTime } from 'luxon';
-import initializeMiddleware from '../../../../lib/middleware';
-import {
-  Subscription,
-  SubscriptionType
-} from '@treelof/models';
-import { upsertSubscription } from '../../../../services/subscriptions';
+import { Subscription, SubscriptionType } from '@treelof/models';
+import { initializeMiddleware } from '@treelof/utils';
+import { upsertSubscription } from '@treelof/services';
 // diable body parsing for webhook verification
 export const config = {
   api: {

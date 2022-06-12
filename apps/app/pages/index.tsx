@@ -6,13 +6,15 @@ import { useEffect, useState } from 'react';
 import { FaAndroid, FaAppStore, FaApple, FaGooglePlay } from 'react-icons/fa';
 import { HiCog, HiOutlineUsers } from 'react-icons/hi';
 import { Fade } from '@treelof/animations';
-import Button from '../components/common/button';
-import DashboardSection from '../components/common/dashboard-section';
 import CheckoutSuccess from '../components/dashboard/components/checkout-success';
-import { useUser } from '../hooks/useUser';
-import { supabase } from '../lib/supabase-client';
-import { deleteStripeSession } from '../services/api';
-import { acceptInvitation } from '../services/invitation';
+import { useUser } from '@treelof/hooks';
+import {
+  acceptInvitation,
+  deleteStripeSession,
+  supabase
+} from '@treelof/services';
+import DashboardSection from '../components/dashboard-section';
+import { Button } from '@treelof/components';
 
 const Home: NextPage = () => {
   const router = useRouter();

@@ -1,15 +1,12 @@
 import Image from 'next/image';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaApple, FaEnvelope, FaLock } from 'react-icons/fa';
-import { useUser } from '../../../hooks/useUser';
-import { supabase } from '../../../lib/supabase-client';
-import { validateEmail } from '../../../utils/form';
-import Button from '../../common/button';
-import Input from '../../common/input';
-import AlertModal from '../../common/modals/alert-modal';
-import Notification from '../../common/notification';
 import { renderSocialLoginButton } from './helpers';
+import { useUser } from '@treelof/hooks';
+import { supabase } from '@treelof/services';
+import { AlertModal, Button, Input, Notification } from '@treelof/components';
+import { validateEmail } from '@treelof/utils';
 
 interface Props {
   onGoToSignUp: () => void; // navigate to the sign up page

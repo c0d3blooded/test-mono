@@ -2,10 +2,9 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
 import Stripe from 'stripe';
 import Cors from 'cors';
-import initializeMiddleware from '../../../../../lib/middleware';
 import { Profile } from '@treelof/models';
-import { updateStripeCustomerId } from '../../../../../services/subscriptions';
-import { isAuthenticated } from '../../../../../utils/auth';
+import { initializeMiddleware, isAuthenticated } from '@treelof/utils';
+import { updateStripeCustomerId } from '@treelof/services';
 /**
  * API for stripe customer creation
  */

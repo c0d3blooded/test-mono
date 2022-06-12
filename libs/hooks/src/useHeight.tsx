@@ -13,7 +13,7 @@ export default function useHeight(
   const [ro] = useState(
     () =>
       !isServer &&
-      new ResizeObserver((packet) => {
+      new ResizeObserver(() => {
         if (ref.current && heightRef.current !== ref.current.offsetHeight) {
           heightRef.current = ref.current.offsetHeight;
           set(ref.current.offsetHeight);

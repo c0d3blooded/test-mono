@@ -8,8 +8,8 @@ import {
   HiOutlineCog,
   HiMenuAlt2
 } from 'react-icons/hi';
-import { useUser } from '../../hooks/useUser';
-import { getName } from '../../utils/profile';
+import { useUser } from '@treelof/hooks';
+import { getName } from '@treelof/utils';
 
 interface Props {
   onOpenSidebar: () => void;

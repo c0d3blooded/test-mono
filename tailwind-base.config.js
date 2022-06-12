@@ -65,7 +65,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    ({ addUtilities, __, ___, variants }) => {
+    ({ addUtilities, variants }) => {
       const colorMap = Object.keys(muiColorsMapped).map((color) => ({
         [`.border-t-${color}`]: { borderTopColor: muiColorsMapped[color] },
         [`.border-r-${color}`]: { borderRightColor: muiColorsMapped[color] },

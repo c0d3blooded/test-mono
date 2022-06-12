@@ -9,6 +9,7 @@
     "hooks": "libs/hooks",
     "models": "libs/models",
     "services": "libs/services",
+    "utils": "libs/utils",
     "website": "apps/website"
   }
 }

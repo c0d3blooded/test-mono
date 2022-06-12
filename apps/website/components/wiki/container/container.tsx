@@ -12,8 +12,8 @@ import {
 
 import WikiHeader from '../header';
 import { useRouter } from 'next/router';
-import RequestPageModal from '../../common/modals/create-page-modal';
-import FeedbackModal from '../../common/modals/feedback-modal';
+import RequestPageModal from '../../modals/create-page-modal';
+import FeedbackModal from '../../modals/feedback-modal';
 
 interface ContainerProps {
   children?: React.ReactNode;

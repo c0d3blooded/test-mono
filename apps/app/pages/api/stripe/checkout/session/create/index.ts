@@ -1,8 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
 import Stripe from 'stripe';
-import { isValidJWT } from '../../../../../../services/api';
-import { parseJwt } from '../../../../../../utils/auth';
+import { isValidJWT, parseJwt } from '@treelof/utils';
 /**
  * API for stripe checkout sessions
  */

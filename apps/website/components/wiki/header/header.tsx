@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { HiMenuAlt2, HiSearch } from 'react-icons/hi';
-import Button from '../../common/button';
-import Input from '../../common/input';
+import { Button, Input } from '@treelof/components';
 
 interface Props {
   onOpenSidebar: () => void;

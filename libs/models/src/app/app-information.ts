@@ -1,4 +1,4 @@
-import { MaterialUIAccentColor, MaterialUIColor } from './colors';
+import { MaterialUIAccentColor, MaterialUIColor } from '../common/colors';
 
 /* Meta information required for creating, submitting and updating an app on the App/Play Store */
 export interface AppInformation {
