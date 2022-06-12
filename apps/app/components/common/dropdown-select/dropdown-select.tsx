@@ -33,7 +33,8 @@ const DropdownSelect: React.FC<Props> = (props) => {
   });
   useEffect(() => {
     // captures on blur events for non-dropdown item types
-    const captureClick = (e) => {
+    const captureClick = (e: MouseEvent) => {
+      // @ts-ignore
       const className: string = e?.target?.getAttribute('class');
       if (className && !className.includes(dropdownItemClass) && showOptions) {
         setShowOptions(false);
