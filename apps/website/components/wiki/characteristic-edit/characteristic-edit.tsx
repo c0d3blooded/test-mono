@@ -1,7 +1,7 @@
-import { useFieldArray, useFormContext } from 'react-hook-form';
-import { Characteristic } from '../../../models/characteristic';
+import { Chip } from '@treelof/components';
+import { Characteristic } from '@treelof/models';
+import { useFormContext } from 'react-hook-form';
 import chipIcons from '../../../utils/chip-icon';
-import Chip from '../../common/chip';
 
 interface Props {
   name: string; // the field

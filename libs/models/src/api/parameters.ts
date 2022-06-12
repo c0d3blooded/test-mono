@@ -1,4 +1,4 @@
-import { MaterialUIAccentColor, MaterialUIColor } from '../app/colors';
+import { MaterialUIAccentColor, MaterialUIColor } from '../common/colors';
 
 // ---------- TREELOF API PARAMETERS ----------
 

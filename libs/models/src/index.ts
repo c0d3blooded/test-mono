@@ -14,7 +14,6 @@ export * from './api/sun_preferences';
 export * from './api/zone';
 // app exports
 export * from './app/app-information';
-export * from './app/colors';
 export * from './app/icon-data';
 export * from './app/invitation';
 export * from './app/profile';
@@ -24,3 +23,4 @@ export * from './app/survey-answers';
 export * from './app/utility';
 // other
 export * from './common/characteristic';
+export * from './common/colors';

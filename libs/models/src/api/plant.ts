@@ -1,10 +1,10 @@
-import { EdibilityValue } from "./edibility.ts";
-import { SoilValue } from "./soil.ts";
-import { ClimateValue } from "./climate.ts";
-import { LayerValue } from "./layer.ts";
-import { FunctionalityValue } from "./functionality.ts";
-import { SunPreferenceValue } from "./sun_preferences.ts";
-import { ZoneValue } from "./zone.ts";
+import { EdibilityValue } from './edibility';
+import { SoilValue } from './soil';
+import { ClimateValue } from './climate';
+import { LayerValue } from './layer';
+import { FunctionalityValue } from './functionality';
+import { SunPreferenceValue } from './sun_preferences';
+import { ZoneValue } from './zone';
 /**
  * @schema plant
  * title: Plant

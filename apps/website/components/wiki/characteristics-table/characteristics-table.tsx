@@ -3,11 +3,9 @@ import { useContext } from 'react';
 import intersectionBy from 'lodash.intersectionby';
 import { Characteristic } from '@treelof/models';
 import { CharacteristicContext } from '../../../context/characteristic';
-import ChipGroup from '../../common/chip-group';
 import { BsCircleFill, BsCircleHalf, BsCircle } from 'react-icons/bs';
-import Chip from '../../common/chip';
 import CharacteristicEdit from '../characteristic-edit';
-import DropdownSelect from '../../common/dropdown-select';
+import { Chip, ChipGroup, DropdownSelect } from '@treelof/components';
 
 interface Props {
   plant: Record<string, any>;
