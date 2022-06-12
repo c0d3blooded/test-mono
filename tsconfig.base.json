@@ -3,6 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "lib": ["es2017", "dom"],
+    "jsx": "react-jsx",
+    "allowJs": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "Node",
@@ -13,12 +15,18 @@
     "module": "esnext",
     "skipLibCheck": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
     "paths": {
       "@treelof/animations": ["libs/animations/src/index.ts"],
       "@treelof/components": ["libs/components/src/index.ts"],
       "@treelof/hooks": ["libs/hooks/src/index.ts"],
       "@treelof/models": ["libs/models/src/index.ts"],
-      "@treelof/services": ["libs/services/src/index.ts"]
+      "@treelof/services": ["libs/services/src/index.ts"],
+      "@treelof/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

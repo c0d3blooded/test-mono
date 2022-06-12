@@ -8,7 +8,7 @@ import { SupabaseJWT } from '@treelof/models';
  */
 export const isAuthenticated = (req: NextApiRequest) => {
   // authenticate endpoint
-  if (req.headers['Treelof-API-Key'] !== process.env.API_KEY) return true;
+  if (req.headers['Treelof-API-Key'] !== process.env['API_KEY']) return true;
   return false;
 };
 /**

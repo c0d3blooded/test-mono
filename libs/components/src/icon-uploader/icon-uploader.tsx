@@ -11,7 +11,7 @@ import {
   MaterialUIColor
 } from '@treelof/models';
 import { FormProvider, useForm } from 'react-hook-form';
-import { responseToBase64 } from '../../../utils/common';
+import { responseToBase64 } from '@treelof/utils';
 
 export interface IconData {
   name: string; // the name of the icon

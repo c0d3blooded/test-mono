@@ -1,5 +1,5 @@
 import styles from './loader.module.scss';
-import { MaterialUIColor } from '../color-picker';
+import { MaterialUIColor } from '@treelof/models';
 import cn from 'classnames';
 import { CSSProperties } from 'react';
 
