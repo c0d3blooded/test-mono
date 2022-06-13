@@ -30,6 +30,7 @@ function App({ Component, pageProps }: AppProps) {
                   {loggedIn && (
                     <Header onOpenSidebar={() => setSidebarOpen(true)} />
                   )}
+                  {/* dashboard body */}
                   <div className={className}>
                     <Component {...pageProps} />
                   </div>
