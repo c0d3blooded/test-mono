@@ -1,35 +1,31 @@
-import axios from 'axios';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import groupBy from 'lodash.groupby';
 import { useRouter } from 'next/router';
 import { DateTime } from 'luxon';
-import { Fade } from '@treelof/animations';
-import WikiPageMdx from '../../../mdx/wiki/page.mdx';
-import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
-import WikiRevisionsMdx from '../../../mdx/wiki/revisions.mdx';
-import WikiContainer from '../../../components/wiki/container';
-import { CharacteristicContext } from '../../../context/characteristic';
 import {
   HiOutlineBookOpen,
   HiOutlineCollection,
   HiOutlinePencil
 } from 'react-icons/hi';
 import { FormProvider, useForm } from 'react-hook-form';
+
+import { Fade } from '@treelof/animations';
 import { Plant, Revision } from '@treelof/models';
-import { createRevision, getRevisions } from '@treelof/services';
+import { createRevision, getPlant, getRevisions } from '@treelof/services';
 import { Loader, Tabs } from '@treelof/components';
 import { copyObject } from '@treelof/utils';
+import WikiPageMdx from '../../../mdx/wiki/page.mdx';
+import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
+import WikiRevisionsMdx from '../../../mdx/wiki/revisions.mdx';
+import WikiContainer from '../../../components/wiki/container';
+import { CharacteristicContext } from '../../../context/characteristic';
 
 const WikiPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const { loading } = useContext(CharacteristicContext);
   const methods = useForm<Plant>();
-  const {
-    handleSubmit,
-    formState: { errors },
-    setValue
-  } = methods;
+  const { handleSubmit, setValue } = methods;
 
   const [plant, setPlant] = useState<Plant>();
   // revisions grouped by date
@@ -42,39 +38,38 @@ const WikiPage = () => {
     setTimeout(() => setShowLoader(true), 1000);
   }, []);
 
-  // get the plant from the database with the necessary metadata
-  const getPlant = useCallback(async () => {
-    if (id)
-      await axios.get<Plant>(`/plants/${id}`).then(({ data }) => {
+  // make initial call
+  useEffect(() => {
+    if (id) {
+      getPlant(parseInt(id as string)).then(({ data }) => {
         setPlant(data);
         for (const key of Object.keys(data)) {
           // @ts-ignore
           setValue(key, data[key]);
         }
       });
-  }, [id, setValue]);
-
-  // make initial call
-  useEffect(() => {
-    getPlant();
-    // get the revision history for this plant
-    getRevisions('plants', `${id}`).then(({ data }) => {
-      const newRevisions = groupBy(data, (item: Revision) => {
-        // the date format to group these items by
-        const format = 'yyyy-MM-dd';
-        // approved on date
-        if (item.approved_on)
-          return DateTime.fromISO(item.approved_on).toFormat(format);
-        // rejected date
-        else if (item.rejected_on)
-          return DateTime.fromISO(item.rejected_on).toFormat(format);
-        // created date
-        else return DateTime.fromISO(item.created_at).toFormat(format);
+      // get the revision history for this plant
+      getRevisions('plants', `${id}`).then(({ data }) => {
+        const newRevisions = groupBy(
+          // filter out rejected revisions
+          data.filter((item) => !item.rejected_on),
+          (item: Revision) => {
+            // the date format to group these items by
+            const format = 'yyyy-MM-dd';
+            // approved on date
+            if (item.approved_on)
+              return DateTime.fromISO(item.approved_on).toFormat(format);
+            // rejected date
+            else if (item.rejected_on)
+              return DateTime.fromISO(item.rejected_on).toFormat(format);
+            // created date
+            else return DateTime.fromISO(item.created_at).toFormat(format);
+          }
+        );
+        setRevisions(copyObject(newRevisions));
       });
-      console.log('newRevisions', newRevisions);
-      setRevisions(copyObject(newRevisions));
-    });
-  }, [id]);
+    }
+  }, [id, setValue]);
 
   const selectedTab = () => {
     const hashes = router.asPath.match(/#([a-z0-9]+)/gi) ?? [];
@@ -141,7 +136,11 @@ const WikiPage = () => {
         return (
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onEditSubmit)}>
-              <WikiEditPageMdx plant={plant} methods={methods} />
+              <WikiEditPageMdx
+                plant={plant}
+                methods={methods}
+                saving={isSaving}
+              />
             </form>
           </FormProvider>
         );

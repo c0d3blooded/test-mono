@@ -6,9 +6,14 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
   {/* props
       plant: Plant item
       methods: react-hook-form methods 
+      saving: the form is being saved
   */}
   <div className="pb-6">
-    <Button color="secondary" buttonProps={{ type: 'submit' }}>
+    <Button
+      color="secondary"
+      buttonProps={{ type: 'submit' }}
+      loading={props.saving}
+    >
       Submit Revision
     </Button>
   </div>

@@ -240,7 +240,13 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
               </td>
               {/* values */}
               <td className={`px-3 text-gray-500 ${cellClassName}`}>
-                {_renderSunPreferences()}
+                {plant.sun_preferences?.length > 0 ? (
+                  _renderSunPreferences()
+                ) : (
+                  <div className="flex">
+                    <Chip color="grey">Not available</Chip>
+                  </div>
+                )}
               </td>
             </tr>
             {/* climate */}

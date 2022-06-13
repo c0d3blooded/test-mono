@@ -79,7 +79,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         invitation_code,
         expires: DateTime.now().plus({ hours: 72 }).toISO() // expires in 72
       };
-      console.log(DateTime.now().plus({ hours: 72 }).toISO());
       const invitation_url = generateInvitationUrl(
         invitation,
         process.env.HOST_URL ?? ''

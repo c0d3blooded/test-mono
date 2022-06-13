@@ -41,7 +41,8 @@ export interface AcceptInvitationParameters {
 
 // send a request to create a new wiki page
 export interface CreateWikiPageParameters {
-  name: string; // the botanical name of the plant
+  common_name: string; // the common name of the plant
+  botanical_name: string; // the botanical name of the plant
 }
 
 export interface CreateRevisionParameters {

@@ -13,7 +13,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
   <div className="md:flex hidden">
     <Image
       className="rounded-md overflow-hidden drop-shadow-md"
-      src="https://upload.wikimedia.org/wikipedia/commons/1/15/Asimina_triloba3.jpg"
+      src={props.plant.image_url}
       width={170}
       height={170}
       objectFit="cover"
@@ -24,7 +24,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
   <div className="flex md:hidden">
     <Image
       className="rounded-md overflow-hidden drop-shadow-md"
-      src="https://upload.wikimedia.org/wikipedia/commons/1/15/Asimina_triloba3.jpg"
+      src={props.plant.image_url}
       width={90}
       height={90}
       objectFit="cover"
@@ -50,5 +50,3 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
 #### References
 
 Under development
-
-{/* TODO: Add references */}

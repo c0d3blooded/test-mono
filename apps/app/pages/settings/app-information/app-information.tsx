@@ -20,7 +20,6 @@ const SettingsAppInformationPage = () => {
   }>();
 
   useEffect(() => {
-    console.log('appInformation', appInformation);
     if (appInformation) methods.setValue('app_information', appInformation);
   }, [appInformation, methods]);
 

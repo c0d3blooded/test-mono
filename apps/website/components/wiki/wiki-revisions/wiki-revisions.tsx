@@ -45,12 +45,12 @@ const WikiRevisions: React.FC<Props> = ({ revisions }) => {
         {/* show revision items */}
         <div className="flex flex-col space-y-4">
           {revisionItems.map((revision, i) => (
-            <>
-              <WikiRevision key={revision.id} revision={revision} />
+            <div key={revision.id} className="space-y-4">
+              <WikiRevision revision={revision} />
               {i !== revisionItems.length - 1 && (
                 <div className="w-full border-t border-gray-300" />
               )}
-            </>
+            </div>
           ))}
         </div>
       </div>
@@ -255,8 +255,7 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
       {_renderChanges()}
       {/* status */}
       <div className="flex flex-row items-center space-x-2 capitalize self-start">
-        <span>Status:</span>
-        <Chip color={getStatusColor()}>{revision.status}</Chip>
+        <Chip color={getStatusColor()}>Revision {revision.status}</Chip>
       </div>
     </div>
   );
