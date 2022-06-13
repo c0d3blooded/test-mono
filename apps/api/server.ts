@@ -72,6 +72,7 @@ router.use(routes.routes(), routes.allowedMethods());
 // check for API keys
 if (Deno.env.get('ENABLE_KEY_CHECK') == 'true') app.use(checkAPIKey);
 
+app.use(oakCors()); // Enable CORS for All Routes
 app.use(router.routes(), router.allowedMethods());
 
 console.log(`Server running on port ${port}`);

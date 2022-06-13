@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
+import groupBy from 'lodash.groupby';
 import { useRouter } from 'next/router';
+import { DateTime } from 'luxon';
 import { Fade } from '@treelof/animations';
 import WikiPageMdx from '../../../mdx/wiki/page.mdx';
 import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
@@ -16,6 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Plant, Revision } from '@treelof/models';
 import { createRevision, getRevisions } from '@treelof/services';
 import { Loader, Tabs } from '@treelof/components';
+import { copyObject } from '@treelof/utils';
 
 const WikiPage = () => {
   const router = useRouter();
@@ -29,7 +32,8 @@ const WikiPage = () => {
   } = methods;
 
   const [plant, setPlant] = useState<Plant>();
-  const [revisions, setRevisions] = useState<Array<Revision>>();
+  // revisions grouped by date
+  const [revisions, setRevisions] = useState<Record<string, Array<Revision>>>();
   const [showLoader, setShowLoader] = useState(false);
   const [isSaving, setIsSaving] = useState(false); // the form is saving
 
@@ -54,8 +58,23 @@ const WikiPage = () => {
   useEffect(() => {
     getPlant();
     // get the revision history for this plant
-    getRevisions('plants', `${id}`).then(({ data }) => setRevisions(data));
-  }, [getPlant, id, setValue]);
+    getRevisions('plants', `${id}`).then(({ data }) => {
+      const newRevisions = groupBy(data, (item: Revision) => {
+        // the date format to group these items by
+        const format = 'yyyy-MM-dd';
+        // approved on date
+        if (item.approved_on)
+          return DateTime.fromISO(item.approved_on).toFormat(format);
+        // rejected date
+        else if (item.rejected_on)
+          return DateTime.fromISO(item.rejected_on).toFormat(format);
+        // created date
+        else return DateTime.fromISO(item.created_at).toFormat(format);
+      });
+      console.log('newRevisions', newRevisions);
+      setRevisions(copyObject(newRevisions));
+    });
+  }, [id]);
 
   const selectedTab = () => {
     const hashes = router.asPath.match(/#([a-z0-9]+)/gi) ?? [];
@@ -128,8 +147,7 @@ const WikiPage = () => {
         );
       // revision history
       case 2:
-        // TODO: Add revision history
-        return <WikiRevisionsMdx />;
+        return <WikiRevisionsMdx revisions={revisions} />;
     }
   };
 

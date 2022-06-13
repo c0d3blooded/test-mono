@@ -13,7 +13,7 @@ interface Props {
 // chip group for a list of chips
 export const ChipGroup: React.FC<Props> = (props) => {
   const classNames = cn(
-    'flex flex-row flex-wrap space-x-2 space-y-2 items-center',
+    'flex flex-row flex-wrap space-x-2 items-center -mb-2',
     {
       'justify-center': props.center
     }
@@ -22,7 +22,7 @@ export const ChipGroup: React.FC<Props> = (props) => {
     <div className={classNames}>
       {props.options?.length ? (
         props.options?.map((option) => (
-          <div key={`${option.id}`}>
+          <div key={`${option.id}`} className="mb-2">
             <Chip
               color={props.color}
               onClick={() => props.onSelect && props.onSelect(option.id)}

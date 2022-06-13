@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Button, Chip, ChipGroup, Input } from '@treelof/components';
-import WikiHomeChipGroup from '../../components/wiki/wiki-home-chip-group';
 import WikiCharacteristicsTable from '../../components/wiki/characteristics-table';
 
 <div className="flex flex-1 flex-col md:space-y-4 space-y-2">
@@ -16,6 +15,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
   <Input
     label="Common name"
     inputProps={{
+      disabled: true,
       placeholder: "The plant's common name",
       ...props.methods.register('common_name', {
         required: 'Please enter a common name'
@@ -25,6 +25,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
   <Input
     label="Botanical name"
     inputProps={{
+      disabled: true,
       placeholder: "The plant's scientific name",
       ...props.methods.register('botanical_name', {
         required: "Please enter this plant's botnanical name"
@@ -44,6 +45,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
 <Input
   label="Description"
   textAreaProps={{
+    disabled: true,
     rows: 10,
     placeholder: "The plant's description",
     ...props.methods.register('description')

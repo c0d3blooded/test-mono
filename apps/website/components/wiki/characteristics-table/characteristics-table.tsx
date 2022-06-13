@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useContext } from 'react';
 import intersectionBy from 'lodash.intersectionby';
-import { Characteristic } from '@treelof/models';
+import { CharacterisitcColors, Characteristic } from '@treelof/models';
 import { CharacteristicContext } from '../../../context/characteristic';
 import { BsCircleFill, BsCircleHalf, BsCircle } from 'react-icons/bs';
 import CharacteristicEdit from '../characteristic-edit';
@@ -60,7 +60,6 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
    */
   const _renderCharacteristics = (
     type: string,
-    color: string,
     name: string,
     options?: Array<Characteristic>,
     items?: Array<string>
@@ -84,13 +83,13 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
                 })),
                 'id'
               )}
-              color={color}
+              color={CharacterisitcColors[name]}
             />
           ) : (
             // edit mode
             <CharacteristicEdit
               name={name}
-              color={color}
+              color={CharacterisitcColors[name]}
               items={options ?? []}
             />
           )}
@@ -105,19 +104,28 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
       <div className="flex space-x-2">
         {/* full sun */}
         {plant.sun_preferences?.includes('full_sun') && (
-          <Chip color="amber" leading={<BsCircle />}>
+          <Chip
+            color={CharacterisitcColors.sun_preferences}
+            leading={<BsCircle />}
+          >
             Full Sun
           </Chip>
         )}
         {/* part shade */}
         {plant.sun_preferences?.includes('partial_shade') && (
-          <Chip color="amber" leading={<BsCircleHalf />}>
+          <Chip
+            color={CharacterisitcColors.sun_preferences}
+            leading={<BsCircleHalf />}
+          >
             Partial Shade
           </Chip>
         )}
         {/* full shade */}
         {plant.sun_preferences?.includes('full_shade') && (
-          <Chip color="amber" leading={<BsCircleFill />}>
+          <Chip
+            color={CharacterisitcColors.sun_preferences}
+            leading={<BsCircleFill />}
+          >
             Full Shade
           </Chip>
         )}
@@ -137,14 +145,14 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
       <div className="flex items-center">
         {/* minimum zone */}
         {plant.zone_min ? (
-          <Chip color="indigo">{plant.zone_min}</Chip>
+          <Chip color={CharacterisitcColors.zone}>{plant.zone_min}</Chip>
         ) : (
           <Chip color="grey">Not available</Chip>
         )}
         <span className="px-2">to</span>
         {/* maximum zone */}
         {plant.zone_max ? (
-          <Chip color="indigo">{plant.zone_max}</Chip>
+          <Chip color={CharacterisitcColors.zone}>{plant.zone_max}</Chip>
         ) : (
           <Chip color="grey">Not available</Chip>
         )}
@@ -193,7 +201,6 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
             {/* edibility */}
             {_renderCharacteristics(
               'Edibility',
-              'red',
               'edibilities',
               edibilities,
               plant.edibilities
@@ -201,7 +208,6 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
             {/* layer */}
             {_renderCharacteristics(
               plant.layers?.length !== 1 ? 'Layers' : 'Layer',
-              'deepPurple',
               'layers',
               layers,
               plant.layers
@@ -209,7 +215,6 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
             {/* functionality */}
             {_renderCharacteristics(
               plant.functionalities?.length !== 1 ? 'Functions' : 'Function',
-              'purple',
               'functionalities',
               functionalities,
               plant.functionalities
@@ -219,7 +224,6 @@ const WikiCharacteristicsTable: React.FC<Props> = ({ plant, edit }) => {
               plant.soil_preferences?.length !== 1
                 ? 'Soil Preferences'
                 : 'Soil Preference',
-              'brown',
               'soil_preferences',
               soilPreferences,
               plant.soil_preferences

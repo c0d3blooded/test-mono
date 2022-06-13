@@ -17,7 +17,9 @@
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^12.1.6",
     "@theme-ui/presets": "^0.14.5",
+    "lodash.groupby": "^4.6.0",
     "lodash.intersectionby": "^4.7.0",
+    "lodash.orderby": "^4.6.0",
     "theme-ui": "^0.14.5"
   },
   "devDependencies": {

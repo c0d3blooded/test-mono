@@ -34,7 +34,9 @@ export const Input: React.FC<Props> = (props) => {
     {
       'rounded-md': !prefix,
       // colorings
-      [styles.error]: props.error
+      [styles.error]: props.error,
+      'text-gray-400':
+        props.inputProps?.disabled || props.textAreaProps?.disabled
     },
     props.inputProps?.className,
     props.textAreaProps?.className

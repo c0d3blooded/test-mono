@@ -38,3 +38,15 @@ export type MaterialUIAccentColor =
   | 'redAccent'
   | 'tealAccent'
   | 'yellowAccent';
+
+/* The colors associated with a specific characteristic */
+export const CharacterisitcColors = {
+  edibilities: 'red',
+  layers: 'deepPurple',
+  functionalities: 'purple',
+  soil_preferences: 'brown',
+  climates: 'blue',
+  native_climate: 'blue',
+  sun_preferences: 'amber',
+  zone: 'indigo'
+};
