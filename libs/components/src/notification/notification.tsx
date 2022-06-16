@@ -27,13 +27,11 @@ export const Notification: React.FC<Props> = (props) => {
     }
   };
   return (
-    <div className={`${styles.root} rounded-md p-4 ${className}`}>
-      <div className="flex">
-        {/* notification icon */}
-        <div className={`${styles.icon} ${className}`}>{getIcon()}</div>
-        <div className="flex-1 ml-3">
-          <h3 className={`${styles.text} ${className}`}>{props.children}</h3>
-        </div>
+    <div className={`${styles.root} flex rounded-md p-4 ${className}`}>
+      {/* notification icon */}
+      <div className={`${styles.icon} ${className}`}>{getIcon()}</div>
+      <div className="flex-1 ml-3">
+        <h3 className={`${styles.text} ${className}`}>{props.children}</h3>
       </div>
     </div>
   );

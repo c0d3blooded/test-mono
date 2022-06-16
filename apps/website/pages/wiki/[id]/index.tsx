@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import groupBy from 'lodash.groupby';
 import { useRouter } from 'next/router';
 import { DateTime } from 'luxon';
@@ -9,18 +9,21 @@ import {
 } from 'react-icons/hi';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { Fade } from '@treelof/animations';
-import { Plant, Revision } from '@treelof/models';
+import { Fade, SlideVertical } from '@treelof/animations';
+import { Plant, Revision, TreelofApiError } from '@treelof/models';
 import { createRevision, getPlant, getRevisions } from '@treelof/services';
-import { Loader, Tabs } from '@treelof/components';
-import { copyObject } from '@treelof/utils';
+import { Loader, Notification, Tabs } from '@treelof/components';
+import { copyObject, getRevisionDate } from '@treelof/utils';
 import WikiPageMdx from '../../../mdx/wiki/page.mdx';
 import WikiEditPageMdx from '../../../mdx/wiki/edit-page.mdx';
 import WikiRevisionsMdx from '../../../mdx/wiki/revisions.mdx';
 import WikiContainer from '../../../components/wiki/container';
 import { CharacteristicContext } from '../../../context/characteristic';
+import { useUser } from '@treelof/hooks';
+import axios from 'axios';
 
 const WikiPage = () => {
+  const { profile } = useUser();
   const router = useRouter();
   const { id } = router.query;
   const { loading } = useContext(CharacteristicContext);
@@ -31,23 +34,30 @@ const WikiPage = () => {
   // revisions grouped by date
   const [revisions, setRevisions] = useState<Record<string, Array<Revision>>>();
   const [showLoader, setShowLoader] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false); // show success notification when the wiki has finished saving
   const [isSaving, setIsSaving] = useState(false); // the form is saving
+  const [saveError, setSaveError] = useState<string>();
 
   useEffect(() => {
     // only show the loader after timeout
     setTimeout(() => setShowLoader(true), 1000);
   }, []);
 
-  // make initial call
-  useEffect(() => {
-    if (id) {
+  /* Fetch the plant from the server */
+  const fetchPlant = () => {
+    if (id)
       getPlant(parseInt(id as string)).then(({ data }) => {
-        setPlant(data);
-        for (const key of Object.keys(data)) {
-          // @ts-ignore
+        setPlant(JSON.parse(JSON.stringify(data)));
+        for (const key of Object.keys(data) as Array<keyof Plant>) {
           setValue(key, data[key]);
         }
       });
+  };
+
+  // make initial call
+  useEffect(() => {
+    if (id) {
+      fetchPlant();
       // get the revision history for this plant
       getRevisions('plants', `${id}`).then(({ data }) => {
         const newRevisions = groupBy(
@@ -56,20 +66,13 @@ const WikiPage = () => {
           (item: Revision) => {
             // the date format to group these items by
             const format = 'yyyy-MM-dd';
-            // approved on date
-            if (item.approved_on)
-              return DateTime.fromISO(item.approved_on).toFormat(format);
-            // rejected date
-            else if (item.rejected_on)
-              return DateTime.fromISO(item.rejected_on).toFormat(format);
-            // created date
-            else return DateTime.fromISO(item.created_at).toFormat(format);
+            return getRevisionDate(item).toFormat(format);
           }
         );
         setRevisions(copyObject(newRevisions));
       });
     }
-  }, [id, setValue]);
+  }, [id]);
 
   const selectedTab = () => {
     const hashes = router.asPath.match(/#([a-z0-9]+)/gi) ?? [];
@@ -107,23 +110,50 @@ const WikiPage = () => {
         hash = '#revisions';
         break;
     }
-    return hash;
+    // replace hash in route
+    const newRoute = router.asPath.replace(/#.+/, hash);
+    return router.push(newRoute);
   };
 
   /* When the edit form is submitted */
   const onEditSubmit = async () => {
-    setIsSaving(true);
-    await createRevision({
-      owner_id: '23504e74-b9e7-4a69-8003-843bad54a207',
-      reference: 'plants',
-      reference_id: `${id}`,
-      changes: {
-        edibilities: ['roots', 'leaves'],
-        sun_preferences: ['full_shade']
+    const { getValues } = methods;
+    const newPlant = getValues();
+    const changes = {};
+    setSaveError('');
+    // check for changes
+    for (const key of Object.keys(plant)) {
+      if (JSON.stringify(plant[key]) !== JSON.stringify(newPlant[key])) {
+        let newValue = newPlant[key];
+        // needs to save as an array
+        if (!Array.isArray(newValue)) newValue = [newPlant[key]];
+        changes[key] = newValue;
       }
-    });
+    }
+    setIsSaving(true);
+    try {
+      await createRevision({
+        reference: 'plants',
+        reference_id: `${id}`,
+        changes,
+        owner_id: profile?.uuid
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const { message } = error.response.data as TreelofApiError;
+        setSaveError(message);
+      }
+    }
+    fetchPlant();
     setIsSaving(false);
     onChangeTab(0);
+    _showSuccessAlert();
+  };
+
+  /* Show the success for save notification */
+  const _showSuccessAlert = () => {
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 5000);
   };
 
   const _renderTab = () => {
@@ -140,6 +170,7 @@ const WikiPage = () => {
                 plant={plant}
                 methods={methods}
                 saving={isSaving}
+                error={saveError}
               />
             </form>
           </FormProvider>
@@ -189,8 +220,15 @@ const WikiPage = () => {
                     hash: '#revisions'
                   }
                 ]}
-                onChange={(value) => onChangeTab(value)}
               />
+              {/* success notification */}
+              <SlideVertical show={showSuccess}>
+                <div className="mx-6 -mt-6 pt-6">
+                  <Notification type="success">
+                    Your revision has successfully be saved! Thank you
+                  </Notification>
+                </div>
+              </SlideVertical>
               <div className="px-6">{_renderTab()}</div>
             </div>
           )}

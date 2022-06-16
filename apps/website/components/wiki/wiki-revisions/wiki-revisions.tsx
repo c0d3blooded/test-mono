@@ -1,10 +1,10 @@
 import React, { ReactElement, useContext } from 'react';
 import orderBy from 'lodash.orderby';
 import first from 'lodash.first';
+import isEmpty from 'lodash.isempty';
 import { DateTime } from 'luxon';
 import {
   CharacterisitcColors,
-  Characteristic,
   MaterialUIAccentColor,
   MaterialUIColor,
   Revision,
@@ -14,7 +14,11 @@ import {
 import { HiArrowCircleRight, HiUserCircle } from 'react-icons/hi';
 import { Chip, ChipGroup } from '@treelof/components';
 import { CharacteristicContext } from '../../../context/characteristic';
-import { findCharacteristic, filterCharacteristics } from '@treelof/utils';
+import {
+  findCharacteristic,
+  filterCharacteristics,
+  getRevisionDate
+} from '@treelof/utils';
 import { BsCircle, BsCircleFill, BsCircleHalf } from 'react-icons/bs';
 
 interface Props {
@@ -58,7 +62,15 @@ const WikiRevisions: React.FC<Props> = ({ revisions }) => {
   };
 
   // show all revisions
-  return <div>{orderedDates.map((item) => _renderSection(item))}</div>;
+  return (
+    <div>
+      {!isEmpty(orderedDates) ? (
+        orderedDates.map((item) => _renderSection(item))
+      ) : (
+        <p>No data</p>
+      )}
+    </div>
+  );
 };
 
 interface RevisionProps {
@@ -76,6 +88,7 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
     zones
   } = useContext(CharacteristicContext);
 
+  const blankValue = <Chip color="grey">Not available</Chip>;
   /**
    * The color for a status
    * @param value
@@ -113,10 +126,12 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
         label = 'Full Shade';
         break;
     }
-    return (
+    return value ? (
       <Chip color={CharacterisitcColors.sun_preferences} leading={icon}>
         {label}
       </Chip>
+    ) : (
+      blankValue
     );
   };
   /* Renders the changes for the field */
@@ -131,23 +146,13 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
         oldChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={
-              filterCharacteristics(
-                edibilities,
-                revision.old_value
-              ) as Array<Characteristic>
-            }
+            options={filterCharacteristics(edibilities, revision.old_value)}
           />
         );
         newChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={
-              filterCharacteristics(
-                edibilities,
-                revision.new_value
-              ) as Array<Characteristic>
-            }
+            options={filterCharacteristics(edibilities, revision.new_value)}
           />
         );
         break;
@@ -155,19 +160,13 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
         oldChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              functionalities,
-              first(revision.old_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(functionalities, revision.old_value)}
           />
         );
         newChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              functionalities,
-              first(revision.new_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(functionalities, revision.new_value)}
           />
         );
         break;
@@ -175,19 +174,13 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
         oldChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              layers,
-              first(revision.old_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(layers, revision.old_value)}
           />
         );
         newChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              layers,
-              first(revision.new_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(layers, revision.new_value)}
           />
         );
         break;
@@ -195,39 +188,55 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
         oldChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              soilPreferences,
-              first(revision.old_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(soilPreferences, revision.old_value)}
           />
         );
         newChangesComponent = (
           <ChipGroup
             color={CharacterisitcColors[revision.field]}
-            options={filterCharacteristics(
-              soilPreferences,
-              first(revision.new_value)
-            )?.map((item) => item.label)}
+            options={filterCharacteristics(soilPreferences, revision.new_value)}
           />
         );
         break;
       // for climate changes
       case 'native_climate':
-        oldChangesComponent = (
+        const oldClimate = first(revision.old_value);
+        const newClimate = first(revision.new_value);
+        oldChangesComponent = oldClimate ? (
           <Chip color={CharacterisitcColors[revision.field]}>
-            {findCharacteristic(climates, first(revision.old_value))?.label}
+            {findCharacteristic(climates, oldClimate)?.label}
           </Chip>
+        ) : (
+          blankValue
         );
-        newChangesComponent = (
+        newChangesComponent = newClimate ? (
           <Chip color={CharacterisitcColors[revision.field]}>
-            {findCharacteristic(climates, first(revision.new_value))?.label}
+            {findCharacteristic(climates, newClimate)?.label}
           </Chip>
+        ) : (
+          blankValue
         );
         break;
       // for sun changes
       case 'sun_preferences':
         oldChangesComponent = _renderSunPreference(first(revision.old_value));
         newChangesComponent = _renderSunPreference(first(revision.new_value));
+        break;
+      // for zone changes
+      case 'zone_min':
+      case 'zone_max':
+        const oldZone = first(revision.old_value);
+        const newZone = first(revision.new_value);
+        oldChangesComponent = oldZone ? (
+          <Chip color={CharacterisitcColors.zone}>{oldZone}</Chip>
+        ) : (
+          blankValue
+        );
+        newChangesComponent = newZone ? (
+          <Chip color={CharacterisitcColors.zone}>{newZone}</Chip>
+        ) : (
+          blankValue
+        );
         break;
       default:
         oldChangesComponent = <span>{revision.old_value}</span>;
@@ -247,16 +256,18 @@ const WikiRevision: React.FC<RevisionProps> = ({ revision }) => {
   };
   return (
     <div className="flex flex-col space-y-2">
-      {/* owner */}
-      <div className="flex flex-row items-center self-start border-gray-300 border rounded-2xl px-2">
-        <HiUserCircle className="text-primary-700 mr-1" /> {`Treelof`}
+      <div className="flex flex-row">
+        {/* owner */}
+        <div className="flex flex-row items-center self-start border-gray-300 border rounded-2xl px-2">
+          <HiUserCircle className="text-primary-700 mr-1" /> {`Anonymous`}
+        </div>
+        {/* time */}
+        <span className="ml-2">
+          {getRevisionDate(revision).toLocaleString(DateTime.TIME_SIMPLE)}
+        </span>
       </div>
       {/* changes */}
       {_renderChanges()}
-      {/* status */}
-      <div className="flex flex-row items-center space-x-2 capitalize self-start">
-        <Chip color={getStatusColor()}>Revision {revision.status}</Chip>
-      </div>
     </div>
   );
 };

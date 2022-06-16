@@ -14,10 +14,10 @@ import { copyObject, isObjectEmpty } from '@treelof/utils';
 const profile_table = 'profiles';
 type UserContextType = {
   session: Session | null;
-  user: User | null;
+  user?: User | null;
   // function to refresh the profile list
   refreshProfiles: (uid: string) => void;
-  profile: Profile | null;
+  profile?: Profile | null;
   loggedIn: boolean;
   loading: boolean; // the user is loading
   error?: string | null;
@@ -119,16 +119,6 @@ export const UserContextProvider: React.FC<Props> = (props) => {
   }, [user, refreshProfiles]);
 
   /**
-   * Universal login with an OAuth provider which returns a session and user on successful login
-   * @param session the session from the callback
-   * @param user the user from the callback
-   */
-  const loginWithOath = (session: Session, user: User) => {
-    setSession(session);
-    setUser(user);
-  };
-
-  /**
    * Completely sign the user out
    * @returns the Promise of the supabase logout
    */
@@ -137,7 +127,7 @@ export const UserContextProvider: React.FC<Props> = (props) => {
     return supabase.auth.signOut();
   };
 
-  const value = {
+  const value: UserContextType = {
     session,
     user,
     refreshProfiles,
@@ -145,7 +135,6 @@ export const UserContextProvider: React.FC<Props> = (props) => {
     loggedIn: Boolean(session) && !isObjectEmpty(profiles || []),
     loading,
     error,
-    loginWithOath,
     signIn: (options: SignInOptions) => supabase.auth.signIn(options),
     signUp: (options: SignUpOptions) => supabase.auth.signUp(options),
     signOut

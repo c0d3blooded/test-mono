@@ -8,3 +8,4 @@ export * from './app/profile';
 export * from './middleware';
 // wiki tools
 export * from './wiki/charateristic';
+export * from './wiki/revision';

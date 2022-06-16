@@ -1,19 +1,22 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Fade, SlideHorizontalRight } from '@treelof/animations';
-import { useIsMobile } from '@treelof/hooks';
+import { useIsMobile, useUser } from '@treelof/hooks';
 import {
+  HiOutlineCog,
   HiOutlineDocumentAdd,
   HiOutlineHeart,
   HiOutlineHome,
   HiOutlineLibrary,
-  HiOutlineX
+  HiOutlineX,
+  HiUserCircle
 } from 'react-icons/hi';
 
 import WikiHeader from '../header';
 import { useRouter } from 'next/router';
 import RequestPageModal from '../../modals/create-page-modal';
 import FeedbackModal from '../../modals/feedback-modal';
+import { Button, IconButton } from '@treelof/components';
 
 interface ContainerProps {
   children?: React.ReactNode;
@@ -43,6 +46,7 @@ interface Props {
 }
 
 const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
+  const { loggedIn } = useUser();
   // show/hide the add a page modal
   const [showAddPageModal, setShowAddPageModal] = useState(false);
   // show/hide the request a page modal
@@ -60,7 +64,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
 
   // render the logo
   const _renderLogo = () => (
-    <div className="flex flex-row items-center justify-center text-2xl text-green-600 border-b border-gray-200 pb-4 mx-6 mb-3">
+    <div className="flex flex-row items-center justify-center text-2xl text-green-600">
       <Image
         src="/images/treelof-icon.png"
         width={50}
@@ -74,6 +78,29 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
       </div>
     </div>
   );
+
+  /* Shows the member's account information if logged in */
+  const _renderAccountHeader = () =>
+    !loggedIn ? (
+      // not logged in
+      <div className="pt-7 pb-4 px-3">
+        <Button color="secondary" gradient fullWidth>
+          Login
+        </Button>
+      </div>
+    ) : (
+      <div className="flex flex-col px-3 rounded-2xl">
+        {/* account info */}
+        <div className="flex flex-row items-center space-x-2 pt-3 pb-1">
+          <HiUserCircle className="w-7 h-7" />
+          <span className="flex-1">ty Adams test</span>
+        </div>
+        {/* logout button */}
+        <Button color="secondary" alt>
+          Logout
+        </Button>
+      </div>
+    );
 
   /**
    * Renders a menu item
@@ -111,7 +138,12 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
   /* renders the menu items */
   const _renderItems = () => (
     <>
-      <div className="py-2">{_renderLogo()}</div>
+      <div className="py-2 border-b border-gray-200 pb-4 mx-3 mb-3">
+        {/* logo */}
+        {_renderLogo()}
+        {/* account */}
+        {_renderAccountHeader()}
+      </div>
       <div className="flex-grow flex flex-col">
         <nav className="flex-1 px-2 space-y-1" aria-label="Sidebar">
           {/* home */}

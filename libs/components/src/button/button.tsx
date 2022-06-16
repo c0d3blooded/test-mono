@@ -8,6 +8,7 @@ interface Props {
   loading?: boolean; // indicates if the button is in loading mode or not
   disabled?: boolean; // indicates if the button is disabled
   color?: 'primary' | 'secondary' | 'tertiary' | 'danger';
+  gradient?: boolean;
   alt?: boolean; // alternate colorings for the button
   fullWidth?: boolean; // indicates a full width button
   outlined?: boolean; // an outlined style button
@@ -19,25 +20,44 @@ interface Props {
  * @returns Common app button
  */
 export const Button: React.FC<Props> = (props) => {
-  const { color, alt, loading, disabled, outlined } = props;
+  const { color, alt, gradient, loading, disabled, outlined } = props;
   // set conditional classnames
   const className = cn(
     styles.root,
     {
       // primary colors (default if no value given)
       [styles.primary]:
-        (!color || color === 'primary') && !disabled && !outlined && !alt,
+        (!color || color === 'primary') &&
+        !disabled &&
+        !outlined &&
+        !alt &&
+        !gradient,
       [styles.primaryAlt]:
-        (!color || color === 'primary') && !disabled && !outlined && alt,
+        (!color || color === 'primary') &&
+        !disabled &&
+        !outlined &&
+        alt &&
+        !gradient,
+      [styles.primaryGradient]:
+        (!color || color === 'primary') &&
+        !disabled &&
+        !outlined &&
+        !alt &&
+        gradient,
       // secondary colors
-      [styles.secondary]: color === 'secondary' && !disabled && !alt,
-      [styles.secondaryAlt]: color === 'secondary' && !disabled && alt,
+      [styles.secondary]:
+        color === 'secondary' && !disabled && !alt && !gradient,
+      [styles.secondaryAlt]:
+        color === 'secondary' && !disabled && alt && !gradient,
+      [styles.secondaryGradient]:
+        color === 'secondary' && !disabled && !alt && gradient,
       // tertiary colors
-      [styles.tertiary]: color === 'tertiary' && !disabled && !alt,
-      [styles.tertiaryAlt]: color === 'tertiary' && !disabled && alt,
+      [styles.tertiary]: color === 'tertiary' && !disabled && !alt && !gradient,
+      [styles.tertiaryAlt]:
+        color === 'tertiary' && !disabled && alt && !gradient,
       // danger colors
-      [styles.danger]: color === 'danger' && !disabled && !alt,
-      [styles.dangerAlt]: color === 'danger' && !disabled && alt,
+      [styles.danger]: color === 'danger' && !disabled && !alt && !gradient,
+      [styles.dangerAlt]: color === 'danger' && !disabled && alt && !gradient,
       [styles.outlined]: outlined,
       // state changes
       [styles.disabled]: disabled || loading,

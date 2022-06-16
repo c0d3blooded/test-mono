@@ -6,6 +6,7 @@ import {
 } from 'https://deno.land/x/oak@v10.6.0/mod.ts';
 import { getQuery } from 'https://deno.land/x/oak@v10.6.0/helpers.ts';
 import pick from 'https://esm.sh/lodash.pick@4.4.0';
+import isEmpty from 'https://esm.sh/lodash.isempty';
 import { PostgrestSingleResponse } from 'https://esm.sh/@supabase/supabase-js@1.35.3';
 import { supabase, supabaseApp } from '../lib/supabase.ts';
 import { validateDomain } from '../utils/common.ts';
@@ -74,19 +75,55 @@ export const createRevision = async (context: {
   const revisions: Array<Partial<Revision>> = [];
 
   // add all the revisions to each field seperately
-  for (const field of Object.keys(data.changes)) {
-    // @ts-ignore
+  for (const field of Object.keys(data.changes) as Array<keyof Plant>) {
     const revision = data.changes[field]; // the data for this field
     revisions.push({
       field,
-      // @ts-ignore
-      old_value: reference[field] as Array<string>,
+      old_value: (reference[field] ?? []) as Array<string>,
       new_value: revision,
       owner_id: data.owner_id,
-      status: RevisionStatus.Pending,
+      status: RevisionStatus.Approved,
       reference: data.reference,
       reference_id: data.reference_id
     });
+    // remove the field
+    if (isEmpty(revision)) delete reference[field];
+    else {
+      // set the value on the reference
+      switch (field) {
+        // array fields
+        case 'edibilities':
+        case 'functionalities':
+        case 'layers':
+        case 'soil_preferences':
+        case 'sun_preferences':
+          reference[field] = revision as never;
+          break;
+        default:
+          reference[field] = revision[0] as never;
+          break;
+      }
+    }
+  }
+  // update the object
+  try {
+    switch (data.reference) {
+      case plant_table:
+        const { error } = await supabase
+          .from<Plant>(plant_table)
+          .update(reference)
+          .eq('id', reference.id);
+        if (error) {
+          console.error(error);
+          response.status = Status.InternalServerError;
+          response.body = errors.InternalServerError;
+          return;
+        }
+    }
+  } catch (e) {
+    response.status = Status.InternalServerError;
+    response.body = errors.InternalServerError;
+    return;
   }
 
   // insert this revision into the table as a list

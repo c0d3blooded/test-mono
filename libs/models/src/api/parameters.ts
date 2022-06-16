@@ -46,7 +46,7 @@ export interface CreateWikiPageParameters {
 }
 
 export interface CreateRevisionParameters {
-  owner_id: string; // the user that made the change
+  owner_id?: string; // the user that made the change
   changes: Record<string, Array<string>>; // the previous value
   reference: string; // what table this references
   reference_id: string; // the id of the reference

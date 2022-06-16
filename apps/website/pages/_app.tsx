@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'theme-ui';
 import type { Theme } from 'theme-ui';
 import { tailwind } from '@theme-ui/presets';
+import { UserContextProvider } from '@treelof/hooks';
 
 import { CharcteristicContextProvider } from '../context/characteristic';
 
@@ -15,12 +16,16 @@ axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_PAGE}/v1`;
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    // track the characteristics
-    <ThemeProvider theme={theme}>
-      <CharcteristicContextProvider>
-        <Component {...pageProps} />
-      </CharcteristicContextProvider>
-    </ThemeProvider>
+    <UserContextProvider>
+      {() => (
+        // track the characteristics
+        <ThemeProvider theme={theme}>
+          <CharcteristicContextProvider>
+            <Component {...pageProps} />
+          </CharcteristicContextProvider>
+        </ThemeProvider>
+      )}
+    </UserContextProvider>
   );
 }
 

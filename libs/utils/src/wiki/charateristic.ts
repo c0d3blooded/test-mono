@@ -1,3 +1,5 @@
+import { Characteristic } from '@treelof/models';
+
 /**
  * Retrieve a charateristic by id
  * @param charateristics
@@ -15,5 +17,7 @@ export const findCharacteristic = (
  */
 export const filterCharacteristics = (
   charateristics: Array<Record<string, any>>,
-  ids: Array<string>
-) => charateristics.filter((item) => ids.includes(item['id'])) ?? [];
+  ids?: Array<string>
+) =>
+  (charateristics.filter((item) => ids?.includes(item['id'])) ??
+    []) as Array<Characteristic>;

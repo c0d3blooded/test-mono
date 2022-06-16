@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Button, Chip, ChipGroup, Input } from '@treelof/components';
+import { SlideVertical } from '@treelof/animations';
 import WikiCharacteristicsTable from '../../components/wiki/characteristics-table';
 
 <div className="flex flex-1 flex-col md:space-y-4 space-y-2">
@@ -7,6 +8,7 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
       plant: Plant item
       methods: react-hook-form methods 
       saving: the form is being saved
+      error: (optional) string error
   */}
   <div className="pb-6">
     <Button
@@ -16,6 +18,10 @@ import WikiCharacteristicsTable from '../../components/wiki/characteristics-tabl
     >
       Submit Revision
     </Button>
+    {/* show error  */}
+    <SlideVertical show={Boolean(props.error)}>
+      <p className="mt-2 -mb-2 text-sm text-red-600">{props.error}</p>
+    </SlideVertical>
   </div>
   <Input
     label="Common name"

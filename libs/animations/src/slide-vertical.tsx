@@ -22,9 +22,9 @@ const SlideVertical: React.FC<Props> = (props) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: show ? 1 : 0,
-      height: show ? height : 0,
+      height: show ? height : 0
     },
-    ...additionalAnimProps,
+    ...additionalAnimProps
     // onStart: () => {
     //   if (show) setIsComponentRendered(show);
     // },
@@ -35,7 +35,9 @@ const SlideVertical: React.FC<Props> = (props) => {
   // if (!isComponentRendered) return null;
   return (
     <animated.div style={{ ...styles }}>
-      <div ref={ref}>{props.children}</div>
+      <div ref={ref} className="slide-vertical">
+        {props.children}
+      </div>
     </animated.div>
   );
 };

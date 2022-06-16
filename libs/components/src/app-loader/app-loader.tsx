@@ -56,7 +56,7 @@ export const AppLoader: React.FC<Props> = (props) => {
         <Image
           className={styles.phone}
           src={images[device]}
-          alt={DeviceTypeLabel[device]}
+          alt="phone"
           width={phoneWidth}
           height={phoneHeight}
         />

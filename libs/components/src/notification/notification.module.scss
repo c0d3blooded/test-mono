@@ -1,10 +1,10 @@
-.default {
-}
-
 .root {
   @apply bg-blue-50 -z-10;
   &.error {
     @apply bg-red-50;
+  }
+  &.success {
+    @apply bg-green-50;
   }
 }
 .icon {
@@ -12,13 +12,16 @@
   &.error {
     @apply text-red-400;
   }
+  &.success {
+    @apply text-green-400;
+  }
 }
 .text {
   @apply text-sm font-medium text-blue-700;
   &.error {
     @apply text-red-800;
   }
-}
-
-.success {
+  &.success {
+    @apply text-green-800;
+  }
 }

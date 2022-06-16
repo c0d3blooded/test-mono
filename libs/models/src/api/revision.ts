@@ -44,11 +44,14 @@
  *  reference_id: '1'
  *  created_at: '2017-07-21T17:32:28Z'
  */
+
+import { Plant } from './plant';
+
 // NOTE: Public responses do not expose all fields
 export interface Revision {
   id: number;
   owner_id: string; // the user that made the change
-  field: string; // the field that was revised
+  field: keyof Plant; // the field that was revised
   old_value: Array<string>; // the previous value
   new_value: Array<string>; // the new value
   status: RevisionStatus; // the status of this revision
@@ -61,9 +64,9 @@ export interface Revision {
 }
 
 export enum RevisionStatus {
-  Pending = "pending",
-  Approved = "approved",
-  Rejected = "rejected",
+  Pending = 'pending',
+  Approved = 'approved',
+  Rejected = 'rejected'
 }
 
 // request to create a new revision
@@ -74,4 +77,4 @@ export interface CreateRevision {
   reference_id: string; // the id of the reference
 }
 
-type RevisionReference = "plants";
+type RevisionReference = 'plants';
