@@ -37,13 +37,14 @@ interface Props {
 // provides all the values for categories
 export const CharcteristicContextProvider: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(true); // indicates that the data is loading
-  const [edibilities, setEdibilities] = useState();
-  const [functionalities, setFunctionalities] = useState();
-  const [layers, setLayers] = useState();
-  const [sunPreferences, setSunPreferences] = useState();
-  const [soilPreferences, setSoilPreferences] = useState();
-  const [climates, setClimates] = useState();
-  const [zones, setZones] = useState();
+  const [edibilities, setEdibilities] = useState<Array<Edibility>>();
+  const [functionalities, setFunctionalities] =
+    useState<Array<Functionality>>();
+  const [layers, setLayers] = useState<Array<Layer>>();
+  const [sunPreferences, setSunPreferences] = useState<Array<SunPreference>>();
+  const [soilPreferences, setSoilPreferences] = useState<Array<Soil>>();
+  const [climates, setClimates] = useState<Array<Climate>>();
+  const [zones, setZones] = useState<Array<Zone>>();
 
   // load the items
   useEffect(() => {

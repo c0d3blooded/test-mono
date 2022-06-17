@@ -6,10 +6,17 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'secondary' | 'tertiary' | 'danger';
   alt?: boolean; // alternate colorings for the button
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>; // optinal native button props
 }
 
 /* A button for only showing an icon */
-export const IconButton: React.FC<Props> = ({ icon, color, alt, size }) => {
+export const IconButton: React.FC<Props> = ({
+  icon,
+  color,
+  alt,
+  size,
+  buttonProps
+}) => {
   const classname = cn(styles.root, {
     // colors
     [styles.primary]: !color || (color === 'primary' && !alt), // default
@@ -26,7 +33,7 @@ export const IconButton: React.FC<Props> = ({ icon, color, alt, size }) => {
     [styles.lg]: size === 'lg'
   });
   return (
-    <button type="button" className={classname}>
+    <button type="button" className={classname} {...buttonProps}>
       {icon}
     </button>
   );

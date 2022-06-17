@@ -1,3 +1,4 @@
+import { TreelofIcon } from '@treelof/components';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -7,7 +8,7 @@ const pages: Array<{ label: string; url: string }> = [
   { label: 'Dashboard', url: process.env.NEXT_PUBLIC_APP_PAGE ?? '' },
   { label: 'Wiki', url: '/wiki' },
   { label: 'API', url: '/docs' },
-  { label: 'Pricing', url: '/pricing' }
+  { label: 'Donate', url: '/Donate' }
 ];
 
 const Home: NextPage = () => {
@@ -23,13 +24,7 @@ const Home: NextPage = () => {
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <a className="flex flex-row items-center" href="#">
                   {/* app logo */}
-                  <Image
-                    className="h-8 w-auto sm:h-10"
-                    src="/images/treelof-icon.png"
-                    width={50}
-                    height={50}
-                    alt="logo"
-                  />
+                  <TreelofIcon width={50} height={50} />
                   <span className="text-primary-600 text-3xl ml-3 logo">
                     treelof
                   </span>
@@ -71,12 +66,11 @@ const Home: NextPage = () => {
                 ))}
               </nav>
               <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                <a
-                  href={process.env.NEXT_PUBLIC_APP_PAGE ?? ''}
-                  className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  Sign in
-                </a>
+                <Link href="/login">
+                  <a className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                    Sign in
+                  </a>
+                </Link>
                 <a
                   href={`${process.env.NEXT_PUBLIC_APP_PAGE}?sign-up=true`}
                   className="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-lightGreen-600 to-green-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-lightGreen-700 hover:to-green-700"
@@ -250,7 +244,7 @@ const Home: NextPage = () => {
                       href="#"
                       className="text-base font-medium text-gray-900 hover:text-gray-700"
                     >
-                      Pricing
+                      Donate
                     </a>
                     <a
                       href="#"
@@ -274,9 +268,9 @@ const Home: NextPage = () => {
                     </a>
                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                       Existing customer?
-                      <a href="#" className="text-gray-900">
-                        Sign in
-                      </a>
+                      <Link href="/login">
+                        <a className="text-gray-900">Sign in</a>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -964,7 +958,7 @@ const Home: NextPage = () => {
                           href="#"
                           className="text-base text-gray-500 hover:text-gray-900"
                         >
-                          Pricing
+                          Donate
                         </a>
                       </li>
 
