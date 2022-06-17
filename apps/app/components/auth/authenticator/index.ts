@@ -1,2 +1,1 @@
-import Authenticator from './authenticator';
-export default Authenticator;
+export { default } from './authenticator';

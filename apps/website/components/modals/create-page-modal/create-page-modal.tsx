@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useForm } from 'react-hook-form';
 import { Button, Input } from '@treelof/components';
-import { CreateWikiPageParameters } from '@treelof/models';
+import { CreateWikiPageParameters, TreelofApiError } from '@treelof/models';
 import { createPage } from '@treelof/services';
+import { SlideVertical } from '@treelof/animations';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface Props {
   visible: boolean; // indicates if the modal is visible or not
@@ -12,12 +15,14 @@ interface Props {
 }
 
 const RequestPageModal: React.FC<Props> = (props) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false); // when the confirmation is running
+  const [requestError, setRequestError] = useState<string>(); // there was an error sending the request
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
     getValues
   } = useForm<CreateWikiPageParameters>();
@@ -30,19 +35,25 @@ const RequestPageModal: React.FC<Props> = (props) => {
    */
   const onSubmit = async () => {
     setLoading(true);
+    // clear error
+    setRequestError('');
     try {
-      await createPage(getValues());
+      const { data } = await createPage(getValues());
       setLoading(false);
       props.onClose();
+      // go to the new article
+      router.push(`/wiki/${data.id}`);
     } catch (error) {
-      // @ts-ignore
-      setError('name', error.message);
+      if (axios.isAxiosError(error)) {
+        const { message } = error.response.data as TreelofApiError;
+        setRequestError(message);
+      }
       setLoading(false);
     }
   };
 
   return (
-    <Transition appear show={props.visible} as={React.Fragment}>
+    <Transition appear unmount show={props.visible} as={React.Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto"
@@ -63,7 +74,7 @@ const RequestPageModal: React.FC<Props> = (props) => {
             enterTo="opacity-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            leaveTo="opacity-0 scale-100"
           >
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           </Transition.Child>
@@ -91,52 +102,72 @@ const RequestPageModal: React.FC<Props> = (props) => {
               >
                 Create a page
               </Dialog.Title>
-              {/* the dialog description */}
-              <div className="mt-2">
-                <p className="text-sm text-gray-500">
-                  If you can&apos;t find a page which matches your search,
-                  please enter it&apos;s botanical name below click{' '}
-                  <b>Submit</b>.
-                  <br />
-                  <br />A basic page will be created with information from
-                  Wikipedia.
-                </p>
-              </div>
-              {/* feedback entry */}
-              <div className="mt-4">
-                <Input
-                  label="Plant's botanical name"
-                  inputProps={{
-                    placeholder: 'The plant you want a page for...',
-                    ...register('name', {
-                      required: 'Please enter a value'
-                    })
-                  }}
-                  error={errors.name?.message}
-                />
-              </div>
-              <div className="flex flex-row mt-4 justify-end">
-                {/* cancel button */}
-                <Button
-                  color="danger"
-                  alt
-                  buttonProps={{ onClick: props.onClose }}
-                >
-                  Cancel
-                </Button>
-                {/* confirm button */}
-                <Button
-                  color="primary"
-                  alt
-                  buttonProps={{
-                    className: 'ml-3',
-                    type: 'submit'
-                  }}
-                  loading={loading}
-                >
-                  Submit request
-                </Button>
-              </div>
+              <Dialog.Description>
+                {/* the dialog description */}
+                <div className="mt-2">
+                  <p className="text-sm text-gray-500">
+                    If you can&apos;t find a page which matches your search,
+                    please enter it&apos;s common and botanical names below and
+                    click <b>Submit request</b>.
+                    <br />
+                    <br />A basic page will be created with information from
+                    Wikipedia.
+                  </p>
+                </div>
+                {/* feedback entry */}
+                <div className="flex flex-col space-y-3 mt-4">
+                  {/* common name */}
+                  <Input
+                    label="Common name"
+                    inputProps={{
+                      placeholder: '(e.g. American paw paw)',
+                      ...register('common_name', {
+                        required: 'Please enter a value'
+                      })
+                    }}
+                    error={errors.common_name?.message}
+                  />
+                  {/* botanical name */}
+                  <Input
+                    label="Botanical name"
+                    inputProps={{
+                      placeholder: '(e.g. Asimina triloba)',
+                      ...register('botanical_name', {
+                        required: 'Please enter a value'
+                      })
+                    }}
+                    error={errors.botanical_name?.message}
+                  />
+                </div>
+                <div className="flex flex-row mt-4 justify-end">
+                  {/* cancel button */}
+                  <Button
+                    color="danger"
+                    alt
+                    buttonProps={{ onClick: props.onClose }}
+                  >
+                    Cancel
+                  </Button>
+                  {/* confirm button */}
+                  <Button
+                    color="primary"
+                    alt
+                    buttonProps={{
+                      className: 'ml-3',
+                      type: 'submit'
+                    }}
+                    loading={loading}
+                  >
+                    Submit request
+                  </Button>
+                </div>
+                {/* show error  */}
+                <SlideVertical show={Boolean(requestError)}>
+                  <p className="mt-2 text-sm text-red-600 text-end">
+                    {requestError}
+                  </p>
+                </SlideVertical>
+              </Dialog.Description>
             </div>
           </Transition.Child>
         </form>

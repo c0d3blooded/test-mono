@@ -10,6 +10,7 @@ interface Props {
 
 const FeedbackModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false); // when the confirmation is running
+
   useEffect(() => {
     if (props.visible) setLoading(false);
   }, [props.visible]);
@@ -29,7 +30,7 @@ const FeedbackModal: React.FC<Props> = (props) => {
             enterTo="opacity-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            leaveTo="opacity-0 scale-100"
           >
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           </Transition.Child>

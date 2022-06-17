@@ -1,4 +1,4 @@
-import { CreateWikiPageParameters } from '@treelof/models';
+import { CreateWikiPageParameters, Plant } from '@treelof/models';
 import { apiClientInternal } from '..';
 
 /**
@@ -6,4 +6,4 @@ import { apiClientInternal } from '..';
  * @param params the page parameters
  */
 export const createPage = (params: CreateWikiPageParameters) =>
-  apiClientInternal.post('/page', params);
+  apiClientInternal.post<Plant>('/page', params);

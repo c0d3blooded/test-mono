@@ -30,7 +30,7 @@ export interface SunPreference {
 }
 
 export enum SunPreferenceValue {
-  FullShade = "full_shade",
-  PartShade = "part_shade",
-  FullSun = "full_sun",
+  FullShade = 'full_shade',
+  PartShade = 'partial_shade',
+  FullSun = 'full_sun'
 }

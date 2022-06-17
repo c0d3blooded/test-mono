@@ -19,6 +19,9 @@
 .primaryAlt:hover {
   @apply bg-primary-200;
 }
+.primaryGradient {
+  @apply bg-gradient-to-r from-lightGreen-600 to-green-600  hover:from-lightGreen-700 hover:to-green-700;
+}
 /* secondary color styles */
 .secondary {
   @apply text-white bg-secondary-600;
@@ -31,6 +34,9 @@
 }
 .secondaryAlt:hover {
   @apply bg-secondary-200;
+}
+.secondaryGradient {
+  @apply bg-gradient-to-r from-secondary-500 to-secondary-600  hover:from-secondary-600 hover:to-secondary-700 text-white;
 }
 /* tertiary color styles */
 .tertiary {

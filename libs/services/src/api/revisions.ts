@@ -1,4 +1,4 @@
-import { CreateRevisionParameters } from '@treelof/models';
+import { CreateRevisionParameters, Revision } from '@treelof/models';
 import { apiClientInternal, apiClientPublic } from '..';
 
 /**
@@ -7,7 +7,7 @@ import { apiClientInternal, apiClientPublic } from '..';
  * @param reference_id the id on that table
  */
 export const getRevisions = (reference: 'plants', reference_id: string) =>
-  apiClientPublic.get('/revisions', {
+  apiClientPublic.get<Array<Revision>>('/revisions', {
     params: { reference, reference_id }
   });
 

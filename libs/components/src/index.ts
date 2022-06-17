@@ -8,6 +8,7 @@ export * from './chip-group';
 export * from './color-picker';
 export * from './dropdown-select';
 export * from './form-section';
+export * from './icon-button';
 export * from './icon-uploader';
 export * from './input';
 export * from './loader';

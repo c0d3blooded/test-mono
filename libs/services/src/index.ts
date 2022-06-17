@@ -9,6 +9,7 @@ export * from './api/edibilities';
 export * from './api/functionalities';
 export * from './api/layers';
 export * from './api/page';
+export * from './api/plant';
 export * from './api/revisions';
 export * from './api/soils';
 export * from './api/sun-preferences';

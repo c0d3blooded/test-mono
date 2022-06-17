@@ -1,19 +1,25 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Fade, SlideHorizontalRight } from '@treelof/animations';
-import { useIsMobile } from '@treelof/hooks';
+import { useIsMobile, useUser } from '@treelof/hooks';
+import { Menu } from '@headlessui/react';
 import {
+  HiChevronDown,
   HiOutlineDocumentAdd,
   HiOutlineHeart,
   HiOutlineHome,
   HiOutlineLibrary,
-  HiOutlineX
+  HiOutlineX,
+  HiUserCircle
 } from 'react-icons/hi';
+import styles from './container.module.scss';
 
 import WikiHeader from '../header';
 import { useRouter } from 'next/router';
 import RequestPageModal from '../../modals/create-page-modal';
 import FeedbackModal from '../../modals/feedback-modal';
+import { Button, IconButton, Loader, TreelofIcon } from '@treelof/components';
+import { getName } from '@treelof/utils';
+import { Link } from 'theme-ui';
 
 interface ContainerProps {
   children?: React.ReactNode;
@@ -43,6 +49,7 @@ interface Props {
 }
 
 const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
+  const { loggedIn, profile, signOut, loading } = useUser();
   // show/hide the add a page modal
   const [showAddPageModal, setShowAddPageModal] = useState(false);
   // show/hide the request a page modal
@@ -60,20 +67,98 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
 
   // render the logo
   const _renderLogo = () => (
-    <div className="flex flex-row items-center justify-center text-2xl text-green-600 border-b border-gray-200 pb-4 mx-6 mb-3">
-      <Image
-        src="/images/treelof-icon.png"
-        width={50}
-        height={50}
-        objectFit="contain"
-        alt="logo"
-      />
+    <div className="flex flex-row items-center justify-center text-2xl text-green-600">
+      <TreelofIcon width={50} height={50} />
       <div className="pl-3">
         <span className="logo">treelof</span>
         <span className="logo-sub">wiki</span>
       </div>
     </div>
   );
+
+  /* Shows the member's account information if logged in */
+  const _renderAccountHeader = () => {
+    // show loader when loading profile info
+    if (loading)
+      return (
+        <div className="flex items-center justify-center pt-8 pb-4">
+          <Loader color="green" size={3} />
+        </div>
+      );
+    return !loggedIn ? (
+      // not logged in
+      <div className="pt-7 pb-4 px-3">
+        <Button
+          color="secondary"
+          gradient
+          fullWidth
+          buttonProps={{
+            onClick: () =>
+              router.push({
+                pathname: '/login',
+                query: { redirect: location.href }
+              })
+          }}
+        >
+          Login
+        </Button>
+      </div>
+    ) : (
+      <div className="flex items-center mt-7 ml-2">
+        {/* profile icon */}
+        <HiUserCircle className="inline-block h-10 w-10 rounded-full mr-3" />
+        <div className="flex flex-row flex-1 items-center">
+          <div className="flex-1">
+            {/* account info */}
+            <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
+              {getName(profile)}
+            </p>
+            <Link href={`${process.env.NEXT_PUBLIC_APP_PAGE}/settings/profile`}>
+              <a className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+                View profile settings
+              </a>
+            </Link>
+          </div>
+          {/* profile menu */}
+          <Menu>
+            <div className="relative">
+              {/* dropdown select */}
+              <Menu.Button
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded="true"
+                aria-labelledby="listbox-label"
+              >
+                {/* chevron arrow */}
+                <IconButton icon={<HiChevronDown />} color="secondary" alt />
+              </Menu.Button>
+              {/* options menu */}
+              <Menu.Items>
+                <ul
+                  className="absolute right-0 z-20 mt-2 min-w-[120px] bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                  tabIndex={-1}
+                  role="listbox"
+                  aria-labelledby="listbox-label"
+                  aria-activedescendant="listbox-option-3"
+                >
+                  {/* logout  */}
+                  <Menu.Item>
+                    <li
+                      className={styles.selectItem}
+                      aria-roledescription="option"
+                      onClick={signOut}
+                    >
+                      <span>Logout</span>
+                    </li>
+                  </Menu.Item>
+                </ul>
+              </Menu.Items>
+            </div>
+          </Menu>
+        </div>
+      </div>
+    );
+  };
 
   /**
    * Renders a menu item
@@ -111,7 +196,12 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
   /* renders the menu items */
   const _renderItems = () => (
     <>
-      <div className="py-2">{_renderLogo()}</div>
+      <div className="py-2 border-b border-gray-200 pb-4 mx-3 mb-3">
+        {/* logo */}
+        {_renderLogo()}
+        {/* account */}
+        {_renderAccountHeader()}
+      </div>
       <div className="flex-grow flex flex-col">
         <nav className="flex-1 px-2 space-y-1" aria-label="Sidebar">
           {/* home */}

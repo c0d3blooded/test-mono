@@ -10,7 +10,7 @@ interface Tab {
 interface Props {
   selectedTab: number;
   tabs: Array<Tab>;
-  onChange: (value: number) => void;
+  onChange?: (value: number) => void;
 }
 
 export const Tabs: React.FC<Props> = ({ selectedTab, tabs, onChange }) => {
@@ -34,7 +34,7 @@ export const Tabs: React.FC<Props> = ({ selectedTab, tabs, onChange }) => {
           hash: item.hash
         }}
       >
-        <a onClick={() => onChange(index)} className={className}>
+        <a onClick={() => onChange && onChange(index)} className={className}>
           {/* icon */}
           {item.icon && item.icon('h-5 w-5 mr-2 hidden md:block')}
           {/* label */}
