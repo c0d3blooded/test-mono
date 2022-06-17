@@ -23,7 +23,6 @@ const RequestPageModal: React.FC<Props> = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
     getValues
   } = useForm<CreateWikiPageParameters>();

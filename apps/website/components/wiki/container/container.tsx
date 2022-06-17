@@ -17,7 +17,7 @@ import WikiHeader from '../header';
 import { useRouter } from 'next/router';
 import RequestPageModal from '../../modals/create-page-modal';
 import FeedbackModal from '../../modals/feedback-modal';
-import { Button, IconButton, TreelofIcon } from '@treelof/components';
+import { Button, IconButton, Loader, TreelofIcon } from '@treelof/components';
 import { getName } from '@treelof/utils';
 import { Link } from 'theme-ui';
 
@@ -49,7 +49,7 @@ interface Props {
 }
 
 const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
-  const { loggedIn, profile, signOut } = useUser();
+  const { loggedIn, profile, signOut, loading } = useUser();
   // show/hide the add a page modal
   const [showAddPageModal, setShowAddPageModal] = useState(false);
   // show/hide the request a page modal
@@ -77,8 +77,15 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
   );
 
   /* Shows the member's account information if logged in */
-  const _renderAccountHeader = () =>
-    !loggedIn ? (
+  const _renderAccountHeader = () => {
+    // show loader when loading profile info
+    if (loading)
+      return (
+        <div className="flex items-center justify-center pt-8 pb-4">
+          <Loader color="green" size={3} />
+        </div>
+      );
+    return !loggedIn ? (
       // not logged in
       <div className="pt-7 pb-4 px-3">
         <Button
@@ -128,7 +135,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
               {/* options menu */}
               <Menu.Items>
                 <ul
-                  className="absolute z-20 mt-1 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                  className="absolute right-0 z-20 mt-2 min-w-[120px] bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                   tabIndex={-1}
                   role="listbox"
                   aria-labelledby="listbox-label"
@@ -141,7 +148,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
                       aria-roledescription="option"
                       onClick={signOut}
                     >
-                      <span>Sign Out</span>
+                      <span>Logout</span>
                     </li>
                   </Menu.Item>
                 </ul>
@@ -151,6 +158,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
         </div>
       </div>
     );
+  };
 
   /**
    * Renders a menu item

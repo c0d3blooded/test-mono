@@ -10,6 +10,7 @@ interface Props {
 
 const FeedbackModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false); // when the confirmation is running
+
   useEffect(() => {
     if (props.visible) setLoading(false);
   }, [props.visible]);
