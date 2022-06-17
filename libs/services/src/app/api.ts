@@ -1,7 +1,26 @@
 /** File for internal API routes */
 import isempty from 'lodash.isempty';
 import { supabase } from '../lib/supabase';
-import { AppIconParameters } from '@treelof/models';
+import { AppIconParameters, CreateFeedbackParameters } from '@treelof/models';
+import axios from 'axios';
+
+// axios instance for NextJS API calls
+const api = axios.create({
+  baseURL: 'api'
+});
+// Add a request interceptor
+api.interceptors.request.use(
+  function (config) {
+    if (config.headers) {
+      const session = supabase.auth.session();
+      config.headers['Authorization'] = session?.access_token ?? '';
+    }
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Converts object to parameters
@@ -30,6 +49,23 @@ export const getAppIcon = async (params: AppIconParameters) => {
       Authorization: session?.access_token ?? '',
       'Content-Type': 'application/json'
     }
+  });
+};
+
+/**
+ * Sends feedback to us via email
+ * @param params the request parameters
+ */
+export const sendFeedback = async (params: CreateFeedbackParameters) => {
+  const session = supabase.auth.session();
+  await fetch('/api/feedback/create', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      Authorization: session?.access_token ?? '',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
   });
 };
 

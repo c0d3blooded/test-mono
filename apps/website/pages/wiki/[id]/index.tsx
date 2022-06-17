@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import groupBy from 'lodash.groupby';
 import { useRouter } from 'next/router';
-import { DateTime } from 'luxon';
 import {
   HiOutlineBookOpen,
   HiOutlineCollection,
@@ -44,19 +43,19 @@ const WikiPage = () => {
   }, []);
 
   /* Fetch the plant from the server */
-  const fetchPlant = () => {
-    if (id)
-      getPlant(parseInt(id as string)).then(({ data }) => {
-        setPlant(JSON.parse(JSON.stringify(data)));
-        for (const key of Object.keys(data) as Array<keyof Plant>) {
-          setValue(key, data[key]);
-        }
-      });
-  };
+  const fetchPlant = useCallback(() => {
+    getPlant(parseInt(id as string)).then(({ data }) => {
+      setPlant(JSON.parse(JSON.stringify(data)));
+      for (const key of Object.keys(data) as Array<keyof Plant>) {
+        setValue(key, data[key]);
+      }
+    });
+  }, [id, setValue]);
 
   // make initial call
   useEffect(() => {
     if (id) {
+      console.log('id', id);
       fetchPlant();
       // get the revision history for this plant
       getRevisions('plants', `${id}`).then(({ data }) => {
@@ -72,7 +71,7 @@ const WikiPage = () => {
         setRevisions(copyObject(newRevisions));
       });
     }
-  }, [id]);
+  }, [id, fetchPlant]);
 
   const selectedTab = () => {
     const hashes = router.asPath.match(/#([a-z0-9]+)/gi) ?? [];

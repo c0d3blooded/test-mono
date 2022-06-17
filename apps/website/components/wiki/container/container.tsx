@@ -5,9 +5,9 @@ import { Menu } from '@headlessui/react';
 import {
   HiChevronDown,
   HiOutlineDocumentAdd,
-  HiOutlineHeart,
   HiOutlineHome,
   HiOutlineLibrary,
+  HiOutlineSpeakerphone,
   HiOutlineX,
   HiUserCircle
 } from 'react-icons/hi';
@@ -104,7 +104,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
         </Button>
       </div>
     ) : (
-      <div className="flex items-center mt-7 ml-2">
+      <div className="flex items-center mt-7 mx-2">
         {/* profile icon */}
         <HiUserCircle className="inline-block h-10 w-10 rounded-full mr-3" />
         <div className="flex flex-row flex-1 items-center">
@@ -239,7 +239,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
                 'Send feedback',
                 () => setShowFeedbackModal(true),
                 (className) => (
-                  <HiOutlineHeart className={className} />
+                  <HiOutlineSpeakerphone className={className} />
                 )
               )}
             </div>
@@ -284,7 +284,6 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
       {/* modal to send feedback */}
       <FeedbackModal
         visible={showFeedbackModal}
-        onConfirm={() => setShowFeedbackModal(false)}
         onClose={() => setShowFeedbackModal(false)}
       />
       <nav>

@@ -1,4 +1,3 @@
-import { Profile } from '../app/profile';
 import { MaterialUIAccentColor, MaterialUIColor } from '../common/colors';
 
 // ---------- TREELOF API PARAMETERS ----------
@@ -43,7 +42,11 @@ export interface AcceptInvitationParameters {
 // send a request to create a new wiki page
 export interface CreateFeedbackParameters {
   feedback: string; // the feedback sent
-  profile?: Profile; // the user's profile
+  profile?: {
+    uuid: string;
+    name: string;
+    email: string;
+  }; // the user's profile
 }
 
 // send a request to create a new wiki page
