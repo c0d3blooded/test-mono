@@ -29,7 +29,6 @@ const SignInForm: React.FC<Props> = (props) => {
     process.env.NEXT_PUBLIC_APP_PAGE ??
     '') as string;
 
-  console.log(redirectTo);
   const {
     register,
     handleSubmit,
@@ -46,7 +45,6 @@ const SignInForm: React.FC<Props> = (props) => {
   const [showMagicLinkOption, setShowMagicLinkOption] = useState(false); // toggles the email link option based on login attemps
   const { error: errorSignIn } = useUser();
 
-  console.log('redirectTo', redirectTo);
   /**
    * Removes all errors from the form
    */
