@@ -12,6 +12,9 @@ import routes from './routes/index.ts';
 import { APIKey } from './models/api-key.ts';
 const port = 8000;
 
+// the location of the project at runtime (./apps/api) in Deno deployment
+const rootDirectory = Deno.env.get('ROOT_DIR');
+
 /**
  * Checks for an API key and logs the usage
  * @param context
@@ -56,13 +59,15 @@ const router = new Router();
 
 // returns the OpenAPI Spec
 router.get('/spec.yaml', async (context: Context) => {
-  const file = await Deno.open('./spec.yaml', { read: true });
+  const file = await Deno.open(`${rootDirectory}/spec.yaml`, { read: true });
   const readableStream = readableStreamFromReader(file);
   context.response.body = readableStream;
 });
 // returns the logo
 router.get('/assets/logo.png', oakCors(), async (context: Context) => {
-  const file = await Deno.open('./assets/logo.png', { read: true });
+  const file = await Deno.open(`${rootDirectory}/assets/logo.png`, {
+    read: true
+  });
   const readableStream = readableStreamFromReader(file);
   context.response.body = readableStream;
 });
@@ -74,10 +79,6 @@ if (Deno.env.get('ENABLE_KEY_CHECK') == 'true') app.use(checkAPIKey);
 
 app.use(oakCors()); // Enable CORS for All Routes
 app.use(router.routes(), router.allowedMethods());
-
-for await (const dirEntry of Deno.readDir('./')) {
-  console.log(dirEntry.name);
-}
 
 console.log(`Server running on port ${port}`);
 await app.listen({ port });
