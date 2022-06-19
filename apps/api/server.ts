@@ -75,5 +75,9 @@ if (Deno.env.get('ENABLE_KEY_CHECK') == 'true') app.use(checkAPIKey);
 app.use(oakCors()); // Enable CORS for All Routes
 app.use(router.routes(), router.allowedMethods());
 
+for await (const dirEntry of Deno.readDir('/')) {
+  console.log(dirEntry.name);
+}
+
 console.log(`Server running on port ${port}`);
 await app.listen({ port });
