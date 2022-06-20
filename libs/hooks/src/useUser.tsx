@@ -52,7 +52,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 interface Props {
-  children?: (value: UserContextType) => React.ReactNode;
+  children?: React.ReactNode;
 }
 // the provider component extending the user context
 export const UserContextProvider: React.FC<Props> = (props) => {
@@ -149,7 +149,7 @@ export const UserContextProvider: React.FC<Props> = (props) => {
   return (
     <UserContext.Provider value={value} {...props}>
       {/* pass value to immediate children */}
-      {props.children && props.children(value)}
+      {props.children}
     </UserContext.Provider>
   );
 };

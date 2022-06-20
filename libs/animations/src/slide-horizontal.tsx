@@ -7,18 +7,21 @@ interface Props {
   duration?: number; // optional duration prop
   withDelay?: boolean; // there shold be a delay before rendering and showing the component
   children?: React.ReactNode;
+  direction: 'left' | 'right';
 }
 /**
  * @return A wrapper component for slide in/out based on component visibility
  */
-const SlideVertical: React.FC<Props> = (props) => {
-  const { show } = props;
+const SlideHorizontal: React.FC<Props> = (props) => {
+  const { show, direction } = props;
+  // slide in the right direction
+  const isRight = direction === 'right';
   const target = React.useRef(null);
 
   const transitions = useTransition(show, {
-    from: { transform: 'translateX(-100%)' },
+    from: { transform: isRight ? 'translateX(-100%)' : 'translateX(100%)' },
     enter: { transform: 'translateX(0%)' },
-    leave: { transform: 'translateX(-100%)' },
+    leave: { transform: isRight ? 'translateX(-100%)' : 'translateX(100%)' },
     reverse: show,
     config: {
       ...config.molasses,
@@ -36,4 +39,4 @@ const SlideVertical: React.FC<Props> = (props) => {
   );
 };
 
-export default SlideVertical;
+export default SlideHorizontal;

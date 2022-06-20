@@ -13,15 +13,16 @@ import {
   deleteStripeSession,
   supabase
 } from '@treelof/services';
-import DashboardSection from '../components/dashboard-section';
+import DashboardSection from '../components/dashboard/dashboard-section';
 import { Button } from '@treelof/components';
+import { isServer } from '@treelof/utils';
 
 const Home: NextPage = () => {
   const router = useRouter();
   const { loggedIn, refreshProfiles, signOut } = useUser();
   // text to show a successful response
   const [successText, setSuccessText] = useState<string>();
-  const query = new URLSearchParams(window.location.search);
+  const query = new URLSearchParams(!isServer ? window?.location.search : '');
   // coming in from a stripe payment
   const [showSuccessModal, setShowSuccessModal] = useState(
     Boolean(query.get('payment-successful'))
@@ -68,7 +69,7 @@ const Home: NextPage = () => {
   // expire the stripe session
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
+    const query = new URLSearchParams(!isServer ? window?.location.search : '');
     const stripeSessionId = query.get('session_id');
     if (stripeSessionId) deleteStripeSession(stripeSessionId);
   }, []);

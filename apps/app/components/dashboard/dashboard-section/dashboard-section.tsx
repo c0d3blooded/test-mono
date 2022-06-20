@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SlideVertical } from '@treelof/animations';
 import { Notification } from '@treelof/components';
-import Authenticator from '../auth/authenticator';
+import Authenticator from '../../auth/authenticator';
 
 interface Props {
   title?: string;

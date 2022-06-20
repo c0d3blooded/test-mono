@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import DashboardSection from '../../../components/dashboard-section';
-import SettingsProfile from '../../../components/settings/profile';
+import DashboardSection from '../../../../components/dashboard/dashboard-section';
+import SettingsProfile from '../../../../components/dashboard/settings/profile';
 import { Card } from '@treelof/components';
 import { useUser } from '@treelof/hooks';
 import { Profile } from '@treelof/models';

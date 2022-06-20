@@ -13,7 +13,7 @@ import {
 } from '@treelof/services';
 import { copyObject, getName, passThroughSessionStorage } from '@treelof/utils';
 import { Button, ConfirmationModal } from '@treelof/components';
-import DashboardSection from '../../components/dashboard-section';
+import DashboardSection from '../../../components/dashboard/dashboard-section';
 
 const profile_table = 'profiles';
 /**

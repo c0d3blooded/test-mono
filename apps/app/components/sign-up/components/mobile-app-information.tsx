@@ -5,7 +5,7 @@ import { Button, Card } from '@treelof/components';
 import { AppInformation, IconData } from '@treelof/models';
 import { SignUpContext } from '../context';
 import { useUser } from '@treelof/hooks';
-import SettingsAppInformation from '../../settings/app-information';
+import SettingsAppInformation from '../../dashboard/settings/app-information';
 import {
   downloadAppIcon,
   updateProfile,

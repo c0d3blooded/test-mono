@@ -7,9 +7,9 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import {
   HiOutlineCloud,
-  HiOutlineDeviceMobile,
   HiOutlineLibrary,
   HiOutlineMenu,
+  HiOutlinePencil,
   HiOutlineX
 } from 'react-icons/hi';
 
@@ -21,9 +21,9 @@ const pages: Array<{ label: string; url: string; icon: JSX.Element }> = [
   },
   { label: 'API', url: '/docs', icon: <HiOutlineCloud className="h-6 w-6" /> },
   {
-    label: 'Dashboard',
-    url: process.env.NEXT_PUBLIC_APP_PAGE ?? '',
-    icon: <HiOutlineDeviceMobile className="h-6 w-6" />
+    label: 'Planner',
+    url: `${process.env.NEXT_PUBLIC_APP_PAGE}/planner`,
+    icon: <HiOutlinePencil className="h-6 w-6" />
   }
 ];
 
@@ -102,8 +102,11 @@ const Home: NextPage = () => {
                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
-                      <div>
+                      <div className="flex flex-row items-center">
                         <TreelofIcon width={40} height={40} />
+                        <span className="text-primary-600 text-2xl ml-3 logo">
+                          treelof
+                        </span>
                       </div>
                       <div className="-mr-2">
                         <button
@@ -204,8 +207,9 @@ const Home: NextPage = () => {
               aria-hidden="true"
               className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100"
             ></div>
+            {/* wiki section */}
             <div className="relative">
-              <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
+              <div className="relative lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                 <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                   <div>
                     <div>
@@ -215,48 +219,22 @@ const Home: NextPage = () => {
                     </div>
                     <div className="mt-6">
                       <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                        Stay on top of customer support
+                        Search & learn
                       </h2>
                       <p className="mt-4 text-lg text-gray-500">
-                        Semper curabitur ullamcorper posuere nunc sed. Ornare
-                        iaculis bibendum malesuada faucibus lacinia porttitor.
-                        Pulvinar laoreet sagittis viverra duis. In venenatis sem
-                        arcu pretium pharetra at. Lectus viverra dui tellus
-                        ornare pharetra.
+                        Get access to all of the wiki&apos;s information through
+                        our public API. Be empowered to build your own solutions
+                        to your ecosystem&apos;s needs from a wealth of
+                        information.
                       </p>
                       <div className="mt-6">
                         <Link href="/wiki">
-                          <a className="inline-flex bg-gradient-to-r from-lightGreen-600 to-green-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-lightGreen-700 hover:to-green-700">
+                          <a className="inline-flex bg-gradient-to-r from-secondary-500 to-secondary-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-secondary-600 hover:to-secondary-700">
                             Start searching
                           </a>
                         </Link>
                       </div>
                     </div>
-                  </div>
-                  <div className="mt-8 border-t border-gray-200 pt-6">
-                    <blockquote>
-                      <div>
-                        <p className="text-base text-gray-500">
-                          &ldquo;Cras velit quis eros eget rhoncus lacus
-                          ultrices sed diam. Sit orci risus aenean curabitur
-                          donec aliquet. Mi venenatis in euismod ut.&rdquo;
-                        </p>
-                      </div>
-                      <footer className="mt-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-6 w-6 rounded-full"
-                              src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div className="text-base font-medium text-gray-700">
-                            Marcia Hill, Digital Marketing Manager
-                          </div>
-                        </div>
-                      </footer>
-                    </blockquote>
                   </div>
                 </div>
                 <div className="mt-12 sm:mt-16 lg:mt-0">
@@ -270,10 +248,53 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            {/* api section */}
+            {/* planner section */}
             <div className="mt-24">
               <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
                 <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
+                  <div>
+                    <div>
+                      <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-lightGreen-600 to-green-600">
+                        <HiOutlinePencil className="h-6 w-6 text-white" />
+                      </span>
+                    </div>
+                    <div className="mt-6">
+                      <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
+                        Plan for success
+                      </h2>
+                      <p className="mt-4 text-lg text-gray-500">
+                        Get access to all of the wiki&apos;s information through
+                        our public API. Be empowered to build your own solutions
+                        to your ecosystem&apos;s needs from a wealth of
+                        information.
+                      </p>
+                      <div className="mt-6">
+                        <Link
+                          href={`${process.env.NEXT_PUBLIC_APP_PAGE}/planner`}
+                        >
+                          <a className="inline-flex bg-gradient-to-r from-secondary-500 to-secondary-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-secondary-600 hover:to-secondary-700">
+                            Use Planner
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
+                  <div className="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
+                    <img
+                      className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+                      src="/images/api-docs-full.png"
+                      alt="Customer profile user interface"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* api section */}
+            <div className="mt-24">
+              <div className="relative lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
+                <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                   <div>
                     <div>
                       <span className="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-lightGreen-600 to-green-600">
@@ -292,7 +313,7 @@ const Home: NextPage = () => {
                       </p>
                       <div className="mt-6">
                         <Link href="/docs">
-                          <a className="inline-flex bg-gradient-to-r from-lightGreen-600 to-green-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-lightGreen-700 hover:to-green-700">
+                          <a className="inline-flex bg-gradient-to-r from-secondary-500 to-secondary-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-secondary-600 hover:to-secondary-700">
                             View docs
                           </a>
                         </Link>
@@ -300,8 +321,8 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
-                  <div className="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
+                <div className="mt-12 sm:mt-16 lg:mt-0">
+                  <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                     <img
                       className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
                       src="/images/api-docs-full.png"

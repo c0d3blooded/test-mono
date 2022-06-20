@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { HiChevronRight, HiUser, HiDeviceMobile } from 'react-icons/hi';
-import DashboardSection from '../../components/dashboard-section';
+import DashboardSection from '../../../components/dashboard/dashboard-section';
 
 const Settings = () => {
   /**

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import SettingsProfile from '../../settings/profile';
+import SettingsProfile from '../../dashboard/settings/profile';
 import { useUser } from '@treelof/hooks';
 import { Profile } from '@treelof/models';
 import { SignUpContext } from '../context';

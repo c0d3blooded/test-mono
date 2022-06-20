@@ -9,3 +9,5 @@ export * from './middleware';
 // wiki tools
 export * from './wiki/charateristic';
 export * from './wiki/revision';
+// common
+export * from './browser';

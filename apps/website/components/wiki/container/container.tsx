@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Fade, SlideHorizontalRight } from '@treelof/animations';
+import { Fade, SlideHorizontal } from '@treelof/animations';
 import { useIsMobile, useUser } from '@treelof/hooks';
 import { Menu } from '@headlessui/react';
 import {
@@ -113,7 +113,9 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
             <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
               {getName(profile)}
             </p>
-            <Link href={`${process.env.NEXT_PUBLIC_APP_PAGE}/settings/profile`}>
+            <Link
+              href={`${process.env.NEXT_PUBLIC_APP_PAGE}/dashboard/settings/profile`}
+            >
               <a className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
                 View profile settings
               </a>
@@ -301,9 +303,10 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
                 show={showMobile}
                 className="fixed inset-0 bg-gray-600 bg-opacity-75"
               />
-              <SlideHorizontalRight
+              <SlideHorizontal
                 show={showMobile}
                 className="relative max-w-xs w-full bg-white border-r border-gray-200 pt-5 pb-4 flex-1 flex flex-col"
+                direction="right"
               >
                 {/* close menu button */}
                 <div className="absolute top-1 right-0 -mr-14 p-1">
@@ -321,7 +324,7 @@ const WikiSidebar: React.FC<Props> = ({ showMobile, onClose }) => {
                 <div className="flex-1 h-0 px-2 overflow-y-auto">
                   <nav className="h-full flex flex-col">{_renderItems()}</nav>
                 </div>
-              </SlideHorizontalRight>
+              </SlideHorizontal>
               <div className="flex-shrink-0 w-14" aria-hidden="true">
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>

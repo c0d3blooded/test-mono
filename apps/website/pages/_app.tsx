@@ -17,14 +17,12 @@ axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_PAGE}/v1`;
 function App({ Component, pageProps }: AppProps) {
   return (
     <UserContextProvider>
-      {() => (
-        // track the characteristics
-        <ThemeProvider theme={theme}>
-          <CharcteristicContextProvider>
-            <Component {...pageProps} />
-          </CharcteristicContextProvider>
-        </ThemeProvider>
-      )}
+      {/* track the characteristics */}
+      <ThemeProvider theme={theme}>
+        <CharcteristicContextProvider>
+          <Component {...pageProps} />
+        </CharcteristicContextProvider>
+      </ThemeProvider>
     </UserContextProvider>
   );
 }

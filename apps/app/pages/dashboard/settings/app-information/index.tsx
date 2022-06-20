@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import SettingsAppInformation from '../../../components/settings/app-information';
+import SettingsAppInformation from '../../../../components/dashboard/settings/app-information';
 import { useAppInformation, useUser } from '@treelof/hooks';
 import { AppInformation, IconData } from '@treelof/models';
 import {
@@ -8,7 +8,7 @@ import {
   uploadAppIcon,
   upsertAppInformation
 } from '@treelof/services';
-import DashboardSection from '../../../components/dashboard-section';
+import DashboardSection from '../../../../components/dashboard/dashboard-section';
 import { Card } from '@treelof/components';
 
 const SettingsAppInformationPage = () => {

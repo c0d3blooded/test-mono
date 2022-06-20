@@ -19,7 +19,7 @@ interface Props {
   onClose: () => void; // when the menu is closed
 }
 
-const Sidebar: React.FC<Props> = ({ showMobile, onClose }) => {
+const PlannerSidebarRight: React.FC<Props> = ({ showMobile, onClose }) => {
   const { loggedIn } = useUser();
   const mobile = useIsMobile();
   const router = useRouter();
@@ -72,9 +72,9 @@ const Sidebar: React.FC<Props> = ({ showMobile, onClose }) => {
     <>
       {/* desktop sidebar */}
       <SlideHorizontal
-        className="hidden w-28 bg-green-700 overflow-y-auto md:block"
+        className="hidden w-28 bg-gray-700 overflow-y-auto md:block"
         show={!mobile ? loggedIn : showMobile}
-        direction="right"
+        direction="left"
       >
         <div className="w-full py-6 flex flex-col items-center">
           <div className="flex-shrink-0 flex items-center"></div>
@@ -114,81 +114,8 @@ const Sidebar: React.FC<Props> = ({ showMobile, onClose }) => {
           </div>
         </div>
       </SlideHorizontal>
-
-      {/* mobile menu */}
-      <div className="md:hidden" role="dialog" aria-modal="true">
-        <Fade show={showMobile} className="fixed inset-0 z-40 flex">
-          <div className="fixed inset-0 z-40 flex">
-            {/* overlay */}
-            <Fade
-              show={showMobile}
-              className="fixed inset-0 bg-gray-600 bg-opacity-75"
-            />
-            <SlideHorizontal
-              show={showMobile}
-              className="relative max-w-xs w-full bg-green-700 pt-5 pb-4 flex-1 flex flex-col"
-              direction="right"
-            >
-              {/* close menu button */}
-              <div className="absolute top-1 right-0 -mr-14 p-1">
-                <button
-                  type="button"
-                  className="h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
-                  onClick={onClose}
-                >
-                  <HiOutlineX className="h-6 w-6 text-white" />
-                  <span className="sr-only">Close sidebar</span>
-                </button>
-              </div>
-
-              <div className="flex-shrink-0 px-4 flex items-center"></div>
-              <div className="mt-5 flex-1 h-0 px-2 overflow-y-auto">
-                <nav className="h-full flex flex-col">
-                  <div className="space-y-1">
-                    {/* dashboard */}
-                    {_renderItem(
-                      '/',
-                      (className) => (
-                        <HiOutlineViewGrid className={className} />
-                      ),
-                      'Dashboard'
-                    )}
-                    {/* leaders */}
-                    {_renderItem(
-                      '/leaders',
-                      (className) => (
-                        <HiOutlineShoppingCart className={className} />
-                      ),
-                      'Leaders'
-                    )}
-                    {/* events */}
-                    {_renderItem(
-                      '/events',
-                      (className) => (
-                        <HiOutlineCalendar className={className} />
-                      ),
-                      'Events'
-                    )}
-                    {/* settings */}
-                    {_renderItem(
-                      '/settings',
-                      (className) => (
-                        <HiOutlineCog className={className} />
-                      ),
-                      'Settings'
-                    )}
-                  </div>
-                </nav>
-              </div>
-            </SlideHorizontal>
-            <div className="flex-shrink-0 w-14" aria-hidden="true">
-              {/* Dummy element to force sidebar to shrink to fit close icon */}
-            </div>
-          </div>
-        </Fade>
-      </div>
     </>
   );
 };
 
-export default Sidebar;
+export default PlannerSidebarRight;
